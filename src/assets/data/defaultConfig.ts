@@ -108,7 +108,7 @@ export const DefaultAppVersion: string = '0.5.11.1-alpha'
 
 export const DefaultScheduleVersion = '0.3.10'
 
-export const DefaultScheduleYearCoverage: number = 2 // years
+export const DefaultScheduleYearCoverage: number = 1 // years
 
 export const DefaultScheduleReportRepeat: number = 7 // days
 
@@ -116,7 +116,7 @@ export const DefaultNotificationType: string = 'FCM' // choose from 'FCM' or 'LO
 export const DefaultMaxUpstreamResends = 100
 export const DefaultNumberOfNotificationsToSchedule: number = 100 //
 export const DefaultNumberOfNotificationsToRescue: number = 12 //
-export const FCMPluginProjectSenderId: string = '430900191220'
+export const FCMPluginProjectSenderId: string = '723817636551'
 export const DefaultNotificationRefreshTime: number = 900000 // 15 mins in ms
 export const DefaultNotificationTtlMinutes: number = 10
 
@@ -132,7 +132,11 @@ export const DefaultSourceTypeRegistrationBody = {
 export const DefaultEndPoint: string =
   'https://ucl-mighealth-dev.thehyve.net'
 
-export const DefaultKeycloakURL = 'auth/';
+export const DefaultKeycloakURL = '/auth/';
+
+export const DefaultCallbackURL = 'http://localhost:8100/';
+
+export const DefaultProjectName = 'STAGING_PROJECT'
 
 export const DefaultPlatformInstance = 'RADAR-CNS'
 
@@ -166,7 +170,7 @@ export const DefaultOAuthClientId = oauthParts.shift()
 // TODO: Use empty client secret https://github.com/RADAR-base/RADAR-Questionnaire/issues/140
 export const DefaultOAuthClientSecret = oauthParts.join(':')
 
-export const DefaultPackageName = 'org.phidatalab.radar_armt'
+export const DefaultPackageName = 'uk.ac.ucl.ihi.onthemove'
 
 // CONFIG SERVICE
 

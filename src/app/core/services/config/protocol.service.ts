@@ -45,9 +45,14 @@ export class ProtocolService {
           throw new Error('Project name is not set. Cannot pull protocols.')
         }
         const URI = [baseUrl, projectName, `${path}?ref=${branch}`].join('/')
+        this.logger.log('Fetching protocols from: {}', URI)
         return this.http.get(URI).toPromise()
       })
-      .then(res => atob(res['content']))
+      .then(res => {return atob(res['content'])})
+      .catch(() => {
+        this.logger.log("ERROR: Could not successfully pull protocol")
+        throw Error('Could not pull protocol')
+      })
   }
 
   format(protocols: Assessment[]): Assessment[] {

@@ -50,13 +50,8 @@ export class TasksService {
       })
   }
 
-  getUncompletedTasksOfNow() {
-    const now = new Date().getTime()
-    return this.schedule.getIncompleteTasks()
-      .then((tasks: Task[]) => {
-        return tasks.filter(t => t.timestamp <= now && t.timestamp + t.completionWindow > now && !t.completed)
-      })
-
+  getTasksToComplete() {
+    return this.schedule.getPendingTasksForNow()
   }
 // end of from ucl
   getTasksOfToday() {
@@ -82,12 +77,18 @@ export class TasksService {
   }
 
   getTaskProgress(): Promise<TasksProgress> {
-    return this.getTasksOfToday().then(tasks => ({
-      numberOfTasks: tasks.length,
-      completedTasks: tasks.filter(d => d.completed).length,
-      completedPercentage: 0
-      // TODO FIXME completedPercentage: completedTasks === 0 ? 0 : Math.round((completedTasks/numberOfTasks)*100)
-    }))
+    return this.getTasksOfToday().then(tasks => (this.calculateTaskProgress(tasks)))
+  }
+
+  calculateTaskProgress(tasks: Task[]) {
+    const numberOfTasks = tasks.length
+    const completedTasks = tasks.filter( d => d.completed).length
+    const completedPercentage = completedTasks === 0 ? 0 : Math.round((completedTasks/numberOfTasks)*100)
+    return {
+      numberOfTasks,
+      completedTasks,
+      completedPercentage
+    }
   }
 
   updateTaskToReportedCompletion(task) {
