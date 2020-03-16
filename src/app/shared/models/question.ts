@@ -66,3 +66,4 @@ export interface InfoItem {
   heading: string
   content: string
 }
+

@@ -19,6 +19,7 @@ import { EnrolmentEventType} from "../../../../shared/enums/events";
 import { UsageService } from "../../../../core/services/usage/usage.service";
 import { SplashPageComponent } from "../../../splash/containers/splash-page.component";
 import { LogService } from "../../../../core/services/misc/log.service";
+import { EligibilityPageComponent } from "../eligibility-page/eligibility-page.component";
 
 /**
  * Generated class for the WelcomePage page.
@@ -40,6 +41,7 @@ export class WelcomePageComponent {
   loading: boolean = false
   showOutcomeStatus: boolean = false
   outcomeStatus: string
+  showReadMoreInformation: boolean = false
   languagesSelectable: LanguageSetting[] = DefaultSettingsSupportedLanguages;
 
   constructor(
@@ -92,7 +94,7 @@ export class WelcomePageComponent {
   }
 
   joinStudy() {
-    this.navCtrl.setRoot(EnrolmentPageComponent);
+    this.navCtrl.setRoot(EligibilityPageComponent);
   }
 
   goToLogin() {
@@ -130,6 +132,17 @@ export class WelcomePageComponent {
     )
   }
 
+  goBack() {
+    this.slides.lockSwipes(false)
+    const slideIndex = this.slides.getActiveIndex() - 1
+    this.slides.slideTo(slideIndex, 500)
+    // this.slides.lockSwipes(true)
+  }
+
+  showAboutStudyPage() {
+    this.showReadMoreInformation = false
+  }
+
   clearStatus() {
     this.showOutcomeStatus = false
     this.outcomeStatus = null
@@ -146,5 +159,9 @@ export class WelcomePageComponent {
 
   navigateToSplash() {
     this.navCtrl.setRoot(SplashPageComponent)
+  }
+
+  showReadMoreText() {
+    this.showReadMoreInformation = true
   }
 }

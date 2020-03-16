@@ -12,7 +12,7 @@ page-enrolment {
   color: white;
 
   .icon {
-    font-size: 36px;
+    font-size: 20px;
   }
 
   .logo {
@@ -41,14 +41,19 @@ page-enrolment {
 
   .text-md {
     margin-bottom: 2vh;
-    font-size: 30px;
     color: $cl-light;
+    font-size: 20px;
+  }
+
+  .text-sm {
+    margin-bottom: 2vh;
+    font-size: 15px;
   }
 
   .text-heading {
+    margin-top: 2vh;
     margin-bottom: 2vh;
     font-size: 20px;
-    margin-top: 2vh;
   }
 
   .consent-topic {
@@ -85,10 +90,7 @@ page-enrolment {
     background-color: $cl-primary;
   }
 
-  .text-sm {
-    margin-bottom: 2vh;
-    font-size: 18px;
-  }
+
 
   .padding {
     margin-top: 3vh;
@@ -147,7 +149,10 @@ page-enrolment {
 
   ion-item.item {
     margin-bottom: $item-separation-distance;
-    background-color: $cl-primary-40;
+  }
+
+  .item-md.item-block .item-inner {
+    border: none;
   }
 
   ion-item.item:last-child {
@@ -212,5 +217,12 @@ page-enrolment {
   .status-center {
     margin-top: 15px;
     text-align: center;
+  }
+
+  .bt--block {
+    width: 75px;
+    height: 75px;
+    font-size: 18px;
+    line-height: 1.35em;
   }
 }

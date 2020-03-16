@@ -10,6 +10,8 @@ import { TaskProgressModule } from './components/task-progress/task-progress.mod
 import { TickerBarModule } from './components/ticker-bar/ticker-bar.module'
 import { HomePageComponent } from './containers/home-page.component'
 import { TasksService } from './services/tasks.service'
+import { LearningPageModule } from "./components/learning-page/learning-page.module";
+import { LearningPageItemModule } from "./components/learning-page-item/learning-page-item.module";
 
 @NgModule({
   imports: [
@@ -20,6 +22,8 @@ import { TasksService } from './services/tasks.service'
     TickerBarModule,
     TaskListModule,
     PipesModule,
+    LearningPageModule,
+    LearningPageItemModule,
     IonicModule.forRoot(HomePageComponent)
   ],
   declarations: [HomePageComponent],

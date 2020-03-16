@@ -43,7 +43,7 @@ import { SplashModule } from './splash/splash.module'
     QuestionsModule,
     ReportModule,
     SettingsModule,
-    SplashModule
+    SplashModule,
   ],
   providers: [
     AlertService,

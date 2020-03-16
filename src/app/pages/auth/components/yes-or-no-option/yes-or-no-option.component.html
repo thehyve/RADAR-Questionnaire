@@ -1,0 +1,19 @@
+<div style="text-align: start">
+  <span class="text-sm" >{{question.question}}</span>
+</div>
+<ion-list radio-group>
+  <tr>
+    <td *ngFor="let item of items">
+      <div style="padding-right: 10px;">
+        <ion-item no-lines>
+          <ion-radio
+            [value]="item.value"
+            [id]="item.id"
+            (ionSelect)="onInputChange(item.value)"
+          ></ion-radio>
+          <ion-label>{{ item.response }}</ion-label>
+        </ion-item>
+      </div>
+    </td>
+  </tr>
+</ion-list>

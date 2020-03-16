@@ -11,7 +11,7 @@ export const Localisations = {
   ENROL_WELCOME_1: {
     da: 'Velkommen',
     de: 'Herzlich willkommen',
-    en: 'Welcome',
+    en: 'Welcome to',
     es: 'Bienvenido',
     it: 'Benvenuto',
     nl: 'Welkom'
@@ -19,7 +19,7 @@ export const Localisations = {
   ENROL_WELCOME_2: {
     da: 'til RADAR-Base',
     de: 'zu RADAR-Base',
-    en: 'to Health on the Move',
+    en: 'Health On the MovE (HOME)',
     es: 'a RADAR-Base',
     it: 'in RADAR-Base',
     nl: 'bij RADAR-Base'
@@ -104,6 +104,10 @@ export const Localisations = {
   ENROL_ABORT_MESSAGE: {
     en: 'It seems you do not meet our eligibility criteria to participant in the study.'
   },
+
+  ENROL_NO_CONSENT_MESSAGE: {
+    en: 'Thank you for trying to participant in our study.'
+  },
   ENROL_ABOUT_HEADING: {
     da: 'Velkommen',
     de: 'Herzlich willkommen',
@@ -114,6 +118,10 @@ export const Localisations = {
   },
   ENROL_HOW_STUDY_WORKS_HEADING: {
     en: 'How this study works',
+  },
+
+  ENROL_PURPOSE_OF_THE_STUDY: {
+    en: 'Purpose of this study',
   },
 
   ENROL_ELIGIBILITY_HEADING: {
@@ -218,7 +226,7 @@ export const Localisations = {
   FINISH_NEXT_TASK_REMINDER: {
     da: 'Husk, du har stadig udestående opgaver!',
     de: 'Denken Sie daran, Sie haben noch Aufgaben ausstehend!',
-    en: 'Remember, you still have tasks outstanding!',
+    en: 'Remember, you still have surveys to be completed. It would be great if you could finish those too!',
     es: 'Recuerde, todavía tiene tareas pendientes!',
     it: 'Ricorda, hai ancora delle attività in sospeso!',
     nl: 'Denk eraan, je hebt nog steeds taken openstaan!'
@@ -232,10 +240,13 @@ export const Localisations = {
     nl: 'Voltooid in de kliniek?'
   },
   LEARN_HEADING: {
-    en: 'Learn'
+    en: 'Resources'
+  },
+  STUDY_INFO_HEADING: {
+    en: 'Study Information'
   },
   SURVEYS_HEADING: {
-    en: 'Surveys'
+    en: 'Your Surveys'
   },
   TODO_LIST_TITLE: {
     en: 'TODO List'

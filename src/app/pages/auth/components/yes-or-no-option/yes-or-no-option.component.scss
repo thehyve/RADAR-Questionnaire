@@ -1,0 +1,63 @@
+yes-or-no-option {
+  display: block;
+  //margin-left: -5px;
+  width: 100%;
+
+  ion-label {
+    color: $cl-light !important;
+  }
+
+  tbody {
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  tr {
+    display: flex;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+  }
+
+  td {
+    padding: 5px;
+  }
+
+  tr td {
+    display: flex;
+    align-content: center;
+  }
+
+  tr td ion-radio {
+    position: relative;
+  }
+
+  tr td ion-label {
+    @include button-round;
+
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-start;
+    height: inherit;
+    white-space: normal;
+  }
+
+  .item-radio-checked ion-label {
+    background-color: $cl-primary !important;
+  }
+
+  .radio-icon {
+    display: none !important;
+    margin: 0;
+  }
+
+  .input-wrapper {
+    margin: 0 -20px -12px 0;
+  }
+}

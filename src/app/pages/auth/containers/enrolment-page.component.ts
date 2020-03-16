@@ -25,7 +25,8 @@ import { HomePageComponent } from "../../home/containers/home-page.component";
 import { StorageService } from "../../../core/services/storage/storage.service";
 import { StorageKeys } from "../../../shared/enums/storage";
 import { AuthService } from "../services/auth.service";
-import {ConfigService} from "../../../core/services/config/config.service";
+import { ConfigService } from "../../../core/services/config/config.service";
+import { WelcomePageComponent } from "../components/welcome-page/welcome-page.component";
 
 @Component({
   selector: 'page-enrolment',
@@ -36,6 +37,7 @@ export class EnrolmentPageComponent {
   slides: Slides
   loading: boolean = false
   showOutcomeStatus: boolean = false
+
   isEighteen: boolean = undefined
   isBornInUK: boolean = undefined
   consentParticipation = undefined
@@ -193,6 +195,10 @@ export class EnrolmentPageComponent {
 
   navigateToHome() {
     this.navCtrl.setRoot(HomePageComponent)
+  }
+
+  navigateToWelcome() {
+    this.navCtrl.setRoot(WelcomePageComponent)
   }
 
 }

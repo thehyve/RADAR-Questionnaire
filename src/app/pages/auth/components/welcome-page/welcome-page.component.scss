@@ -2,18 +2,33 @@ page-welcome {
   color: white;
 
   #logo {
-    width: 200px;
+    width: 250px;
   }
 
   #logo-container {
     margin: auto;
-    padding-bottom: 3vh;
-    width: 200px;
+    width: 250px;
+  }
+
+  .icon {
+    font-size: 20px;
   }
 
   .text {
     margin: auto;
     width: 90vw;
+  }
+
+  .scroll-page {
+    height:75vh !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 3px;
+    background-color: white;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $cl-light;
   }
 
   .text-ques {
@@ -28,12 +43,12 @@ page-welcome {
 
   .text-lg {
     margin-bottom: 2vh;
-    font-size: 40px;
+    font-size: 30px;
   }
 
   .text-md {
     margin-bottom: 2vh;
-    font-size: 30px;
+    font-size: 20px;
   }
 
   .padding {
@@ -43,7 +58,6 @@ page-welcome {
 
   .extra-padding {
     margin-top: 8vh;
-
   }
 
   #status {
@@ -73,12 +87,6 @@ page-welcome {
     padding-top: 5px;
   }
 
-  .qr-code {
-    margin: auto;
-    padding-top: 3vh;
-    width: 170px;
-  }
-
   .bottom {
     position: fixed;
     bottom: 10px;
@@ -87,7 +95,10 @@ page-welcome {
 
   ion-item.item {
     margin-bottom: $item-separation-distance;
-    background-color: $cl-primary-40;
+  }
+
+  .item-md.item-block .item-inner {
+    border: none;
   }
 
   ion-item.item:last-child {
@@ -129,11 +140,6 @@ page-welcome {
     border-bottom: 1px solid white;
   }
 
-  .scroll-content {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
   li {
     padding-bottom:10px;
     list-style-type: decimal;
@@ -149,8 +155,28 @@ page-welcome {
     height: 30px;
   }
 
+  .text-paragraph {
+    text-align: left;
+    font-size: 12px;
+    padding-bottom: 10px;
+    line-height: 14px;
+  }
+
   .status-center {
     margin-top: 15px;
     text-align: center;
+  }
+
+  #introframe {
+    flex: 1 0 100%;
+    width: 100% !important;
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    border: none;
+  }
+
+  .player {
+    width: 100% !important;
   }
 }
