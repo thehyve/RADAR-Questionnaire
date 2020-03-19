@@ -17,23 +17,26 @@ import { YesOrNoOptionComponent } from "./components/yes-or-no-option/yes-or-no-
   imports: [
     CommonModule,
     IonicModule.forRoot(WelcomePageComponent),
-    PipesModule
+    PipesModule,
   ],
-  entryComponents: [
-    EligibilityPageComponent,
-    ConsentPageComponent
-  ],
-  declarations: [
-    ConsentPageComponent,
+	entryComponents: [
+		EligibilityPageComponent,
+		ConsentPageComponent
+	],
+	declarations: [
+		ConsentPageComponent,
+		ConsentPageItemComponent,
+		WelcomePageComponent,
+		EligibilityPageComponent,
+		TokenFormComponent,
+		QRFormComponent,
+		YesOrNoOptionComponent,
+	],
+  exports: [
     ConsentPageItemComponent,
-    WelcomePageComponent,
-    EligibilityPageComponent,
-    TokenFormComponent,
-    QRFormComponent,
-    YesOrNoOptionComponent
   ],
-  providers: [
-    { provide: AuthService, useClass: KeycloakAuthService}
-  ]
+	providers: [
+		{provide: AuthService, useClass: KeycloakAuthService}
+	]
 })
 export class AuthModule {}

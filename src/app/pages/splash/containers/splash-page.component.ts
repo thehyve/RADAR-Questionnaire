@@ -5,10 +5,12 @@ import { AlertService } from '../../../core/services/misc/alert.service'
 import { LocalizationService } from '../../../core/services/misc/localization.service'
 import { UsageService } from '../../../core/services/usage/usage.service'
 import { LocKeys } from '../../../shared/enums/localisations'
-import { EnrolmentPageComponent } from '../../auth/containers/enrolment-page.component'
 import { WelcomePageComponent } from "../../auth/components/welcome-page/welcome-page.component";
 import { HomePageComponent } from '../../home/containers/home-page.component'
 import { SplashService } from '../services/splash.service'
+import {StorageService} from "../../../core/services/storage/storage.service";
+import {ConfigService} from "../../../core/services/config/config.service";
+import {StorageKeys} from "../../../shared/enums/storage";
 
 @Component({
   selector: 'page-splash',
@@ -22,11 +24,15 @@ export class SplashPageComponent {
     private splash: SplashService,
     private alertService: AlertService,
     private localization: LocalizationService,
-    private usage: UsageService
+    private usage: UsageService,
+  private storage: StorageService,
+  private config: ConfigService
   ) {
+
     this.splash
       .evalEnrolment()
       .then(valid => (valid ? this.onStart() : this.welcome()))
+
   }
 
   onStart() {
@@ -60,16 +66,16 @@ export class SplashPageComponent {
         {
           text: this.localization.translateKey(LocKeys.BTN_RESET),
           handler: () => {
-            this.enrol()
+            this.welcome()
           }
         }
       ]
     })
   }
 
-  enrol() {
-    this.splash.reset().then(() => this.navCtrl.setRoot(EnrolmentPageComponent))
-  }
+  // enrol() {
+  //   this.splash.reset().then(() => this.navCtrl.setRoot(EnrolmentPageComponent))
+  // }
 
   welcome() {
     this.splash.reset().then(() => this.navCtrl.setRoot(WelcomePageComponent))

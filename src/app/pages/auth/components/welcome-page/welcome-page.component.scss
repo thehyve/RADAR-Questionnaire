@@ -2,12 +2,12 @@ page-welcome {
   color: white;
 
   #logo {
-    width: 250px;
+    width: 100%;
   }
 
   #logo-container {
     margin: auto;
-    width: 250px;
+    width: 100%;
   }
 
   .icon {
@@ -39,6 +39,15 @@ page-welcome {
 
   .text-justify {
     text-align: justify;
+  }
+
+  .swipe-here {
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    left: 0;
+    text-align: center;
+    font-size: 14px;
   }
 
   .text-lg {
