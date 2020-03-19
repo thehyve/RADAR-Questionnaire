@@ -8,9 +8,8 @@ import { LocKeys } from '../../../shared/enums/localisations'
 import { WelcomePageComponent } from "../../auth/components/welcome-page/welcome-page.component";
 import { HomePageComponent } from '../../home/containers/home-page.component'
 import { SplashService } from '../services/splash.service'
-import {StorageService} from "../../../core/services/storage/storage.service";
-import {ConfigService} from "../../../core/services/config/config.service";
-import {StorageKeys} from "../../../shared/enums/storage";
+
+import {RemoteConfigService} from "../../../core/services/config/remote-config.service";
 
 @Component({
   selector: 'page-splash',
@@ -25,10 +24,9 @@ export class SplashPageComponent {
     private alertService: AlertService,
     private localization: LocalizationService,
     private usage: UsageService,
-  private storage: StorageService,
-  private config: ConfigService
+    private remoteConfigService: RemoteConfigService,
   ) {
-
+    this.remoteConfigService.forceFetch()
     this.splash
       .evalEnrolment()
       .then(valid => (valid ? this.onStart() : this.welcome()))

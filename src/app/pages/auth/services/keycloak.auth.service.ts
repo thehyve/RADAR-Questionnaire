@@ -7,8 +7,12 @@ import {TokenService} from "../../../core/services/token/token.service";
 import {ConfigService} from "../../../core/services/config/config.service";
 import {AnalyticsService} from "../../../core/services/usage/analytics.service";
 import {
+  DefaultCallbackURL,
+  DefaultClientId,
   DefaultEndPoint,
-  DefaultKeycloakURL, DefaultProjectName, DefaultRequestEncodedContentType
+  DefaultKeycloakURL,
+  DefaultProjectName, DefaultRealmName,
+  DefaultRequestEncodedContentType
 } from "../../../../assets/data/defaultConfig";
 import {InAppBrowser, InAppBrowserOptions} from "@ionic-native/in-app-browser/ngx";
 import {StorageKeys} from "../../../shared/enums/storage";
@@ -21,7 +25,13 @@ const uuid = require('uuid/v4')
 @Injectable()
 export class KeycloakAuthService extends AuthService {
 
-  keycloakConfig: KeycloakConfig
+  private keycloakConfig: KeycloakConfig = {
+    authServerUrl: DefaultEndPoint + DefaultKeycloakURL,
+    realm: DefaultRealmName,
+    clientId: DefaultClientId,
+    redirectUri: DefaultCallbackURL,
+    realmUrl: DefaultEndPoint + DefaultKeycloakURL + 'realms/' + encodeURIComponent(DefaultRealmName)
+  };
   inAppBrowserOptions: InAppBrowserOptions = {
     zoom: 'no',
     location: 'no',
@@ -40,29 +50,57 @@ export class KeycloakAuthService extends AuthService {
     private remoteConfig: RemoteConfigService,
   ) {
     super(http, token, config, logger, analytics)
-    this.updateURI().then(() => {
-      this.keycloakConfig = {
-        authServerUrl: this.URI_base,
-        realm: 'mighealth',
-        clientId: 'armt',
-        redirectUri: 'http://ucl-mighealth-app/callback/',
-      };
-      this.logger.log("Initialized keycloak config: ", JSON.stringify(this.keycloakConfig))
-      this.getRealmUrl().then((realmUrl) => {
-        this.logger.log("Setting realmUrl to config")
-        this.keycloakConfig.realmUrl = realmUrl
-        return this.token.setTokenURI(realmUrl)
-      }).then(() => {
+    this.updateURI().then((authBaseUrl) => {
+      this.logger.log("Auth Base Url is:", authBaseUrl)
+      this.initKeycloakConfig().then( (conf) => {
+        this.keycloakConfig = conf
+        this.logger.log("Initialized keycloak config: ", JSON.stringify(this.keycloakConfig))
         return this.storage.set(StorageKeys.KEYCLOAK_CONFIG, this.keycloakConfig)
+      }).then( () => {
+          return this.token.setTokenURI(this.keycloakConfig.realmUrl)
+        })
       })
+  }
+
+  initKeycloakConfig(): Promise<KeycloakConfig> {
+    return this.remoteConfig.forceFetch()
+      .then(config => Promise.all([
+        config.getOrDefault(ConfigKeys.REALM_NAME, DefaultRealmName),
+        config.getOrDefault(ConfigKeys.APP_CLIENT_ID, DefaultClientId),
+        config.getOrDefault(ConfigKeys.CALLBACK_URL, DefaultCallbackURL),
+        this.getRealmUrl()
+      ]))
+      .then(([realm, clientId, callback, realmUrl]) => {
+        const newConfig = {
+          authServerUrl: this.URI_base,
+          realm: realm,
+          clientId: clientId,
+          redirectUri: callback,
+          realmUrl: realmUrl
+        };
+      this.logger.log("keycloak config: ", JSON.stringify(newConfig))
+      return newConfig
     })
   }
 
+
   updateURI() {
     return this.storage.get(StorageKeys.BASE_URI).then(uri => {
-      const endPoint = uri ? uri : DefaultEndPoint;
-      this.URI_base = endPoint + DefaultKeycloakURL;
+      return uri? uri : Promise.all([this.getBaseEndpoint()])
+        .then(([baseUrl]) => {
+        return this.storage.set(StorageKeys.BASE_URI, baseUrl)
+      }).then((baseUrl) => {
+          const baseEndpoint = baseUrl ? baseUrl : DefaultEndPoint;
+          this.URI_base = baseEndpoint + DefaultKeycloakURL;
+          return this.storage.set(StorageKeys.AUTH_BASE_URI, this.URI_base)
+      })
     });
+  }
+
+  getBaseEndpoint() : Promise<string> {
+    return this.remoteConfig.forceFetch().then((config) => {
+      return config.getOrDefault(ConfigKeys.BASE_ENDPOINT_URL, DefaultEndPoint)
+    })
   }
 
   authenticate(authObj) {
@@ -103,11 +141,12 @@ export class KeycloakAuthService extends AuthService {
       this.getProjectName()
     ]).then(([baseUrl, subjectInformation, projectName]) => {
       this.logger.log("Project name is :", projectName)
+      this.logger.log("subject info: "+ JSON.stringify(subjectInformation))
       return this.config.setAll({
         projectId: projectName,
         subjectId: subjectInformation.sub,
         sourceId: uuid(),
-        humanReadableId: subjectInformation.username,
+        humanReadableId: subjectInformation.preferred_username,
         enrolmentDate: new Date(subjectInformation.createdTimestamp).getTime(),
         baseUrl: baseUrl? baseUrl : DefaultEndPoint
       })
@@ -173,15 +212,24 @@ export class KeycloakAuthService extends AuthService {
   }
 
   getRealmUrl() : Promise<string> {
-    return new Promise((resolve, reject) => {
-      if (this.keycloakConfig && this.keycloakConfig .authServerUrl) {
-        if (this.keycloakConfig.authServerUrl.charAt(this.keycloakConfig.authServerUrl.length - 1) == '/') {
-          resolve(this.keycloakConfig.authServerUrl + 'realms/' + encodeURIComponent(this.keycloakConfig.realm));
-        } else {
-          resolve(this.keycloakConfig.authServerUrl + '/realms/' + encodeURIComponent(this.keycloakConfig.realm));
-        }
+    return  this.storage.get(StorageKeys.REALM_URI).then((realmFromStorage) => {
+      if (realmFromStorage) {
+        this.logger.log("RealmUrl from storage: ", realmFromStorage)
+        return realmFromStorage
       } else {
-        reject('Keycloak config is not initialized')
+        return this.remoteConfig.forceFetch().then((config) => {
+          return config.getOrDefault(ConfigKeys.REALM_NAME, DefaultRealmName)
+        }).then((realmName) => {
+          return this.storage.get(StorageKeys.AUTH_BASE_URI).then(
+            (keycloakUrl) => {
+              if (keycloakUrl.charAt(keycloakUrl.length - 1) == '/') {
+                return (keycloakUrl + 'realms/' + encodeURIComponent(realmName));
+              } else {
+                return(keycloakUrl + '/realms/' + encodeURIComponent(realmName));
+              }
+            }
+          )
+        })
       }
     })
   }

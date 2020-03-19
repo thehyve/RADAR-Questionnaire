@@ -17,10 +17,6 @@ import {getSeconds} from "../../../shared/utilities/time";
 @Injectable()
 export class KeycloakTokenService extends TokenService {
 
-  private readonly KEYCLOAK_TOKEN_STORE = {
-    TOKEN_URI: StorageKeys.TOKEN_URI
-  }
-
   constructor(
     public http: HttpClient,
     public storage: StorageService,
@@ -77,7 +73,7 @@ export class KeycloakTokenService extends TokenService {
         throw new Error('No tokens are available to refresh')
       }
       if (!keycloakConfig) {
-        throw new Error('Keycloak confing is not found')
+        throw new Error('Keycloak config is not found')
       }
       const limit = getSeconds({
         milliseconds: new Date().getTime() + this.tokenRefreshMillis
@@ -139,7 +135,7 @@ export class KeycloakTokenService extends TokenService {
 
   getTokenURL(realmUrl) {
     const valueFromStore = this.storage
-      .get(this.KEYCLOAK_TOKEN_STORE.TOKEN_URI)
+      .get(StorageKeys.TOKEN_URI)
     return valueFromStore != null ? valueFromStore :  realmUrl + '/protocol/openid-connect/token'
   }
 
@@ -149,7 +145,7 @@ export class KeycloakTokenService extends TokenService {
       lastSlashIndex--
     }
     return this.storage.set(
-      this.KEYCLOAK_TOKEN_STORE.TOKEN_URI,
+      StorageKeys.TOKEN_URI,
       uri.substring(0, lastSlashIndex) + '/protocol/openid-connect/token'
     )
   }

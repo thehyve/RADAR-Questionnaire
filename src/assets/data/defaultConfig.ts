@@ -130,21 +130,25 @@ export const DefaultSourceTypeRegistrationBody = {
 }
 
 export const DefaultEndPoint: string =
-  'https://ucl-mighealth-dev.thehyve.net'
+  'https://radarbase.homeappstudy.net'
 
 export const DefaultKeycloakURL = '/auth/';
 
-export const DefaultCallbackURL = 'http://localhost:8100/';
+export const DefaultCallbackURL = 'http://ucl-home-app/callback/';
+
+export const DefaultRealmName = 'homeappstudy';
+
+export const DefaultClientId = 'home-app-client';
 
 export const DefaultProjectName = 'STAGING_PROJECT'
 
-export const DefaultPlatformInstance = 'RADAR-CNS'
+export const DefaultPlatformInstance = 'HOMEAppStudy'
 
 // GITHUB SOURCES
 
 export const GIT_API_URI = 'https://api.github.com/repos'
 
-export const DefaultProtocolGithubRepo = 'RADAR-Base/RADAR-aRMT-protocols'
+export const DefaultProtocolGithubRepo = 'homeappstudy/UCL-Health-On-The-Move-aRMT-protocols'
 export const DefaultProtocolBranch = 'master'
 export const DefaultProtocolPath = `protocol.json`
 export const DefaultProtocolEndPoint = [

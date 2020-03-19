@@ -32,7 +32,9 @@ export class StorageKeys {
   static LAST_NOTIFICATION_UPDATE = new StorageKeys('LAST_NOTIFICATION_UPDATE')
   static LAST_UPLOAD_DATE = new StorageKeys('LAST_UPLOAD_DATE')
   static BASE_URI = new StorageKeys('BASE_URI')
+  static AUTH_BASE_URI = new StorageKeys('AUTH_BASE_URI')
   static TOKEN_URI = new StorageKeys('TOKEN_URI')
+  static REALM_URI = new StorageKeys('REALM_URI')
   static KEYCLOAK_CONFIG = new StorageKeys('KEYCLOAK_CONFIG')
   static CONSENT_ACCESS_NHS_RECORDS = new StorageKeys('CONSENT_ACCESS_NHS_RECORDS')
 
