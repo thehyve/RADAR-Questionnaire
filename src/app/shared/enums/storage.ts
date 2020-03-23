@@ -36,6 +36,7 @@ export class StorageKeys {
   static TOKEN_URI = new StorageKeys('TOKEN_URI')
   static REALM_URI = new StorageKeys('REALM_URI')
   static KEYCLOAK_CONFIG = new StorageKeys('KEYCLOAK_CONFIG')
+  static APP_CLIENT_ID = new StorageKeys('APP_CLIENT_ID')
   static CONSENT_ACCESS_NHS_RECORDS = new StorageKeys('CONSENT_ACCESS_NHS_RECORDS')
 
   static REMOTE_CONFIG_CACHE_TIMEOUT = new StorageKeys('REMOTE_CONFIG_CACHE_TIMEOUT')

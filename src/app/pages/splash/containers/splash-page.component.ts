@@ -10,6 +10,8 @@ import { HomePageComponent } from '../../home/containers/home-page.component'
 import { SplashService } from '../services/splash.service'
 
 import {RemoteConfigService} from "../../../core/services/config/remote-config.service";
+import {AuthConfigService} from "../../../core/services/config/auth-config.service";
+import {LogService} from "../../../core/services/misc/log.service";
 
 @Component({
   selector: 'page-splash',
@@ -25,12 +27,15 @@ export class SplashPageComponent {
     private localization: LocalizationService,
     private usage: UsageService,
     private remoteConfigService: RemoteConfigService,
+    private authConfigService: AuthConfigService,
+    private logger : LogService
   ) {
     this.remoteConfigService.forceFetch()
-    this.splash
-      .evalEnrolment()
-      .then(valid => (valid ? this.onStart() : this.welcome()))
-
+      .then(() => this.authConfigService.init())
+      .then( () => this.splash
+        .evalEnrolment()
+        .then(valid => (valid ? this.onStart() : this.welcome()))
+    )
   }
 
   onStart() {
