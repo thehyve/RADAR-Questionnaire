@@ -129,65 +129,94 @@ export class KeycloakAuthService extends AuthService {
     })
   }
 
+  // initSubjectInformation() {
+  //   return Promise.all([
+  //     this.authConfigService.getBaseUrl(),
+  //     this.getSubjectInformation()
+  //   ]).then(([baseUrl, subjectInformation]) => {
+  //     return this.getProjectName(subjectInformation).then((projectName) => {
+  //       this.logger.log("Project name is :", projectName)
+  //       this.logger.log("subject info: "+ JSON.stringify(subjectInformation))
+  //       // treating keycloak user-id as the subjectId. This will make sure that subjectId is always unique
+  //       return this.config.setAll({
+  //         projectId: projectName,
+  //         subjectId: subjectInformation.user_id,
+  //         sourceId: uuid(),
+  //         humanReadableId: subjectInformation.preferred_username,
+  //         enrolmentDate: new Date(subjectInformation.createdTimestamp).getTime(),
+  //         baseUrl: baseUrl? baseUrl : DefaultEndPoint,
+  //       })
+  //     })
+  //   })
+  // }
+
   initSubjectInformation() {
     return Promise.all([
       this.authConfigService.getBaseUrl(),
-      this.getSubjectInformation()
-    ]).then(([baseUrl, subjectInformation]) => {
-      return this.getProjectName(subjectInformation).then((projectName) => {
-        this.logger.log("Project name is :", projectName)
-        this.logger.log("subject info: "+ JSON.stringify(subjectInformation))
-        // treating keycloak user-id as the subjectId. This will make sure that subjectId is always unique
-        return this.config.setAll({
-          projectId: projectName,
-          subjectId: subjectInformation.user_id,
-          sourceId: uuid(),
-          humanReadableId: subjectInformation.preferred_username,
-          enrolmentDate: new Date(subjectInformation.createdTimestamp).getTime(),
-          baseUrl: baseUrl? baseUrl : DefaultEndPoint,
-        })
+      this.getSubjectInformation(),
+      this.getProjectName()
+    ]).then(([baseUrl, subjectInformation, projectName]) => {
+      this.logger.log("Project name is :", projectName)
+      this.logger.log("subject info: "+ JSON.stringify(subjectInformation))
+      // treating keycloak user-id as the subjectId. This will make sure that subjectId is always unique
+      return this.config.setAll({
+        projectId: projectName,
+        subjectId: subjectInformation.user_id,
+        sourceId: uuid(),
+        humanReadableId: subjectInformation.preferred_username,
+        enrolmentDate: new Date(subjectInformation.createdTimestamp).getTime(),
+        baseUrl: baseUrl? baseUrl : DefaultEndPoint,
       })
     })
   }
 
-  getProjectName(subjectInfo: any) {
-      const projectFromSubject = subjectInfo.projectName
-      this.logger.log("project from subjectInfo" , projectFromSubject)
-      return projectFromSubject ? projectFromSubject :
-        this.assignProject(subjectInfo).then(() => {
-          return this.getSubjectInformation().then((sub) => {
-            return this.getProjectName(sub)
-        })
-      })
-  }
-
-  assignProject(subjectInfo: any): Promise<any> {
-    return this.remoteConfig
-      .read()
-      .then(config =>
-        config.getOrDefault(ConfigKeys.PROJECT_NAME, DefaultProjectName)
-      ).then((projectName) => {
-        this.logger.log("project from remote ", projectName)
-        return this.setProjectNameOnUser(subjectInfo.user_id, projectName)
-      })
-  }
-
-  setProjectNameOnUser(userId: any, projectName: string) {
-    return Promise.all([
-      this.token.getAccessHeaders(DefaultRequestEncodedContentType),
-      this.authConfigService.getBaseUrl()
-    ]).then(([headers, baseUrl]) => {
-      const userMgntUrl = baseUrl + '/user-management/api/users/' + userId + '/attributes'
-      const body = new HttpParams()
-        .set('projectName', projectName)
-      this.logger.log(
-        `"Setting project: ${projectName},URI: ${userMgntUrl} and headers`,
-        headers)
-      return this.http
-        .post(userMgntUrl, body, { headers: headers })
-        .toPromise()
+  getProjectName() {
+    return this.storage.get(StorageKeys.PROJECTNAME).then((project: any) => {
+      this.logger.log("project from storage" , project)
+      return project ? project : this.remoteConfig
+        .read()
+        .then(config => config.getOrDefault(ConfigKeys.PROJECT_NAME, DefaultProjectName)
+        )
     })
   }
+  // getProjectName(subjectInfo: any) {
+  //     const projectFromSubject = subjectInfo.projectName
+  //     this.logger.log("project from subjectInfo" , projectFromSubject)
+  //     return projectFromSubject ? projectFromSubject :
+  //       this.assignProject(subjectInfo).then(() => {
+  //         return this.getSubjectInformation().then((sub) => {
+  //           return this.getProjectName(sub)
+  //       })
+  //     })
+  // }
+  //
+  // assignProject(subjectInfo: any): Promise<any> {
+  //   return this.remoteConfig
+  //     .read()
+  //     .then(config =>
+  //       config.getOrDefault(ConfigKeys.PROJECT_NAME, DefaultProjectName)
+  //     ).then((projectName) => {
+  //       this.logger.log("project from remote ", projectName)
+  //       return this.setProjectNameOnUser(subjectInfo.user_id, projectName)
+  //     })
+  // }
+
+  // setProjectNameOnUser(userId: any, projectName: string) {
+  //   return Promise.all([
+  //     this.token.getAccessHeaders(DefaultRequestEncodedContentType),
+  //     this.authConfigService.getBaseUrl()
+  //   ]).then(([headers, baseUrl]) => {
+  //     const userMgntUrl = baseUrl + '/user-management/api/users/' + userId + '/attributes'
+  //     const body = new HttpParams()
+  //       .set('projectName', projectName)
+  //     this.logger.log(
+  //       `"Setting project: ${projectName},URI: ${userMgntUrl} and headers`,
+  //       headers)
+  //     return this.http
+  //       .post(userMgntUrl, body, { headers: headers })
+  //       .toPromise()
+  //   })
+  // }
 
   getSubjectInformation(): Promise<any> {
     return Promise.all([
