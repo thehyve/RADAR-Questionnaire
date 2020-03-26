@@ -40,7 +40,6 @@ export class StorageService {
       return this.storage.get(k).then(value => {
         if (value != null) {
           this.global[k] = value
-          this.logger.log("storage val is ", JSON.stringify(value))
           return value
         } else {
           Promise.resolve(null)
