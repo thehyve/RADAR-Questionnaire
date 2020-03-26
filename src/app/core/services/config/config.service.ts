@@ -69,7 +69,7 @@ export class ConfigService {
 
   updateConfigStateBasedOnProjectChange(newProjectName: string) {
     return this.subjectConfig.setProjectName(newProjectName).then(() => {
-      this.protocol.pull().then((newProtocol) => {
+      return this.protocol.pull().then((newProtocol) => {
         const parsedProtocol = JSON.parse(newProtocol)
         return this.updateConfigStateOnProtocolChange(parsedProtocol)
       })
@@ -177,7 +177,7 @@ export class ConfigService {
 
   updateConfigStateOnProtocolChange(protocol) {
     const assessments = this.protocol.format(protocol.protocols)
-    this.logger.log('Assessments read ',  you)
+    this.logger.log('Assessments read ', assessments)
     return this.questionnaire
       .updateAssessments(TaskType.ALL, assessments)
       .then(() => this.regenerateSchedule())
