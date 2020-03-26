@@ -17,6 +17,7 @@ import { UsageService } from "../../../../core/services/usage/usage.service";
 import { SplashPageComponent } from "../../../splash/containers/splash-page.component";
 import { LogService } from "../../../../core/services/misc/log.service";
 import { EligibilityPageComponent } from "../eligibility-page/eligibility-page.component";
+import {AuthConfigService} from "../../../../core/services/config/auth-config.service";
 
 /**
  * Generated class for the WelcomePage page.
@@ -49,10 +50,14 @@ export class WelcomePageComponent {
     private authService: AuthService,
     private alertService: AlertService,
     private usage: UsageService,
-    private logger: LogService) {}
+    private authConfService: AuthConfigService,
+    private logger: LogService) {
+  }
 
   ionViewDidLoad() {
-    this.localization.update().then(lang => (this.language = lang))
+    this.authConfService.init().then (() => {
+      this.localization.update().then(lang => (this.language = lang))
+    })
   }
 
   ionViewDidEnter() {}

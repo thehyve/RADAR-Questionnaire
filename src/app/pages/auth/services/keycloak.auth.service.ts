@@ -70,28 +70,6 @@ export class KeycloakAuthService extends AuthService {
     })
   }
 
-  // initKeycloakConfig(): Promise<KeycloakConfig> {
-  //   return this.remoteConfig.forceFetch()
-  //     .then(config => Promise.all([
-  //       config.getOrDefault(ConfigKeys.REALM_NAME, DefaultRealmName),
-  //       config.getOrDefault(ConfigKeys.APP_CLIENT_ID, DefaultClientId),
-  //       config.getOrDefault(ConfigKeys.CALLBACK_URL, DefaultCallbackURL),
-  //       this.getRealmUrl()
-  //     ]))
-  //     .then(([realm, clientId, callback, realmUrl]) => {
-  //       const newConfig = {
-  //         authServerUrl: this.URI_base,
-  //         realm: realm,
-  //         clientId: clientId,
-  //         redirectUri: callback,
-  //         realmUrl: realmUrl
-  //       };
-  //     this.logger.log("keycloak config: ", JSON.stringify(newConfig))
-  //     return newConfig
-  //   })
-  // }
-
-
   updateURI() {
     return this.storage.get(StorageKeys.AUTH_BASE_URI).then(uri => {
       this.URI_base = uri? uri : DefaultEndPoint + DefaultKeycloakURL
