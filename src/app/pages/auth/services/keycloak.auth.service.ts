@@ -150,14 +150,14 @@ export class KeycloakAuthService extends AuthService {
   }
 
   getProjectName() {
-    return this.remoteConfig
-      .read()
-      .then(config =>
-        config.getOrDefault(
-          ConfigKeys.PROJECT_NAME,
-          DefaultProjectName
+    return this.storage.get(StorageKeys.PROJECTNAME).then((projec: any) => {
+      this.logger.log("project from storage" , projec)
+      return this.remoteConfig
+        .read()
+        .then(config => config.getOrDefault(ConfigKeys.PROJECT_NAME, DefaultProjectName)
         )
-      )
+    })
+
   }
 
   // getProjectName(): Promise<string> {

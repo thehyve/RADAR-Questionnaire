@@ -31,15 +31,20 @@ export class StorageService {
     return this.storage.set(key.toString(), this.global[key.toString()])
   }
 
-  get(key: StorageKeys) {
+  get(key: StorageKeys) : Promise<any> {
     const k = key.toString()
     const local = this.global[k]
     if (local !== undefined) {
       return Promise.resolve(local)
     } else {
       return this.storage.get(k).then(value => {
-        this.global[k] = value
-        return value
+        if (value != null) {
+          this.global[k] = value
+          this.logger.log("storage val is ", JSON.stringify(value))
+          return value
+        } else {
+          Promise.resolve(null)
+        }
       })
     }
   }
