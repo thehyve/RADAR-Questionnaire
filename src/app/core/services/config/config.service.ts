@@ -83,7 +83,7 @@ export class ConfigService {
     ]).then(([currentProject, remoteProject]) => {
       this.logger.log("current project {} and new project {}", currentProject, remoteProject)
       if (currentProject && remoteProject && currentProject !== remoteProject) {
-        this.logger.log("both are not equal. No change required")
+        this.logger.log("both are not equal. setting new project name.")
         return this.subjectConfig.setProjectName(remoteProject).then(() => {
           return remoteProject
         })
