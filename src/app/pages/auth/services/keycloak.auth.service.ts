@@ -11,7 +11,8 @@ import {
   DefaultClientId,
   DefaultEndPoint,
   DefaultKeycloakURL,
-  DefaultProjectName, DefaultRealmName,
+  DefaultProjectName,
+  DefaultRealmName,
   DefaultRequestEncodedContentType
 } from "../../../../assets/data/defaultConfig";
 import {InAppBrowser, InAppBrowserOptions} from "@ionic-native/in-app-browser/ngx";
@@ -130,19 +131,20 @@ export class KeycloakAuthService extends AuthService {
 
   initSubjectInformation() {
     return Promise.all([
-      this.storage.get(StorageKeys.BASE_URI),
+      this.authConfigService.getBaseUrl(),
       this.getSubjectInformation(),
       this.getProjectName()
     ]).then(([baseUrl, subjectInformation, projectName]) => {
       this.logger.log("Project name is :", projectName)
       this.logger.log("subject info: "+ JSON.stringify(subjectInformation))
+      // treating keycloak user-id as the subjectId. This will make sure that subjectId is always unique
       return this.config.setAll({
         projectId: projectName,
-        subjectId: subjectInformation.sub,
+        subjectId: subjectInformation.user_id,
         sourceId: uuid(),
         humanReadableId: subjectInformation.preferred_username,
         enrolmentDate: new Date(subjectInformation.createdTimestamp).getTime(),
-        baseUrl: baseUrl? baseUrl : DefaultEndPoint
+        baseUrl: baseUrl? baseUrl : DefaultEndPoint,
       })
     })
   }
@@ -156,6 +158,28 @@ export class KeycloakAuthService extends AuthService {
           DefaultProjectName
         )
       )
+  }
+
+  // getProjectName(): Promise<string> {
+  //   return this.storage.get(StorageKeys.PROJECTNAME).then((project) => {
+  //     this.logger.log("project from storage" , project)
+  //     return project ? project : this.getSubjectInformation().then((subInfo) => {
+  //       const projectName = subInfo.projectName
+  //       this.logger.log("Project from subject Info" , projectName)
+  //       return  projectName ? projectName : this.assignProject()
+  //     })
+  //   })
+  // }
+
+  assignProject() : Promise<string>{
+    return this.remoteConfig
+        .read()
+        .then(config =>
+          config.getOrDefault(ConfigKeys.PROJECT_NAME, DefaultProjectName)
+        ).then((projectName) => {
+          this.logger.log("project from remote ", projectName)
+        return projectName
+      })
   }
 
   getSubjectInformation(): Promise<any> {
