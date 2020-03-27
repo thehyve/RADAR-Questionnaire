@@ -31,6 +31,7 @@ import { QuestionsModule } from './questions/questions.module'
 import { ReportModule } from './report/report.module'
 import { SettingsModule } from './settings/settings.module'
 import { SplashModule } from './splash/splash.module'
+import { AuthConfigService } from "../core/services/config/auth-config.service";
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { SplashModule } from './splash/splash.module'
     UsageService,
     SchemaService,
     NotificationGeneratorService,
+    AuthConfigService,
     { provide: NotificationService, useClass: FcmNotificationService },
     { provide: AnalyticsService, useClass: FirebaseAnalyticsService }
   ]

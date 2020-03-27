@@ -9,6 +9,10 @@ export class ConfigKeys {
   static NOTIFICATION_TTL_MINUTES = new ConfigKeys('notification_ttl_minutes')
   static PLATFORM_INSTANCE = new ConfigKeys('platform_instance')
   static PROJECT_NAME = new ConfigKeys('project_name')
+  static CALLBACK_URL = new ConfigKeys('callback_url')
+  static BASE_ENDPOINT_URL = new ConfigKeys('base_endpoint_url')
+  static APP_CLIENT_ID = new ConfigKeys('app_client_id')
+  static REALM_NAME = new ConfigKeys('realm_name')
 
   constructor(public value: string) {}
 

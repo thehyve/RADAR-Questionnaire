@@ -5,6 +5,7 @@ import { ConfigService } from '../../../core/services/config/config.service'
 import { ScheduleService } from '../../../core/services/schedule/schedule.service'
 import { TokenService } from '../../../core/services/token/token.service'
 import { UsageService } from '../../../core/services/usage/usage.service'
+import {AuthConfigService} from "../../../core/services/config/auth-config.service";
 
 @Injectable()
 export class SplashService {
@@ -12,7 +13,8 @@ export class SplashService {
     private config: ConfigService,
     private token: TokenService,
     private schedule: ScheduleService,
-    private usage: UsageService
+    private usage: UsageService,
+    private authConfig: AuthConfigService
   ) {}
 
   evalEnrolment() {
@@ -20,6 +22,7 @@ export class SplashService {
   }
 
   loadConfig() {
+    this.authConfig.init()
     this.token.refresh()
     return this.config.fetchConfigState()
   }
