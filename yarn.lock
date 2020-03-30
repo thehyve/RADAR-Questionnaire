@@ -490,7 +490,7 @@
   dependencies:
     "@types/cordova" latest
 
-"@ionic/app-scripts@^3.2.4":
+"@ionic/app-scripts@3.2.4":
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/@ionic/app-scripts/-/app-scripts-3.2.4.tgz#db3f6a215ba226099db2a9af41f0f6bb5d4cc368"
   integrity sha512-Wt6bBnLtyknbTn6ikUTst2HLs5ww+BL9FpYv2dQWZwDODYqyWFkQQvdXj0IFibU2umXFOH5nQXJin2vvgtovzA==
@@ -2716,10 +2716,10 @@ colors@^1.1.0, colors@^1.1.2:
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
   integrity sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==
 
-com-darryncampbell-cordova-plugin-intent@^1.1.4:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/com-darryncampbell-cordova-plugin-intent/-/com-darryncampbell-cordova-plugin-intent-1.1.8.tgz#f965951b38d88c2da5c512ed89cb30871e1f878f"
-  integrity sha512-gEEBCjiycuoK28DofmaNkxYtOre6czLnNvMYFssH2ycHeY5ickm0SBfVTB+GPtXCeUkxAmxANnJn2p4SX8QcWw==
+com-darryncampbell-cordova-plugin-intent@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/com-darryncampbell-cordova-plugin-intent/-/com-darryncampbell-cordova-plugin-intent-1.3.0.tgz#1510b6866aa17587d730edcbe201ee13db8f84f7"
+  integrity sha512-JXslndd4UiRHmirGZrwrHZHczoZ5sxM7zAylm4bPX7ZDwD4FdCHhILgDA8AeaG8wc11e0A7OEAFo0Esgc0M4yA==
 
 combine-source-map@^0.8.0, combine-source-map@~0.8.0:
   version "0.8.0"
@@ -3049,10 +3049,10 @@ cordova-media-with-compression@^2.1.2:
   resolved "https://registry.yarnpkg.com/cordova-media-with-compression/-/cordova-media-with-compression-2.1.2.tgz#a2cf06414a57b88860b9632473d9c966ee0e9989"
   integrity sha512-pzJ+iKkfGQ3XwKc2V+4k/wqNIMaxQR4b+qJAp07Uy/cV8NoiBQF3J2ycqTvuzewUwzgBh5VLvA2ztqxD1KnIUg==
 
-cordova-plugin-android-permissions@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-android-permissions/-/cordova-plugin-android-permissions-1.0.0.tgz#9e7c116be668eb7dfa41491b13d8d47da9548149"
-  integrity sha1-nnwRa+Zo6336QUkbE9jUfalUgUk=
+cordova-plugin-android-permissions@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-android-permissions/-/cordova-plugin-android-permissions-1.0.2.tgz#e26556ff11a560dffa33a5915d27fe9d44b3c248"
+  integrity sha512-Eb7Cf3lk9RydSYqmUzBAEVTT/EU+opV2yvyqkgZZAB/RVfHxsla/1wzHq0PBwAFjHIrxBAGZrOpJFVKc1SxtuA==
 
 cordova-plugin-androidx-adapter@^1.1.0:
   version "1.1.0"
@@ -3075,17 +3075,17 @@ cordova-plugin-app-version@^0.1.9:
   resolved "https://registry.yarnpkg.com/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz#9db0607863337a710489302e5f50a904f1449bdb"
   integrity sha1-nbBgeGMzenEEiTAuX1CpBPFEm9s=
 
-cordova-plugin-background-mode-fixes@^0.7.5:
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-background-mode-fixes/-/cordova-plugin-background-mode-fixes-0.7.5.tgz#1a953487696bcb8578daf508d85cdcd47315b069"
-  integrity sha512-cjxhGy+GMVKtsD565dh3xIbC2FyvvlLgyuKA/dXZpdSyQXXCxQm2FAOrFHYIfMG6U1ydWjGcenrrzbuA1d09Pg==
+cordova-plugin-background-mode-fixes@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-background-mode-fixes/-/cordova-plugin-background-mode-fixes-0.7.6.tgz#b98e6cd319ed3495042e20e6e01142474a2bb568"
+  integrity sha512-9BgAaLy/VcIX7FpWzDDgSIYfN7ZF32QL0U8Ell/5LXEKOqbIZTl8+NpUsotqGxMJ0coaBWoqbkBgqh45NR2H3g==
 
 cordova-plugin-badge@^0.8.8:
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/cordova-plugin-badge/-/cordova-plugin-badge-0.8.8.tgz#0924018699b48f92dd3b33615452737582144c96"
   integrity sha512-RhIBtd5xhD/iLnxjt35jvOae28oNW/wtMZBOmQR3Rf0y4wirvA1bpAZEhBoFqL+rZGhsd6ddOdQXdex1T0DRyQ==
 
-cordova-plugin-camera@^4.0.3:
+cordova-plugin-camera@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-camera/-/cordova-plugin-camera-4.1.0.tgz#6474a3e080c4662aa00fd7425705d301c693ddc0"
   integrity sha512-fCLhWjWYn49q3X5xaypAPgTz6MAWSKFFQvD2Gpi5SuVlrRPRphtX2jIqR2zCBuDTBR082QVnlc+yUDXt65Mjgw==
@@ -3100,25 +3100,25 @@ cordova-plugin-dialogs@^2.0.2:
   resolved "https://registry.yarnpkg.com/cordova-plugin-dialogs/-/cordova-plugin-dialogs-2.0.2.tgz#ac3ce8b73bc885ff847078d5b533e7a4ed418a2f"
   integrity sha512-FUHI6eEVeoz2VkxbF0P56QlUQLGzXcvw3i4xuXyM9gEct6Y+FA3Xzgl2pJTZcTg5wRqLWzN08kgNoHPkom15pw==
 
-cordova-plugin-file@^6.0.1:
+cordova-plugin-file@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-6.0.2.tgz#f3911479f8357e9aacb5576674f8d95b31a1fb20"
   integrity sha512-m7cughw327CjONN/qjzsTpSesLaeybksQh420/gRuSXJX5Zt9NfgsSbqqKDon6jnQ9Mm7h7imgyO2uJ34XMBtA==
 
-cordova-plugin-firebase-with-upstream-messaging@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-firebase-with-upstream-messaging/-/cordova-plugin-firebase-with-upstream-messaging-2.1.1.tgz#2d27e4b22477469f34c3f7b1038fad484f0b87c0"
-  integrity sha512-tCqluARa7nTJa/FlTx8R0LGbI/QKKAbnP/D/Xjd21ecdoied60B2hBcZ0cuxP5HUbZq5pSH6spVDO1xXFGqZHg==
+cordova-plugin-firebase-with-upstream-messaging@^2.1.1:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-firebase-with-upstream-messaging/-/cordova-plugin-firebase-with-upstream-messaging-2.1.3.tgz#40cd29e5505c287ea8de09289a8dbaef46c26db9"
+  integrity sha512-qNHA/ewo1rdcbjAfJdz3eGe3IFQqOOswLQcnsMRYxAIRMzb21DMgMQOGKlTUggx0v+2S4UEbZPF+6jWgn2irAw==
 
 cordova-plugin-globalization@^1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-globalization/-/cordova-plugin-globalization-1.11.0.tgz#eac3158100298493afa30be8940e698f61efbcfe"
   integrity sha1-6sMVgQAphJOvowvolA5pj2HvvP4=
 
-cordova-plugin-inappbrowser@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-3.1.0.tgz#61520b8de3eb75b37842d2340f5d90a84a073747"
-  integrity sha512-YqrZfYgbGTS20SFID0mrRxud312VH072QVlFonCAkPgtGg1Svy7lELOCNFd+KU7t4mVtZeTEjZPEeefvjaetwQ==
+cordova-plugin-inappbrowser@^3.1.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-3.2.0.tgz#8615e1510dcf796875b420416331b768fee28d86"
+  integrity sha512-tYsK0H9M8POmJTVnfyIsiRgoOxnypa9IQIbf/Hsgi7vbgUYRHtBUfvXwq4RhMqLIVrCeJLXF2hTXTDNY0a/eTA==
 
 cordova-plugin-insomnia@^4.3.0:
   version "4.3.0"
@@ -3134,6 +3134,10 @@ cordova-plugin-local-notification@^0.9.0-beta.3:
   version "0.9.0-beta.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-local-notification/-/cordova-plugin-local-notification-0.9.0-beta.3.tgz#f63d49b90ea9cdf1a5de53e7eb478a09bb236f93"
   integrity sha512-L3Z1velxrkm9nHFcvLnMgBPZjKFt6hwM6hn1lA+JFwIR26Yw6UF72z+/lRMBclAcOxBIDYCqeaLgvezmajjuEg==
+
+"cordova-plugin-network-information@git+https://github.com/apache/cordova-plugin-network-information.git":
+  version "2.0.3-dev"
+  resolved "git+https://github.com/apache/cordova-plugin-network-information.git#97a4967a2e0f0324db4a6d789477ec5f761f2770"
 
 cordova-plugin-splashscreen@^5.0.3:
   version "5.0.3"
@@ -3177,17 +3181,17 @@ cordova-serve@^3.0.0:
     opn "^5.3.0"
     which "^1.3.0"
 
-cordova-sqlite-storage-dependencies@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/cordova-sqlite-storage-dependencies/-/cordova-sqlite-storage-dependencies-2.1.0.tgz#374e13ca6d5dd5229b51167875e45e53a3ed2a76"
-  integrity sha512-m0cPOWPzckAqS0/e7v+xtcM+FrHrw63qgh5T91JdkXMKCK8sN9bDoqVNJHZ5E9y7sRO7liMUIDm6Dz439RYqGA==
+cordova-sqlite-storage-dependencies@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/cordova-sqlite-storage-dependencies/-/cordova-sqlite-storage-dependencies-2.1.1.tgz#3706fd035289bdaca5770599986d5b9829b4bab0"
+  integrity sha512-1lV5Pg1FttjBmGO8z4gxtuA4BbPKtgTfUEh1Vx4boa41inizyxaowRyTeaaqEhi5gmYAaX8sRTABm9U/XckRFg==
 
-cordova-sqlite-storage@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/cordova-sqlite-storage/-/cordova-sqlite-storage-3.3.0.tgz#f52580102559e5d0b822ffa3170b5bcfdb326846"
-  integrity sha512-RBgGAe8rf/k54JC12xtt/14PxJrh42C4ISd+P8fqZq5Kw6JfQGh/55/VTsjI29rInl5jO5fwpYee/InGYlmI9w==
+cordova-sqlite-storage@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/cordova-sqlite-storage/-/cordova-sqlite-storage-3.4.1.tgz#13921b1e49842b7164eed3788645ca66c975cd9f"
+  integrity sha512-fbpd22CJ27jVuoUWFWdDDrSWBZQ56MbsxmFYPnerlZfE4p4Kv2UXlTQJjnKJC7HZuiU+2zs01F9w5UJmRxvwAw==
   dependencies:
-    cordova-sqlite-storage-dependencies "2.1.0"
+    cordova-sqlite-storage-dependencies "2.1.1"
 
 cordova-support-android-plugin@^1.0.1:
   version "1.0.1"
