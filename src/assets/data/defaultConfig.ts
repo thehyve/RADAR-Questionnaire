@@ -116,7 +116,7 @@ export const DefaultNotificationType: string = 'FCM' // choose from 'FCM' or 'LO
 export const DefaultMaxUpstreamResends = 100
 export const DefaultNumberOfNotificationsToSchedule: number = 100 //
 export const DefaultNumberOfNotificationsToRescue: number = 12 //
-export const FCMPluginProjectSenderId: string = '723817636551'
+export const FCMPluginProjectSenderId: string = '776941468489'
 export const DefaultNotificationRefreshTime: number = 900000 // 15 mins in ms
 export const DefaultNotificationTtlMinutes: number = 10
 
