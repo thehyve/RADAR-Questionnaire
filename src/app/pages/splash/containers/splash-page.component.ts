@@ -30,11 +30,15 @@ export class SplashPageComponent {
     private authConfigService: AuthConfigService,
     private logger : LogService
   ) {
-    this.remoteConfigService.forceFetch()
-      .then(() => this.authConfigService.init())
-      .then( () => this.splash
-        .evalEnrolment()
-        .then(valid => (valid ? this.onStart() : this.welcome()))
+    // this.remoteConfigService.forceFetch()
+    //   // .then(() => this.authConfigService.init())
+    //   .then( () => this.splash
+    //     .evalEnrolment()
+    //     .then(valid => (valid ? this.onStart() : this.welcome())))
+
+    this.splash
+      .evalEnrolment()
+      .then(valid => (valid ? this.onStart() : this.welcome())
     )
   }
 
