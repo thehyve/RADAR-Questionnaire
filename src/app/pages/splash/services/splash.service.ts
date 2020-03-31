@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core'
 
 import { DefaultNumberOfCompletionLogsToSend } from '../../../../assets/data/defaultConfig'
+import { AuthConfigService } from '../../../core/services/config/auth-config.service'
 import { ConfigService } from '../../../core/services/config/config.service'
 import { ScheduleService } from '../../../core/services/schedule/schedule.service'
 import { TokenService } from '../../../core/services/token/token.service'
 import { UsageService } from '../../../core/services/usage/usage.service'
-import {AuthConfigService} from "../../../core/services/config/auth-config.service";
 
 @Injectable()
 export class SplashService {
@@ -22,13 +22,12 @@ export class SplashService {
   }
 
   loadConfig() {
-    this.authConfig.init()
     this.token.refresh()
     return this.config.fetchConfigState()
   }
 
   reset() {
-    return this.config.resetAll()
+    return this.config.resetAll().then(() => this.authConfig.init())
   }
 
   sendMissedQuestionnaireLogs() {
