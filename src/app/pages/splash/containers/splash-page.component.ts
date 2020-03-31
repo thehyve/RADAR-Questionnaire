@@ -1,17 +1,16 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams } from 'ionic-angular'
 
+import { AuthConfigService } from '../../../core/services/config/auth-config.service'
+import { RemoteConfigService } from '../../../core/services/config/remote-config.service'
 import { AlertService } from '../../../core/services/misc/alert.service'
 import { LocalizationService } from '../../../core/services/misc/localization.service'
+import { LogService } from '../../../core/services/misc/log.service'
 import { UsageService } from '../../../core/services/usage/usage.service'
 import { LocKeys } from '../../../shared/enums/localisations'
-import { WelcomePageComponent } from "../../auth/components/welcome-page/welcome-page.component";
+import { WelcomePageComponent } from '../../auth/components/welcome-page/welcome-page.component'
 import { HomePageComponent } from '../../home/containers/home-page.component'
 import { SplashService } from '../services/splash.service'
-
-import {RemoteConfigService} from "../../../core/services/config/remote-config.service";
-import {AuthConfigService} from "../../../core/services/config/auth-config.service";
-import {LogService} from "../../../core/services/misc/log.service";
 
 @Component({
   selector: 'page-splash',
@@ -25,21 +24,11 @@ export class SplashPageComponent {
     private splash: SplashService,
     private alertService: AlertService,
     private localization: LocalizationService,
-    private usage: UsageService,
-    private remoteConfigService: RemoteConfigService,
-    private authConfigService: AuthConfigService,
-    private logger : LogService
+    private usage: UsageService
   ) {
-    // this.remoteConfigService.forceFetch()
-    //   // .then(() => this.authConfigService.init())
-    //   .then( () => this.splash
-    //     .evalEnrolment()
-    //     .then(valid => (valid ? this.onStart() : this.welcome())))
-
     this.splash
       .evalEnrolment()
-      .then(valid => (valid ? this.onStart() : this.welcome())
-    )
+      .then(valid => (valid ? this.onStart() : this.welcome()))
   }
 
   onStart() {
@@ -85,6 +74,6 @@ export class SplashPageComponent {
   // }
 
   welcome() {
-    this.splash.reset().then(() => this.navCtrl.setRoot(WelcomePageComponent))
+    this.navCtrl.setRoot(WelcomePageComponent)
   }
 }

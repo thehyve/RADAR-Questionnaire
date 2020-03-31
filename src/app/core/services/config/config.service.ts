@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core'
 
-import {DefaultNotificationRefreshTime, DefaultProjectName} from '../../../../assets/data/defaultConfig'
+import {
+  DefaultNotificationRefreshTime,
+  DefaultProjectName
+} from '../../../../assets/data/defaultConfig'
+import { ConfigKeys } from '../../../shared/enums/config'
 import {
   ConfigEventType,
   NotificationEventType
 } from '../../../shared/enums/events'
+import { User } from '../../../shared/models/user'
 import { TaskType } from '../../../shared/utilities/task-type'
 import { KafkaService } from '../kafka/kafka.service'
 import { LocalizationService } from '../misc/localization.service'
 import { LogService } from '../misc/log.service'
 import { NotificationService } from '../notifications/notification.service'
 import { ScheduleService } from '../schedule/schedule.service'
+import { AnalyticsService } from '../usage/analytics.service'
 import { AppConfigService } from './app-config.service'
 import { ProtocolService } from './protocol.service'
 import { QuestionnaireService } from './questionnaire.service'
+import { RemoteConfigService } from './remote-config.service'
 import { SubjectConfigService } from './subject-config.service'
-import { AnalyticsService } from '../usage/analytics.service'
-import { User } from '../../../shared/models/user'
-import {RemoteConfigService} from "./remote-config.service";
-import {ConfigKeys} from "../../../shared/enums/config";
 
 @Injectable()
 export class ConfigService {
@@ -44,23 +47,31 @@ export class ConfigService {
       this.hasNotificationsExpired(),
       this.hasProjectChanged()
     ])
-        .then(([newProtocol, newAppVersion, newTimezone, newNotifications, newProject]) => {
-        if (newProject) {
-          this.logger.log("New project is ", newProject)
-          return this.updateConfigStateBasedOnProjectChange(newProject)
+      .then(
+        ([
+          newProtocol,
+          newAppVersion,
+          newTimezone,
+          newNotifications,
+          newProject
+        ]) => {
+          if (newProject) {
+            this.logger.log('New project is ', newProject)
+            return this.updateConfigStateBasedOnProjectChange(newProject)
+          }
+          if (newProtocol && newAppVersion && newTimezone)
+            this.subjectConfig
+              .getEnrolmentDate()
+              .then(d => this.appConfig.init(d))
+          if (newProtocol)
+            return this.updateConfigStateOnProtocolChange(newProtocol)
+          if (newAppVersion)
+            return this.updateConfigStateOnAppVersionChange(newAppVersion)
+          if (newTimezone)
+            return this.updateConfigStateOnTimezoneChange(newTimezone)
+          if (newNotifications) return this.rescheduleNotifications(false)
         }
-        if (newProtocol && newAppVersion && newTimezone)
-          this.subjectConfig
-            .getEnrolmentDate()
-            .then(d => this.appConfig.init(d))
-        if (newProtocol)
-          return this.updateConfigStateOnProtocolChange(newProtocol)
-        if (newAppVersion)
-          return this.updateConfigStateOnAppVersionChange(newAppVersion)
-        if (newTimezone)
-          return this.updateConfigStateOnTimezoneChange(newTimezone)
-        if (newNotifications) return this.rescheduleNotifications(false)
-      })
+      )
       .catch(e => {
         this.sendConfigChangeEvent(ConfigEventType.ERROR)
         throw e
@@ -69,21 +80,25 @@ export class ConfigService {
 
   updateConfigStateBasedOnProjectChange(newProjectName: string) {
     return this.subjectConfig.setProjectName(newProjectName).then(() => {
-      return this.protocol.pull().then((newProtocol) => {
+      return this.protocol.pull().then(newProtocol => {
         const parsedProtocol = JSON.parse(newProtocol)
         return this.updateConfigStateOnProtocolChange(parsedProtocol)
       })
     })
   }
 
-  hasProjectChanged() : Promise<string> {
+  hasProjectChanged(): Promise<string> {
     return Promise.all([
       this.subjectConfig.getProjectName(),
       this.getProjectFromFirebase()
     ]).then(([currentProject, remoteProject]) => {
-      this.logger.log("current project {} and new project {}", currentProject, remoteProject)
+      this.logger.log(
+        'current project {} and new project {}',
+        currentProject,
+        remoteProject
+      )
       if (currentProject && remoteProject && currentProject !== remoteProject) {
-        this.logger.log("both are not equal. setting new project name.")
+        this.logger.log('both are not equal. setting new project name.')
         return this.subjectConfig.setProjectName(remoteProject).then(() => {
           return remoteProject
         })
@@ -94,7 +109,8 @@ export class ConfigService {
   getProjectFromFirebase() {
     return this.remoteConfig
       .read()
-      .then(config => config.getOrDefault(ConfigKeys.PROJECT_NAME, DefaultProjectName)
+      .then(config =>
+        config.getOrDefault(ConfigKeys.PROJECT_NAME, DefaultProjectName)
       )
   }
 

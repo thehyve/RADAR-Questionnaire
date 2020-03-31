@@ -1,23 +1,23 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core'
+import { NavController, Slides } from 'ionic-angular'
 
 import {
   DefaultLanguage,
-  DefaultSettingsSupportedLanguages,
-} from "../../../../../assets/data/defaultConfig";
-import { StorageService } from "../../../../core/services/storage/storage.service";
-import { LanguageSetting } from "../../../../shared/models/settings";
-import { HomePageComponent } from "../../../home/containers/home-page.component";
-import { AuthService } from "../../services/auth.service";
-import { LocalizationService } from "../../../../core/services/misc/localization.service";
-import { AlertService } from "../../../../core/services/misc/alert.service";
-import { ConfigService } from "../../../../core/services/config/config.service";
-import { EnrolmentEventType} from "../../../../shared/enums/events";
-import { UsageService } from "../../../../core/services/usage/usage.service";
-import { SplashPageComponent } from "../../../splash/containers/splash-page.component";
-import { LogService } from "../../../../core/services/misc/log.service";
-import { EligibilityPageComponent } from "../eligibility-page/eligibility-page.component";
-import {AuthConfigService} from "../../../../core/services/config/auth-config.service";
+  DefaultSettingsSupportedLanguages
+} from '../../../../../assets/data/defaultConfig'
+import { AuthConfigService } from '../../../../core/services/config/auth-config.service'
+import { ConfigService } from '../../../../core/services/config/config.service'
+import { AlertService } from '../../../../core/services/misc/alert.service'
+import { LocalizationService } from '../../../../core/services/misc/localization.service'
+import { LogService } from '../../../../core/services/misc/log.service'
+import { StorageService } from '../../../../core/services/storage/storage.service'
+import { UsageService } from '../../../../core/services/usage/usage.service'
+import { EnrolmentEventType } from '../../../../shared/enums/events'
+import { LanguageSetting } from '../../../../shared/models/settings'
+import { HomePageComponent } from '../../../home/containers/home-page.component'
+import { SplashPageComponent } from '../../../splash/containers/splash-page.component'
+import { AuthService } from '../../services/auth.service'
+import { EligibilityPageComponent } from '../eligibility-page/eligibility-page.component'
 
 /**
  * Generated class for the WelcomePage page.
@@ -28,19 +28,18 @@ import {AuthConfigService} from "../../../../core/services/config/auth-config.se
 
 @Component({
   selector: 'page-welcome',
-  templateUrl: 'welcome-page.component.html',
+  templateUrl: 'welcome-page.component.html'
 })
 export class WelcomePageComponent {
-
   @ViewChild(Slides)
-  slides: Slides;
+  slides: Slides
 
   language?: LanguageSetting = DefaultLanguage
   loading: boolean = false
   showOutcomeStatus: boolean = false
   outcomeStatus: string
   showReadMoreInformation: boolean = false
-  languagesSelectable: LanguageSetting[] = DefaultSettingsSupportedLanguages;
+  languagesSelectable: LanguageSetting[] = DefaultSettingsSupportedLanguages
 
   constructor(
     private navCtrl: NavController,
@@ -50,14 +49,11 @@ export class WelcomePageComponent {
     private authService: AuthService,
     private alertService: AlertService,
     private usage: UsageService,
-    private authConfService: AuthConfigService,
-    private logger: LogService) {
-  }
+    private logger: LogService
+  ) {}
 
   ionViewDidLoad() {
-    this.authConfService.init().then (() => {
-      this.localization.update().then(lang => (this.language = lang))
-    })
+    this.localization.update().then(lang => (this.language = lang))
   }
 
   ionViewDidEnter() {}
@@ -97,7 +93,7 @@ export class WelcomePageComponent {
   // }
 
   joinStudy() {
-    this.navCtrl.setRoot(EligibilityPageComponent);
+    this.navCtrl.setRoot(EligibilityPageComponent)
   }
 
   goToLogin() {

@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core'
 
 import {
-  DefaultCallbackURL, DefaultClientId, DefaultEndPoint, DefaultProjectName, DefaultRealmName,
+  DefaultCallbackURL,
+  DefaultClientId,
+  DefaultEndPoint,
+  DefaultProjectName,
+  DefaultRealmName
 } from '../../../../assets/data/defaultConfig'
+import { ConfigKeys } from '../../../shared/enums/config'
 import { StorageKeys } from '../../../shared/enums/storage'
+import { KeycloakConfig } from '../../../shared/models/auth'
+import { LogService } from '../misc/log.service'
 import { StorageService } from '../storage/storage.service'
-import { RemoteConfigService } from "./remote-config.service";
-import { LogService } from "../misc/log.service";
-import { ConfigKeys } from "../../../shared/enums/config";
-import { KeycloakConfig } from "../../../shared/models/auth";
+import { RemoteConfigService } from './remote-config.service'
 
 @Injectable()
 export class AuthConfigService {
@@ -18,21 +22,20 @@ export class AuthConfigService {
     TOKEN_URI: StorageKeys.TOKEN_URI,
     REALM_URI: StorageKeys.REALM_URI,
     KEYCLOAK_CONFIG: StorageKeys.KEYCLOAK_CONFIG,
-    CLIENT_ID: StorageKeys.APP_CLIENT_ID,
+    CLIENT_ID: StorageKeys.APP_CLIENT_ID
   }
 
   constructor(
     public storage: StorageService,
     private remoteConfig: RemoteConfigService,
-    private logger: LogService) {
+    private logger: LogService
+  ) {
+    this.init()
   }
 
-  init() : Promise<any> {
+  init(): Promise<any> {
     return this.remoteConfig
       .read()
-      .catch(e => {
-        throw this.logger.error('Failed to fetch Firebase config', e)
-      })
       .then(cfg =>
         Promise.all([
           cfg.getOrDefault(ConfigKeys.BASE_ENDPOINT_URL, DefaultEndPoint),
@@ -41,6 +44,12 @@ export class AuthConfigService {
           cfg.getOrDefault(ConfigKeys.APP_CLIENT_ID, DefaultClientId)
         ])
       )
+      .catch(e => [
+        DefaultEndPoint,
+        DefaultRealmName,
+        DefaultCallbackURL,
+        DefaultClientId
+      ])
       .then(([baseUrl, realmName, callbackUrl, clientId]) => {
         if (!baseUrl) {
           throw new Error('Cannot find baseUrl')
@@ -49,7 +58,8 @@ export class AuthConfigService {
         if (!realmName) {
           throw new Error('Cannot find realmName')
         }
-        const realmBaseUrl = authBaseUrl + 'realms/' + encodeURIComponent(realmName)
+        const realmBaseUrl =
+          authBaseUrl + 'realms/' + encodeURIComponent(realmName)
 
         const tokenUrl = realmBaseUrl + '/protocol/openid-connect/token'
 
@@ -59,8 +69,11 @@ export class AuthConfigService {
           clientId: clientId,
           redirectUri: callbackUrl,
           realmUrl: realmBaseUrl
-        };
-        this.logger.log("Setting keycloakConfig to be ", JSON.stringify(keycloakConfig))
+        }
+        this.logger.log(
+          'Setting keycloakConfig to be ',
+          JSON.stringify(keycloakConfig)
+        )
         return Promise.all([
           this.storage.set(this.CONFIG_STORE.BASE_URL, baseUrl),
           this.storage.set(this.CONFIG_STORE.AUTH_BASE_URI, authBaseUrl),
@@ -99,7 +112,7 @@ export class AuthConfigService {
     // })
   }
 
-  getKeycloakConfig() : Promise<KeycloakConfig> {
+  getKeycloakConfig(): Promise<KeycloakConfig> {
     return this.storage.get(this.CONFIG_STORE.KEYCLOAK_CONFIG)
     // .then((url) => {
     //   return url ? url : this.initAuthConfig().then(() => {
@@ -115,17 +128,19 @@ export class AuthConfigService {
   getClientSecret() {
     return this.remoteConfig.read().then(config => {
       return config.getOrDefault(
-        ConfigKeys.OAUTH_CLIENT_SECRET, '' //(keycloakConfig.credentials || {}).secret
+        ConfigKeys.OAUTH_CLIENT_SECRET,
+        '' //(keycloakConfig.credentials || {}).secret
       )
     })
   }
 
   getBaseUrl() {
-    return this.storage.get(this.CONFIG_STORE.BASE_URL)
-    .then((url) => {
-      return url ? url : this.init().then(() => {
-        return this.getKeycloakConfig()
-      })
+    return this.storage.get(this.CONFIG_STORE.BASE_URL).then(url => {
+      return url
+        ? url
+        : this.init().then(() => {
+            return this.getKeycloakConfig()
+          })
     })
   }
   // getProjectName() {
