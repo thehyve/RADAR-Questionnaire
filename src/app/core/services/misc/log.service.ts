@@ -18,7 +18,7 @@ export class LogService {
     const formattedException = `${message}: ${LogService.formatObject(error)}`
     console.log(formattedException, error)
 
-    if (error && (error instanceof Error)) {
+    if (error && error instanceof Error) {
       return error
     } else {
       return new Error(formattedException)
@@ -34,6 +34,8 @@ export class LogService {
   }
 
   static formatObject(obj: any): string {
+    if (!obj) return
+
     if (Array.isArray(obj)) {
       return (<any[]>obj).map(o => this.formatObject(o)).toString()
     } else if (typeof obj !== 'object') {
