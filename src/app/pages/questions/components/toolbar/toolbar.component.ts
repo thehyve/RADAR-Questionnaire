@@ -19,6 +19,8 @@ export class ToolbarComponent implements OnChanges {
   @Input()
   isRightButtonDisabled: boolean
   @Input()
+  isExitButtonDisabled: boolean
+  @Input()
   currentQuestionId: number
   @Input()
   totalQuestions: number
@@ -31,6 +33,8 @@ export class ToolbarComponent implements OnChanges {
   finish: EventEmitter<any> = new EventEmitter<any>()
   @Output()
   close: EventEmitter<any> = new EventEmitter<any>()
+  @Output()
+  exit: EventEmitter<any> = new EventEmitter<any>()
 
   textValues = {
     next: this.localization.translateKey(LocKeys.BTN_NEXT),
@@ -64,6 +68,11 @@ export class ToolbarComponent implements OnChanges {
       default:
         break
     }
+  }
+
+  exitButtonHandler() {
+    if (this.isExitButtonDisabled) return
+    this.exit.emit()
   }
 
   rightButtonHandler() {

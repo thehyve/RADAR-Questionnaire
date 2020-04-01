@@ -222,6 +222,7 @@ export class QuestionsPageComponent implements OnInit {
     this.navCtrl.pop({ animation: 'wp-transition' })
   }
 
+
   navigateToFinishPage() {
     this.sendEvent(UsageEventType.QUESTIONNAIRE_FINISHED)
     this.submitTimestamps()

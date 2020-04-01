@@ -33,22 +33,12 @@
   </div>
 </ion-content>
 
-
-<!--<ion-buttons *ngIf="showExitButton" style="text-align: center;">-->
-<!--  <button-->
-<!--    ion-button-->
-<!--    left-->
-<!--    icon-left-->
-<!--    (tap)="stopQuestionnaire()"-->
-<!--  >-->
-<!--    <ion-icon [name]="iconValues.close"></ion-icon>-->
-<!--  </button>-->
-<!--</ion-buttons>-->
 <ion-footer *ngIf="!showIntroductionScreen && !showFinishScreen">
   <toolbar
     (next)="nextQuestion()"
     (previous)="previousQuestion()"
     (close)="exitQuestionnaire()"
+    (exit)="stopQuestionnaire()"
     (finish)="navigateToFinishPage()"
     [isLeftButtonDisabled]="isLeftButtonDisabled"
     [isRightButtonDisabled]="isRightButtonDisabled"
