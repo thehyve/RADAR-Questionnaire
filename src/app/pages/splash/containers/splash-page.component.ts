@@ -112,6 +112,8 @@ export class SplashPageComponent {
   // }
 
   welcome() {
-    this.splash.reset().then(() => this.navCtrl.setRoot(WelcomePageComponent))
+    this.splashService
+      .reset()
+      .then(() => this.navCtrl.setRoot(WelcomePageComponent))
   }
 }
