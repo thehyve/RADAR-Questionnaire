@@ -50,6 +50,7 @@ export class ToolbarComponent implements OnChanges {
   }
   iconPrevious: string = this.iconValues.close
   progress: number
+  showExitButton: boolean = false
 
   constructor(private localization: LocalizationService) {}
 
@@ -91,12 +92,13 @@ export class ToolbarComponent implements OnChanges {
     this.iconPrevious = this.getLeftButtonValues().icon
     this.leftButtonText = this.getLeftButtonValues().text
     this.rightButtonText = this.getRightButtonText()
+    this.showExitButton = this.getLeftButtonValues().showExitButton
   }
 
   getLeftButtonValues() {
     return !this.currentQuestionId
-      ? { text: this.textValues.close, icon: this.iconValues.close }
-      : { text: this.textValues.previous, icon: this.iconValues.previous }
+      ? { text: this.textValues.close, icon: this.iconValues.close, showExitButton: false}
+      : { text: this.textValues.previous, icon: this.iconValues.previous, showExitButton: true }
   }
 
   getRightButtonText() {

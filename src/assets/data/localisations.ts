@@ -884,7 +884,7 @@ export const Localisations = {
   BTN_PREVIOUS: {
     da: 'Forrige',
     de: 'Vorher',
-    en: 'Previous',
+    en: 'Prev',
     es: 'Anterior',
     it: 'Precedente',
     nl: 'Vorige',

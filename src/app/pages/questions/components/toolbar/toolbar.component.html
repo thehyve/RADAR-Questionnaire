@@ -14,12 +14,11 @@
       <div class="toolbar-label">{{ leftButtonText }}</div>
     </button>
   </ion-buttons>
-  <ion-buttons style="text-align: center;">
+  <ion-buttons *ngIf="showExitButton" style="text-align: center;">
     <button
       ion-button
       left
       icon-left
-      [class.disabled]="isExitButtonDisabled"
       (tap)="exitButtonHandler()"
     >
       <ion-icon [name]="iconValues.close"></ion-icon>
