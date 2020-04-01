@@ -44,7 +44,8 @@ import { TokenService } from "./core/services/token/token.service";
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(AppComponent, {
-      mode: 'md'
+      mode: 'md',
+      activator: 'none'
     }),
     IonicStorageModule.forRoot({
       name: '__appdb',

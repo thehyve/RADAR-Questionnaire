@@ -26,23 +26,26 @@ export class SplashService {
     return this.config.fetchConfigState()
   }
 
+  isAppUpdateAvailable() {
+    return this.config.checkForAppUpdates()
+  }
+
   reset() {
     return this.config.resetAll().then(() => this.authConfig.init())
   }
 
   sendMissedQuestionnaireLogs() {
-    return this.schedule
-      .getIncompleteTasks()
-      .then(tasks =>
-        Promise.all(
-          tasks
-            .slice(0, DefaultNumberOfCompletionLogsToSend)
-            .map(task =>
-              this.usage
-                .sendCompletionLog(task, 0)
-                .then(() => this.schedule.updateTaskToReportedCompletion(task))
-            )
-        )
+    return this.schedule.getIncompleteTasks().then(tasks =>
+      Promise.all(
+        tasks
+          .filter(t => !t.reportedCompletion)
+          .slice(0, DefaultNumberOfCompletionLogsToSend)
+          .map(task =>
+            this.usage
+              .sendCompletionLog(task, 0)
+              .then(() => this.schedule.updateTaskToReportedCompletion(task))
+          )
       )
+    )
   }
 }

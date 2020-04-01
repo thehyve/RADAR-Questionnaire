@@ -10,9 +10,11 @@ export interface Assessment {
   startText?: MultiLanguageText
   endText?: MultiLanguageText
   warn?: MultiLanguageText
-  showIntroduction?: boolean
+  showIntroduction?: boolean | ShowIntroductionType
   isDemo?: boolean
   questions: Question[]
+  showInCalendar?: boolean
+  order?: number
 }
 
 export interface QuestionnaireMetadata {
@@ -29,4 +31,10 @@ export interface IconMetaData {
   value: string
   type: string
   fallbackOption?: IconMetaData
+}
+
+export enum ShowIntroductionType {
+  ALWAYS = 'always',
+  ONCE = 'once',
+  NEVER = 'never'
 }

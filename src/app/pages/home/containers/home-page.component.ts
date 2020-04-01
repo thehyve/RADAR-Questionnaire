@@ -16,7 +16,6 @@ import { SplashPageComponent } from '../../splash/containers/splash-page.compone
 import { TasksService } from '../services/tasks.service'
 import { HomePageAnimations } from './home-page.animation'
 import {LogService} from "../../../core/services/misc/log.service";
-import {ConsentPageItem} from "../../../shared/models/auth";
 
 enum Page {Settings = 'settings', Learn = 'learn', Home = 'home' }
 
@@ -30,15 +29,13 @@ export class HomePageComponent implements OnDestroy {
   sortedTasks: Promise<Map<any, any>>
   tasks: Promise<Task[]>
   currentDate: Date
-  uncompletedTasks: Promise<Task[]>
   nextTask: Task
+  timeToNextTask: number
   tasksProgress: Promise<TasksProgress>
   resumeListener: Subscription = new Subscription()
 
   showCalendar = false
   showCompleted = false
-  // showNoTasksToday = false
-  // tasksProgress: TasksProgress = { numberOfTasks: 1, completedTasks: 0, completedPercentage: 0}
   startingQuestionnaire = false
   hasClinicalTasks: Promise<boolean>
   taskIsNow = false
@@ -58,24 +55,7 @@ export class HomePageComponent implements OnDestroy {
     private logger: LogService
   ) {
     this.selectedPage = Page.Home;
-    this.resumeListener = this.platform.resume.subscribe(e => {
-      this.checkForNewDate()
-      this.usage.sendGeneralEvent(UsageEventType.RESUMED)
-      this.onResume()
-    })
-    this.learnItems = [
-      {
-        name: 'Privacy Policy',
-        icon: 'eye'
-      },
-      {
-        name: 'About the Study',
-        icon: 'stats'
-      }
-    ];
-
-
-
+    this.resumeListener = this.platform.resume.subscribe(() => this.onResume())
   }
 
   getIsLoadingSpinnerShown() {
@@ -104,12 +84,10 @@ export class HomePageComponent implements OnDestroy {
 
   ionViewDidLoad() {
     this.init()
-    this.usage.sendOpenEvent()
     this.usage.setPage(this.constructor.name)
   }
 
   init() {
-    // this.uncompletedTasks = this.tasksService.getTasksToComplete();
     this.sortedTasks = this.tasksService.getSortedTasksOfToday()
     this.tasks = this.tasksService.getTasksOfToday()
     this.currentDate = this.tasksService.getCurrentDateMidnight()
@@ -117,7 +95,7 @@ export class HomePageComponent implements OnDestroy {
     this.tasks.then(tasks => {
       this.checkTaskInterval = setInterval(() => {
         this.checkForNextTask(tasks)
-      }, 1000)
+      }, 1500)
     })
     this.hasClinicalTasks = this.tasksService.evalHasClinicalTasks()
     this.title = this.tasksService.getPlatformInstanceName()
@@ -125,8 +103,8 @@ export class HomePageComponent implements OnDestroy {
 
   onResume() {
     this.usage.sendOpenEvent()
-    // this.uncompletedTasks = this.tasksService.getTasksToComplete();
     this.checkForNewDate()
+    this.usage.sendGeneralEvent(UsageEventType.RESUMED)
   }
 
   checkForNewDate() {
@@ -141,6 +119,7 @@ export class HomePageComponent implements OnDestroy {
     if (task) {
       this.nextTask = task
       this.taskIsNow = checkTaskIsNow(this.nextTask.timestamp)
+      this.timeToNextTask = this.nextTask.timestamp - Date.now()
     } else {
       this.taskIsNow = false
       this.nextTask = null
@@ -174,9 +153,7 @@ export class HomePageComponent implements OnDestroy {
     if (this.tasksService.isTaskStartable(task)) {
       this.usage.sendClickEvent('start_questionnaire')
       this.startingQuestionnaire = true
-      return this.tasksService
-        .getQuestionnairePayload(task)
-        .then(payload => this.navCtrl.push(QuestionsPageComponent, payload))
+      return this.navCtrl.push(QuestionsPageComponent, task)
     } else {
       this.showMissedInfo()
     }
@@ -202,8 +179,10 @@ export class HomePageComponent implements OnDestroy {
 
   showMissedInfo() {
     return this.alertService.showAlert({
-      title: this.localization.translateKey(LocKeys.CALENDAR_ESM_MISSED_TITLE),
-      message: this.localization.translateKey(LocKeys.CALENDAR_ESM_MISSED_DESC),
+      title: this.localization.translateKey(LocKeys.CALENDAR_TASK_MISSED_TITLE),
+      message: this.localization.translateKey(
+        LocKeys.CALENDAR_TASK_MISSED_DESC
+      ),
       buttons: [
         {
           text: this.localization.translateKey(LocKeys.BTN_OKAY),

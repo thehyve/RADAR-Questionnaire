@@ -1,21 +1,18 @@
 timed-test {
-  display: flex;
-  width: 100%;
-
   .test-card {
-    margin: 8px;
+    overflow: hidden;
     padding: 10px;
-    max-height: calc(94% - 88px);
-    width: inherit;
-    height: calc(95vh - 184px);
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    height: 92%;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
     background-color: $cl-primary-20;
-    text-align: center;
   }
 
-  ion-content {
+  .content {
+    align-items: center;
+    overflow-y: auto;
     background: none;
+    text-align: center !important;
   }
 
   .heading {
@@ -28,5 +25,11 @@ timed-test {
     margin: 10px;
     color: $cl-light;
     font-size: 140px;
+  }
+
+  .image {
+    padding-bottom: 56px;
+    width: 200px;
+    height: auto;
   }
 }

@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import * as ver from 'semver'
 
 import {
+  DefaultAppVersion,
   DefaultNotificationRefreshTime,
   DefaultProjectName
 } from '../../../../assets/data/defaultConfig'
@@ -73,7 +76,7 @@ export class ConfigService {
         }
       )
       .catch(e => {
-        this.sendConfigChangeEvent(ConfigEventType.ERROR)
+        this.sendConfigChangeEvent(ConfigEventType.ERROR, '', '', e.message)
         throw e
       })
   }
@@ -185,6 +188,21 @@ export class ConfigService {
     })
   }
 
+  checkForAppUpdates() {
+    return Promise.all([
+      this.remoteConfig
+        .read()
+        .then(config =>
+          config.getOrDefault(ConfigKeys.APP_VERSION_LATEST, DefaultAppVersion)
+        ),
+      this.appConfig.getAppVersion()
+    ])
+      .then(([playstoreVersion, currentVersion]) =>
+        ver.gt(ver.clean(playstoreVersion), ver.clean(currentVersion))
+      )
+      .catch(() => false)
+  }
+
   checkParticipantEnrolled() {
     return this.subjectConfig
       .getParticipantLogin()
@@ -193,7 +211,7 @@ export class ConfigService {
 
   updateConfigStateOnProtocolChange(protocol) {
     const assessments = this.protocol.format(protocol.protocols)
-    this.logger.log('Assessments read ', assessments)
+    this.logger.log(assessments)
     return this.questionnaire
       .updateAssessments(TaskType.ALL, assessments)
       .then(() => this.regenerateSchedule())
@@ -267,7 +285,8 @@ export class ConfigService {
       this.appConfig.reset(),
       this.questionnaire.reset(),
       this.kafka.reset(),
-      this.schedule.reset()
+      this.schedule.reset(),
+      this.localization.init()
     ])
   }
 
@@ -299,16 +318,21 @@ export class ConfigService {
     }
   }
 
-  sendConfigChangeEvent(type, previous?, current?) {
+  sendConfigChangeEvent(type, previous?, current?, error?) {
     this.analytics.logEvent(type, {
       previous: String(previous),
-      current: String(current)
+      current: String(current),
+      error: String(error)
     })
   }
 
   sendTestNotification() {
     this.sendConfigChangeEvent(NotificationEventType.TEST)
     return this.notifications.sendTestNotification()
+  }
+
+  sendCachedData() {
+    return this.kafka.sendAllFromCache()
   }
 
   updateSettings(settings) {

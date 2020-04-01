@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="534" id="uk.ac.ucl.ihi.onthemove" ios-CFBundleIdentifier="uk.ac.ucl.ihi.onthemove" version="0.7.0-alpha" xmlns:android="http://schemas.android.com/apk/res/android">
+<widget android-versionCode="1" id="uk.ac.ucl.ihi.onthemove" ios-CFBundleIdentifier="uk.ac.ucl.ihi.onthemove" ios-CFBundleVersion="1" version="0.7.3" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>UCL HOME</name>
     <description>An application for analyzing health of migrants.</description>
-    <author email="radar-base@kcl.ac.uk" href="http://radar-base.org/">RADAR-Base</author>
+    <author email="homeappstudy@ucl.ac.uk" href="http://radar-base.org/">RADAR-Base</author>
     <content src="index.html" />
     <access origin="*" />
     <access origin="*" subdomains="true" />
@@ -12,12 +12,12 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackgroundColor" value="0xff6d9aa5" />
     <preference name="Orientation" value="portrait" />
     <platform name="android">
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" />
         <allow-intent href="market:*" />
         <preference name="AndroidLaunchMode" value="singleTop" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -51,12 +51,6 @@
         </config-file>
     </platform>
     <platform name="ios">
-        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-            <string>Used to scan barcodes</string>
-        </edit-config>
-        <edit-config file="*-Info.plist" mode="merge" target="NSMicrophoneUsageDescription">
-            <string>Used for audio input tasks</string>
-        </edit-config>
         <icon height="180" src="resources/ios/icon/icon-60@3x.png" width="180" />
         <icon height="60" src="resources/ios/icon/icon-60.png" width="60" />
         <icon height="120" src="resources/ios/icon/icon-60@2x.png" width="120" />
@@ -113,11 +107,6 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="AndroidLaunchMode" value="singleTask" />
-    <plugin name="cordova-android-support-gradle-release" spec="^3.0.1">
-        <variable name="ANDROID_SUPPORT_VERSION" value="27.+" />
-    </plugin>
-    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
-    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-device" spec="^2.0.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
@@ -127,7 +116,9 @@
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-vibration" spec="^3.1.1" />
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
-    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <plugin name="cordova-android-support-gradle-release" spec="^3.0.1">
+        <variable name="ANDROID_SUPPORT_VERSION" value="27.+" />
+    </plugin>
     <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.3" />
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <plugin name="phonegap-plugin-mobile-accessibility" spec="^1.0.5" />
@@ -137,10 +128,16 @@
     <plugin name="cordova-plugin-firebase-with-upstream-messaging" spec="2.1.1" />
     <plugin name="cordova-plugin-androidx" spec="^1.0.2" />
     <plugin name="cordova-plugin-androidx-adapter" spec="^1.1.0" />
-    <plugin name="cordova-plugin-background-mode-fixes" spec="^0.7.4" />
-    <plugin name="com-darryncampbell-cordova-plugin-intent" spec="^1.1.4" />
+    <plugin name="cordova-plugin-background-mode-fixes" spec="^0.7.6" />
+    <plugin name="com-darryncampbell-cordova-plugin-intent" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.2.0" />
-    <plugin name="cordova-plugin-inappbrowser" spec="3.1.0" />
-    <engine name="android" spec="^8.1.0" />
+    <plugin name="cordova-plugin-network-information" spec="^2.0.2" />
+    <plugin name="cordova-custom-config" spec="^5.1.0" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^4.1.3">
+        <variable name="ANDROID_SUPPORT_ANNOTATIONS_VERSION" value="27.+" />
+    </plugin>
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.2.0" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <engine name="ios" spec="5.0.1" />
+    <engine name="android" spec="^8.1.0" />
 </widget>
