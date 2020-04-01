@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 
 import { StorageKeys } from '../../../shared/enums/storage'
-import { StorageService } from '../storage/storage.service'
 import { User } from '../../../shared/models/user'
+import { StorageService } from '../storage/storage.service'
 
 @Injectable()
 export class SubjectConfigService {
@@ -12,7 +12,7 @@ export class SubjectConfigService {
     PROJECTNAME: StorageKeys.PROJECTNAME,
     SOURCEID: StorageKeys.SOURCEID,
     ENROLMENTDATE: StorageKeys.ENROLMENTDATE,
-    BASE_URI: StorageKeys.BASE_URI,
+    BASE_URI: StorageKeys.BASE_URI
   }
 
   constructor(public storage: StorageService) {}
@@ -77,6 +77,6 @@ export class SubjectConfigService {
   }
 
   reset() {
-    return this.storage.clear()
+    return this.storage.clear().then(() => this.storage.prepare())
   }
 }
