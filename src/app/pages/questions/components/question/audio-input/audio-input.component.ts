@@ -7,16 +7,18 @@ import {
   Output
 } from '@angular/core'
 import { NavController, Platform } from 'ionic-angular'
+import { Subscription } from 'rxjs'
 
-import { AlertService } from '../../../../../core/services/misc/alert.service'
-import { AndroidPermissionUtility } from '../../../../../shared/utilities/android-permission'
-import { AudioRecordService } from '../../../services/audio-record.service'
 import { DefaultMaxAudioAttemptsAllowed } from '../../../../../../assets/data/defaultConfig'
-import { HomePageComponent } from '../../../../home/containers/home-page.component'
+import { AlertService } from '../../../../../core/services/misc/alert.service'
+import { UsageService } from '../../../../../core/services/usage/usage.service'
+import { UsageEventType } from '../../../../../shared/enums/events'
 import { LocKeys } from '../../../../../shared/enums/localisations'
 import { Section } from '../../../../../shared/models/question'
-import { Subscription } from 'rxjs'
 import { TranslatePipe } from '../../../../../shared/pipes/translate/translate'
+import { AndroidPermissionUtility } from '../../../../../shared/utilities/android-permission'
+import { HomePageComponent } from '../../../../home/containers/home-page.component'
+import { AudioRecordService } from '../../../services/audio-record.service'
 
 @Component({
   selector: 'audio-input',
@@ -26,13 +28,15 @@ export class AudioInputComponent implements OnDestroy, OnInit {
   @Output()
   valueChange: EventEmitter<any> = new EventEmitter<any>()
   @Input()
-  sections: Section[]
+  text: string
   @Input()
   currentlyShown: boolean
 
   recordAttempts = 0
   buttonShown = true
   pauseListener: Subscription
+  showInfoCard: boolean
+  textLengthThreshold = 400
 
   constructor(
     private audioRecordService: AudioRecordService,
@@ -40,7 +44,8 @@ export class AudioInputComponent implements OnDestroy, OnInit {
     public navCtrl: NavController,
     public alertService: AlertService,
     private platform: Platform,
-    private translate: TranslatePipe
+    private translate: TranslatePipe,
+    private usage: UsageService
   ) {
     this.permissionUtil.checkPermissions()
     this.audioRecordService.destroy()
@@ -58,7 +63,7 @@ export class AudioInputComponent implements OnDestroy, OnInit {
       this.stopRecording()
       this.platform.exitApp()
     })
-    this.enableNextButton()
+    this.showInfoCard = this.text.length > this.textLengthThreshold
   }
 
   ngOnDestroy() {
@@ -68,9 +73,8 @@ export class AudioInputComponent implements OnDestroy, OnInit {
   handleRecording() {
     if (!this.isRecording()) {
       this.recordAttempts++
-      if (this.recordAttempts <= DefaultMaxAudioAttemptsAllowed) {
+      if (this.recordAttempts <= DefaultMaxAudioAttemptsAllowed)
         this.startRecording().catch(e => this.showTaskInterruptedAlert())
-      }
     } else {
       this.stopRecording()
       if (this.recordAttempts == DefaultMaxAudioAttemptsAllowed)
@@ -86,23 +90,21 @@ export class AudioInputComponent implements OnDestroy, OnInit {
       .then(data => this.valueChange.emit(data))
   }
 
-  enableNextButton() {
-    this.valueChange.emit('')
-  }
-
   startRecording() {
     return Promise.all([
       this.permissionUtil.getRecordAudio_Permission(),
       this.permissionUtil.getWriteExternalStorage_permission()
-    ]).then(res =>
-      res[0] && res[1]
+    ]).then(res => {
+      this.usage.sendGeneralEvent(UsageEventType.RECORDING_STARTED, true)
+      return res[0] && res[1]
         ? this.audioRecordService.startAudioRecording()
         : Promise.reject()
-    )
+    })
   }
 
   stopRecording() {
     this.audioRecordService.stopAudioRecording()
+    this.usage.sendGeneralEvent(UsageEventType.RECORDING_STOPPED, true)
   }
 
   isRecording() {
@@ -118,6 +120,7 @@ export class AudioInputComponent implements OnDestroy, OnInit {
   }
 
   showTaskInterruptedAlert() {
+    this.usage.sendGeneralEvent(UsageEventType.RECORDING_ERROR)
     this.alertService.showAlert({
       title: this.translate.transform(LocKeys.AUDIO_TASK_ALERT.toString()),
       message: this.translate.transform(

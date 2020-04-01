@@ -1,5 +1,5 @@
 task-progress {
-  $particles: 50;
+  $particles: 80;
   $width: 500;
   $height: 500;
 
@@ -133,6 +133,7 @@ task-progress {
     );
 
     position: absolute;
+    //top: -240px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
