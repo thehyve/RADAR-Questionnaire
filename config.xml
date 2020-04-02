@@ -94,6 +94,7 @@
         <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
         <splash height="2688" src="resources/ios/splash/Default-2688h~iphone.png" width="1242" />
         <splash height="1792" src="resources/ios/splash/Default-1792h~iphone.png" width="828" />
+        <preference name="AllowInlineMediaPlayback" value="true" />
     </platform>
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenBackgroundColor" value="0xff6d9aa5" />
@@ -138,6 +139,6 @@
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^3.2.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
-    <engine name="ios" spec="5.0.1" />
     <engine name="android" spec="^8.1.0" />
+    <engine name="ios" spec="~5.0.1" />
 </widget>
