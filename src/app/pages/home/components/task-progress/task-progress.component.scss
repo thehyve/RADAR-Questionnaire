@@ -1,5 +1,5 @@
 task-progress {
-  $particles: 50;
+  $particles: 80;
   $width: 500;
   $height: 500;
 
@@ -133,6 +133,7 @@ task-progress {
     );
 
     position: absolute;
+    //top: -240px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -184,7 +185,7 @@ task-progress {
   }
 
   .large {
-    font-size: 24vmin; // TODO FIXME 70px; UCL
+    font-size: 70px; // TODO FIXME 70px; UCL
     line-height: 0;
   }
 

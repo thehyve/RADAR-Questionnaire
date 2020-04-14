@@ -1,16 +1,20 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams } from 'ionic-angular'
+import { NavController, NavParams, Platform } from 'ionic-angular'
 
+import { DefaultPackageName } from '../../../../assets/data/defaultConfig'
 import { AuthConfigService } from '../../../core/services/config/auth-config.service'
 import { RemoteConfigService } from '../../../core/services/config/remote-config.service'
 import { AlertService } from '../../../core/services/misc/alert.service'
 import { LocalizationService } from '../../../core/services/misc/localization.service'
 import { LogService } from '../../../core/services/misc/log.service'
 import { UsageService } from '../../../core/services/usage/usage.service'
+import { ConfigEventType } from '../../../shared/enums/events'
 import { LocKeys } from '../../../shared/enums/localisations'
 import { WelcomePageComponent } from '../../auth/components/welcome-page/welcome-page.component'
 import { HomePageComponent } from '../../home/containers/home-page.component'
 import { SplashService } from '../services/splash.service'
+
+declare var window
 
 @Component({
   selector: 'page-splash',
@@ -21,30 +25,35 @@ export class SplashPageComponent {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private splash: SplashService,
+    private splashService: SplashService,
     private alertService: AlertService,
     private localization: LocalizationService,
-    private usage: UsageService
+    private usage: UsageService,
+    private platform: Platform
   ) {
-    this.splash
+    this.splashService
       .evalEnrolment()
       .then(valid => (valid ? this.onStart() : this.welcome()))
   }
 
   onStart() {
+    this.usage.sendOpenEvent()
     this.usage.setPage(this.constructor.name)
     this.status = this.localization.translateKey(
       LocKeys.SPLASH_STATUS_UPDATING_CONFIG
     )
-    return this.splash
+    this.splashService
+      .isAppUpdateAvailable()
+      .then(res => (res ? this.showAppUpdateAvailable() : []))
+    return this.splashService
       .loadConfig()
       .then(() => {
         this.status = this.localization.translateKey(
           LocKeys.SPLASH_STATUS_SENDING_LOGS
         )
-        return this.splash.sendMissedQuestionnaireLogs()
+        return this.splashService.sendMissedQuestionnaireLogs()
       })
-      .catch(e => console.log('[SPLASH] Notifications error.'))
+      .catch(e => this.showFetchConfigFail(e))
       .then(() => this.navCtrl.setRoot(HomePageComponent))
   }
 
@@ -69,11 +78,42 @@ export class SplashPageComponent {
     })
   }
 
+  showAppUpdateAvailable() {
+    this.alertService.showAlert({
+      title: this.localization.translateKey(LocKeys.STATUS_UPDATE_AVAILABLE),
+      message: this.localization.translateKey(
+        LocKeys.STATUS_UPDATE_AVAILABLE_DESC
+      ),
+      buttons: [
+        {
+          text: this.localization.translateKey(LocKeys.BTN_UPDATE),
+          handler: () => {
+            this.openApplicationStore()
+          }
+        }
+      ]
+    })
+  }
+
+  openApplicationStore() {
+    const url = this.platform.is('ios')
+      ? 'itms-apps://itunes.apple.com/app/'
+      : 'market://details?id=' + DefaultPackageName
+    window.location.replace(url)
+  }
+
   // enrol() {
-  //   this.splash.reset().then(() => this.navCtrl.setRoot(EnrolmentPageComponent))
+  //   this.splashService
+  //     .reset()
+  //     .then(() => this.navCtrl.setRoot(EnrolmentPageComponent))
+  //   // enrol() {
+  //   //   this.splash.reset().then(() => this.navCtrl.setRoot(EnrolmentPageComponent))
+  //   // }
   // }
 
   welcome() {
-    this.splash.reset().then(() => this.navCtrl.setRoot(WelcomePageComponent))
+    this.splashService
+      .reset()
+      .then(() => this.navCtrl.setRoot(WelcomePageComponent))
   }
 }

@@ -1,21 +1,17 @@
 info-screen {
-  display: flex;
-  width: 100%;
-
   .info-card {
-    margin: 8px;
-    padding: 10px;
-    max-height: calc(100% - 88px);
-    width: inherit;
-    height: calc(100vh - 184px);
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    padding: 16px;
+    height: 92%;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
     background-color: $cl-primary-20;
   }
 
-  ion-content {
-    background: none;
+  .content {
+    overflow-y: scroll;
+    width: 100%;
     mask-image:
+
       -webkit-gradient(
         linear,
         left top,
@@ -29,11 +25,6 @@ info-screen {
     padding-bottom: 32%;
   }
 
-  .info-card-sm {
-    max-height: calc(94% - 88px);
-    height: calc(95vh - 184px);
-  }
-
   .info-heading {
     color: $cl-light-60;
   }
@@ -42,15 +33,20 @@ info-screen {
     margin-bottom: 48%;
   }
 
-  .icon-thincIt {
-    margin-top: 15px;
-    margin-left: 35%;
-    width: 30%;
+  .image {
+    margin: auto;
+    width: 104px;
+    height: auto;
+  }
+
+  .image-container {
+    text-align: center;
   }
 
   .icon {
     position: relative;
-    margin: -40px -8px;
+    float: right;
+    margin: -36px 8px;
     width: inherit;
     text-align: right;
   }

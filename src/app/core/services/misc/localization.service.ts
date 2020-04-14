@@ -1,11 +1,12 @@
-import 'moment/locale/da'
-import 'moment/locale/de'
-import 'moment/locale/es'
-import 'moment/locale/it'
-import 'moment/locale/nl'
-
+// tslint:disable:no-duplicate-imports
 import { Injectable } from '@angular/core'
+import { Moment } from 'moment'
 import * as moment from 'moment'
+import * as localeDA from 'moment/locale/da'
+import * as localeDE from 'moment/locale/de'
+import * as localeES from 'moment/locale/es'
+import * as localeIT from 'moment/locale/it'
+import * as localeNL from 'moment/locale/nl'
 
 import { DefaultSettingsSupportedLanguages } from '../../../../assets/data/defaultConfig'
 import { Localisations } from '../../../../assets/data/localisations'
@@ -33,6 +34,7 @@ export class LocalizationService {
   constructor(private storage: StorageService) {
     this.localeMoment = moment()
     this.update()
+    this.updateLanguageSettings()
   }
 
   init() {
@@ -56,6 +58,14 @@ export class LocalizationService {
 
   getLanguage(): LanguageSetting {
     return this.language
+  }
+
+  updateLanguageSettings(): Promise<any> {
+    return this.getLanguageSettings().then(languages =>
+      languages && languages.length == DefaultSettingsSupportedLanguages.length
+        ? []
+        : this.setLanguageSettings(DefaultSettingsSupportedLanguages)
+    )
   }
 
   setLanguageSettings(settings) {
@@ -114,9 +124,13 @@ export class LocalizationService {
     }
   }
 
-  moment(time?: number | Date) {
+  moment(
+    time?: moment.MomentInput,
+    format?: moment.MomentFormatSpecification,
+    strict?: boolean
+  ): Moment {
     if (time !== undefined) {
-      return moment(time).locale(this.language.value)
+      return moment(time, format, strict).locale(this.language.value)
     } else {
       return moment(this.localeMoment)
     }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 
 import {
-  DefaultESMCompletionWindow,
   DefaultScheduleYearCoverage,
+  DefaultTask,
   DefaultTaskCompletionWindow
 } from '../../../../assets/data/defaultConfig'
 import { Assessment } from '../../../shared/models/assessment'
@@ -15,6 +15,7 @@ import {
   setDateTimeToMidnight,
   timeIntervalToMillis
 } from '../../../shared/utilities/time'
+import { Utility } from '../../../shared/utilities/util'
 import { QuestionnaireService } from '../config/questionnaire.service'
 import { LocalizationService } from '../misc/localization.service'
 import { LogService } from '../misc/log.service'
@@ -27,6 +28,7 @@ export class ScheduleGeneratorService {
     private localization: LocalizationService,
     private questionnaire: QuestionnaireService,
     private logger: LogService,
+    private util: Utility
   ) {}
 
   runScheduler(
@@ -50,7 +52,9 @@ export class ScheduleGeneratorService {
               utcOffsetPrev
             )
           )
-          .catch(e => { this.logger.error('Failed to schedule assessement', e) })
+          .catch(e => {
+            this.logger.error('Failed to schedule assessement', e)
+          })
       case TaskType.CLINICAL:
         return Promise.resolve({
           schedule: this.buildTasksForSingleAssessment(
@@ -156,24 +160,32 @@ export class ScheduleGeneratorService {
     timestamp: number,
     completionWindow
   ): Task {
-    const task: Task = {
-      index,
-      timestamp,
-      completed: false,
-      reportedCompletion: false,
-      name: assessment.name,
-      nQuestions: assessment.questions.length,
-      estimatedCompletionTime: assessment.estimatedCompletionTime,
-      completionWindow: completionWindow,
-      warning: this.localization.chooseText(assessment.warn),
-      isClinical: !!assessment.protocol.clinicalProtocol ? true : false,
-      iconInfo: this.getIconInfo(assessment)
-    }
+    const task: Task = this.util.deepCopy(DefaultTask)
+    task.index = index
+    task.timestamp = timestamp
+    task.name = assessment.name
+    task.nQuestions = assessment.questions.length
+    task.estimatedCompletionTime = assessment.estimatedCompletionTime
+    task.completionWindow = completionWindow
+    task.warning = this.localization.chooseText(assessment.warn)
+    task.isClinical = !!assessment.protocol.clinicalProtocol
+    task.showInCalendar = this.getOrDefault(
+      assessment.showInCalendar,
+      task.showInCalendar
+    )
+    task.isDemo = this.getOrDefault(assessment.isDemo, task.isDemo)
+    task.iconInfo = this.getIconInfo(assessment)
+    task.order = this.getOrDefault(assessment.order, task.order)
     task.notifications = this.notificationService.createNotifications(
       assessment,
       task
     )
     return task
+  }
+
+  getOrDefault(val, defaultVal) {
+    if (val == null) return defaultVal
+    return val
   }
 
   getIconInfo(assessment: Assessment) {
@@ -217,12 +229,8 @@ export class ScheduleGeneratorService {
   }
 
   static computeCompletionWindow(assessment: Assessment): number {
-    if (assessment.protocol.completionWindow) {
+    if (assessment.protocol.completionWindow)
       return timeIntervalToMillis(assessment.protocol.completionWindow)
-    } else if (assessment.name === 'ESM') {
-      return DefaultESMCompletionWindow
-    } else {
-      return DefaultTaskCompletionWindow
-    }
+    else return DefaultTaskCompletionWindow
   }
 }

@@ -18,21 +18,20 @@ export class UsageService {
   ) {}
 
   sendEventToKafka(payload) {
-    return this.kafka.prepareKafkaObjectAndSend(
-      SchemaType.APP_EVENT,
-      payload,
-      true
-    )
+    return this.kafka
+      .prepareKafkaObjectAndSend(SchemaType.APP_EVENT, payload, true)
+      .then((res: any) => this.logger.log('usage service', 'send success'))
+      .catch((error: any) => this.logger.error('usage service', error))
   }
 
   sendOpenEvent() {
     return this.webIntent.getIntent().then(intent => {
       this.logger.log(intent)
-      // noinspection JSIgnoredPromiseFromCall
-      this.sendEventToKafka({
-        eventType: intent.extras
-          ? UsageEventType.NOTIFICATION_OPEN
-          : UsageEventType.APP_OPEN
+      return this.sendEventToKafka({
+        eventType:
+          Object.keys(intent.extras).length > 1
+            ? UsageEventType.NOTIFICATION_OPEN
+            : UsageEventType.APP_OPEN
       })
     })
   }
@@ -51,9 +50,13 @@ export class UsageService {
     })
   }
 
-  sendGeneralEvent(type, payload?) {
+  sendGeneralEvent(type, sendToKafka?, payload?) {
     // noinspection JSIgnoredPromiseFromCall
     this.analytics.logEvent(type, payload ? payload : {})
+    if (sendToKafka)
+      return this.sendEventToKafka({
+        eventType: type
+      })
   }
 
   sendClickEvent(button) {
@@ -78,6 +81,7 @@ export class UsageService {
     let page = component.split(/(?=[A-Z])/)
     page.pop()
     page = page.join('-').toLowerCase()
+    if (!page.includes('page')) page = page + '-page'
     // noinspection JSIgnoredPromiseFromCall
     this.analytics.setCurrentScreen(page)
   }

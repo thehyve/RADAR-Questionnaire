@@ -20,13 +20,11 @@ export class ClinicalTasksPageComponent {
 
   ionViewDidLoad() {
     this.clinicalTasksService.getClinicalAssessments().then(assessments => {
-      this.assessments = assessments
+      this.assessments = assessments.sort((a, b) => a.order - b.order)
     })
   }
 
   clicked(task) {
-    this.clinicalTasksService
-      .getClinicalTaskPayload(task)
-      .then(payload => this.navCtrl.push(QuestionsPageComponent, payload))
+    this.navCtrl.push(QuestionsPageComponent, task)
   }
 }
