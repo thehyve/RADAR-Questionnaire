@@ -51,6 +51,10 @@ export class FinishTaskService {
     })
   }
 
+  rescheduleNotifications() : Promise<any> {
+    return this.config.regenerateSchedule()
+  }
+
   evalClinicalFollowUpTask(assessment): Promise<any> {
     return this.schedule
       .generateClinicalSchedule(assessment, Date.now())

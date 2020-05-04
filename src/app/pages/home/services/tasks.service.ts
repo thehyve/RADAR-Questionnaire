@@ -41,6 +41,9 @@ export class TasksService {
           t => !this.isTaskExpired(t) || this.wasTaskCompletedToday(t)
         )
       )
+      .then( tasks =>
+        tasks.sort( ((a, b) => a.timestamp - b.timestamp))
+      )
   }
 
   getSortedTasksOfToday(): Promise<Map<number, Task[]>> {
@@ -90,7 +93,7 @@ export class TasksService {
 
   isTaskStartable(task) {
     // NOTE: This checks if the task timestamp has passed and if task is valid
-    return task.timestamp <= new Date().getTime() && !this.isTaskExpired(task)
+    return !this.isTaskExpired(task)
   }
 
   isTaskExpired(task) {

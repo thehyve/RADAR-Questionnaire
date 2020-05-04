@@ -9,19 +9,20 @@ import { ConfigKeys } from '../../../shared/enums/config'
 import { StorageKeys } from '../../../shared/enums/storage'
 import { LogService } from '../misc/log.service'
 import { StorageService } from '../storage/storage.service'
+import { getSeconds } from "../../../shared/utilities/time";
 
 declare var FirebasePlugin
 
 @Injectable()
 export class RemoteConfigService {
-  protected timeoutMillis: number = 14_400_000
+  protected timeoutMillis: number = 10_800_000
 
   constructor(private storage: StorageService) {
     this.storage.get(StorageKeys.REMOTE_CONFIG_CACHE_TIMEOUT).then(timeout => {
       if (timeout) {
         this.timeoutMillis = timeout
       } else {
-        this.timeoutMillis = 14_400_000 // 3 hours
+        this.timeoutMillis = 10_800_000 // 3 hours
         return this.storage.set(
           StorageKeys.REMOTE_CONFIG_CACHE_TIMEOUT,
           this.timeoutMillis
@@ -143,7 +144,7 @@ export class FirebaseRemoteConfigService extends RemoteConfigService {
     }
     console.log('Fetching Firebase Remote Config')
     return this.firebase
-      .fetch(timeoutMillis)
+      .fetch(getSeconds({ milliseconds: timeoutMillis }))
       .then(() => {
         console.log('Activating Firebase Remote Config')
         return (
