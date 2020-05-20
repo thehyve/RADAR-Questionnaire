@@ -54,7 +54,7 @@ export class FinishTaskService {
   }
 
   rescheduleNotifications() : Promise<any> {
-    this.logger.log("Reschedule notifications")
+    this.logger.log("Reschedule future notifications...")
     return this.notification.rescheduleForFutureTasks();
   }
 

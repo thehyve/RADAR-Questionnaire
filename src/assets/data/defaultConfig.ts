@@ -152,7 +152,7 @@ export const DefaultRealmName = 'homeappstudy';
 
 export const DefaultClientId = 'home-app-client';
 
-export const DefaultProjectName = 'STAGING_PROJECT'
+export const DefaultProjectName = 'HOME_APP_TESTPHASE'
 
 
 // DEFAULT URI

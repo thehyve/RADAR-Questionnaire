@@ -183,7 +183,7 @@ export class QuestionsService {
         data.timestamps,
         task
       )
-    ]).then(this.finish.rescheduleNotifications)
+    ]).then(() => this.finish.rescheduleNotifications())
   }
 
   handleClinicalFollowUp(assessment, completedInClinic?) {
