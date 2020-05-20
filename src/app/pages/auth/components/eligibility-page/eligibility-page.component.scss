@@ -61,7 +61,8 @@ page-eligibility {
   }
 
   .scroll-page {
-    height:72vh !important;
+    //height:72vh !important;
+    height: calc(100% - 166px);
   }
 
   ::-webkit-scrollbar {
@@ -230,5 +231,9 @@ page-eligibility {
     height: 75px;
     font-size: 18px;
     line-height: 1.35em;
+  }
+
+  .slide-zoom{
+    height: 100%;
   }
 }
