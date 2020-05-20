@@ -111,11 +111,11 @@ export const Localisations = {
   },
 
   ENROL_ABORT_MESSAGE: {
-    en: 'It seems you do not meet our eligibility criteria to participant in the study.'
+    en: 'It seems you do not meet the criteria to participate in this study..'
   },
 
   ENROL_NO_CONSENT_MESSAGE: {
-    en: 'Thank you for trying to participant in our study.'
+    en: 'Thank you for trying to participate in our study.'
   },
   ENROL_ABOUT_HEADING: {
     da: 'Velkommen',

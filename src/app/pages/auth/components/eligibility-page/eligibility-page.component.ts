@@ -53,7 +53,7 @@ export class EligibilityPageComponent {
       {
         questionId: 3,
         isAnswered: false,
-        question: "Are you planning to move to the UK in the next 6 months or currently living in the UK?",
+        question: "Are you currently living in the UK?",
         answer: undefined
       }
     ];
