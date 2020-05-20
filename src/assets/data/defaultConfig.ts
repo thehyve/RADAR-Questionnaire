@@ -82,7 +82,7 @@ export const DefaultNotificationType: string = 'FCM'
 export const FCMPluginProjectSenderId: string = '776941468489'
 
 // *Default maximum upstream retries when sending fails
-export const DefaultMaxUpstreamResends = 100
+export const DefaultMaxUpstreamResends = 50
 
 // *Default number of notifications to schedule
 export const DefaultNumberOfNotificationsToSchedule: number = 100
