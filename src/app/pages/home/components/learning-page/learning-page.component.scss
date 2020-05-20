@@ -27,7 +27,8 @@ page-learning {
   }
 
   .scroll-page {
-    height: calc(100vh - 20%);
+    //height: calc(100vh - 20%);
+    height: 100%;
   }
 
   ::-webkit-scrollbar {

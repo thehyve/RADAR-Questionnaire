@@ -50,7 +50,14 @@ learning-item {
     padding-right: 5px;
     padding-bottom: 5px;
     padding-left: 5px;
-    font-size: 12px;
+    padding-top: 5px;
+    text-align: start;
+    font-size: 14px;
+
+    a {
+      padding: 0;
+      font-size: 14px;
+    }
   }
 
   a {
@@ -58,6 +65,6 @@ learning-item {
     padding-bottom: 5px;
     padding-left: 5px;
     color: $cl-light;
-    font-size: 12px;
+    font-size: 14px;
   }
 }
