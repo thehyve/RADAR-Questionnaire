@@ -61,7 +61,8 @@ page-consent {
   }
 
   .scroll-page {
-    height:72vh !important;
+    //height:72vh !important;
+    height: calc(100% - 146px);
   }
 
   ::-webkit-scrollbar {

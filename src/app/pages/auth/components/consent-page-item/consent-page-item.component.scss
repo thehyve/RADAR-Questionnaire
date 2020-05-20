@@ -16,7 +16,8 @@ page-consent-item {
   }
 
   .text-justify {
-    text-align: justify;
+    //text-align: justify;
+    text-align: start;
   }
 
   .text-heading {
@@ -47,10 +48,11 @@ page-consent-item {
   }
 
   .detail {
+    padding-top: 5px;
     padding-right: 5px;
-    padding-left: 5px;
     padding-bottom: 5px;
-    font-size: 12px;
+    padding-left: 5px;
+    font-size: 14px;
     a{
       color: $cl-light;
     }
