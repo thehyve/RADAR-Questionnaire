@@ -17,7 +17,7 @@ study-info {
   }
 
   .text-justify {
-    text-align: justify;
+    //text-align: justify;
   }
 
   .text-md {
@@ -38,4 +38,13 @@ study-info {
   ::-webkit-scrollbar-thumb {
     background-color: $cl-light;
   }
+}
+
+#introframe {
+  flex: 1 0 100%;
+  width: 100% !important;
+  height: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  border: none;
 }
