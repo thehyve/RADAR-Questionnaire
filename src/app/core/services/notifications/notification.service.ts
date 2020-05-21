@@ -14,6 +14,9 @@ export class NotificationService {
   publish(limit?: number): Promise<void[]> {
     return undefined
   }
+  rescheduleForFutureTasks(limit?: number): Promise<void[]> {
+    return undefined
+  }
   sendTestNotification(): Promise<void> {
     return undefined
   }
