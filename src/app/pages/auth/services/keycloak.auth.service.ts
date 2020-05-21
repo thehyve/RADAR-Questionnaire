@@ -96,7 +96,7 @@ export class KeycloakAuthService extends AuthService {
       this.createAuthenticationUrl(isRegistration).then(authUrl => {
         const browser = this.inAppBrowser.create(
           authUrl,
-          '_blank', 'location=no,hardwareback=no,toolbar=no,clearsessioncache=yes,clearcache=yes'
+          '_blank', 'location=no,hardwareback=no,zoom=no,toolbar=no,clearsessioncache=yes,clearcache=yes'
         )
         let authRes = null
         const listener = browser.on('loadstart').subscribe((event: any) => {
