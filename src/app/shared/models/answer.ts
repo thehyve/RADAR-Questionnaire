@@ -19,22 +19,5 @@ export interface AnswerValueExport {
   answers: Response[]
   time: number
   timeCompleted: number
-  timeNotification: number
-}
-
-export interface AnswerKeyExport {
-  userId: string
-  sourceId: string
-  projectId: string
-}
-
-export interface CompletionLogValueExport {
-  name: string
-  time: number
-  completionPercentage: any
-}
-
-export interface ApplicationTimeZoneValueExport {
-  time: number
-  offset: number
+  timeNotification: Object
 }

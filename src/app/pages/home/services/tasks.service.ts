@@ -1,140 +1,150 @@
 import { Injectable } from '@angular/core'
 
-import { KafkaService } from '../../../core/services/kafka.service'
-import { SchedulingService } from '../../../core/services/scheduling.service'
-import { StorageService } from '../../../core/services/storage.service'
+import { DefaultPlatformInstance } from '../../../../assets/data/defaultConfig'
+import { QuestionnaireService } from '../../../core/services/config/questionnaire.service'
+import { RemoteConfigService } from '../../../core/services/config/remote-config.service'
+import { ScheduleService } from '../../../core/services/schedule/schedule.service'
+import { ConfigKeys } from '../../../shared/enums/config'
 import { Task, TasksProgress } from '../../../shared/models/task'
+import { TaskType } from '../../../shared/utilities/task-type'
+import { setDateTimeToMidnight } from '../../../shared/utilities/time'
 
 @Injectable()
 export class TasksService {
   constructor(
-    public storage: StorageService,
-    private schedule: SchedulingService,
-    private kafka: KafkaService
+    private schedule: ScheduleService,
+    private questionnaire: QuestionnaireService,
+    private remoteConfig: RemoteConfigService
   ) {}
 
-  getAssessment(task) {
-    return this.storage.getAssessment(task)
+  evalHasClinicalTasks() {
+    return this.questionnaire.getHasClinicalTasks()
+  }
+// from ucl
+  getTasksOfNow() {
+    const now = new Date().getTime()
+    return this.schedule.getTasks(TaskType.ALL)
+      .then((tasks: Task[]) => {
+        return tasks.filter(t => t.timestamp <= now && t.timestamp + t.completionWindow > now)
+      })
   }
 
+  getTasksToComplete() {
+    return this.schedule.getPendingTasksForNow()
+  }
+// end of from ucl
   getTasksOfToday() {
-    const now = new Date()
-    return this.schedule.getTasksForDate(now)
+    return this.schedule
+      .getTasksForDate(new Date(), TaskType.NON_CLINICAL)
+      .then(tasks =>
+        tasks.filter(
+          t => !this.isTaskExpired(t) || this.wasTaskCompletedToday(t)
+        )
+      )
+      .then( tasks =>
+        tasks.sort( ((a, b) => a.timestamp - b.timestamp))
+      )
   }
 
-  getTasksOfDate(timestamp) {
-    return this.schedule.getTasksForDate(timestamp)
+  getSortedTasksOfToday(): Promise<Map<number, Task[]>> {
+    return this.getTasksOfToday().then(tasks => {
+      const sortedTasks = new Map()
+      tasks.forEach(t => {
+        const midnight = setDateTimeToMidnight(new Date(t.timestamp)).getTime()
+        if (sortedTasks.has(midnight)) sortedTasks.get(midnight).push(t)
+        else sortedTasks.set(midnight, [t])
+      })
+      return sortedTasks
+    })
   }
 
-  getTaskProgress() {
-    return this.getTasksOfToday().then((tasks: Task[]) =>
-      this.retrieveTaskProgress(tasks)
+  getTaskProgress(): Promise<TasksProgress> {
+    return this.getTasksOfToday().then(tasks => (this.calculateTaskProgress(tasks)))
+  }
+
+  calculateTaskProgress(tasks: Task[]) {
+    const numberOfTasks = tasks.length
+    const completedTasks = tasks.filter( d => d.completed).length
+    const completedPercentage = completedTasks === 0 ? 0 : Math.round((completedTasks/numberOfTasks)*100)
+    return {
+      numberOfTasks,
+      completedTasks,
+      completedPercentage
+    }
+  }
+
+  updateTaskToReportedCompletion(task) {
+    this.schedule.updateTaskToReportedCompletion(task)
+  }
+
+  isToday(date) {
+    return (
+      new Date(date).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)
     )
   }
 
-  retrieveTaskProgress(tasks): TasksProgress {
-    const tasksProgress: TasksProgress = {
-      numberOfTasks: 0,
-      completedTasks: 0
-    }
-    if (tasks) {
-      tasksProgress.numberOfTasks = tasks.length
-      for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].completed) {
-          tasksProgress.completedTasks += 1
-        }
-      }
-      return tasksProgress
-    }
+  areAllTasksComplete(tasks) {
+    return !tasks || tasks.every(t => t.completed || !this.isTaskStartable(t))
   }
 
-  getNextTask() {
-    return this.getTasksOfToday().then((tasks: Task[]) => {
-      return this.retrieveNextTask(tasks)
-    })
+  isLastTask(tasks) {
+    return tasks.filter(t => this.isTaskStartable(t)).length <= 1
   }
 
-  areAllTasksComplete() {
-    return this.getTasksOfToday().then((tasks: Task[]) => {
-      if (tasks) {
-        for (let i = 0; i < tasks.length; i++) {
-          if (tasks[i].name !== 'ESM') {
-            if (tasks[i].completed === false) {
-              return false
-            }
-          }
-        }
-      }
-      return true
-    })
+  isTaskStartable(task) {
+    // NOTE: This checks if the task timestamp has passed and if task is valid
+    return !this.isTaskExpired(task)
   }
 
-  isLastTask(task) {
-    return this.getTasksOfToday().then((tasks: Task[]) => {
-      if (tasks) {
-        for (let i = 0; i < tasks.length; i++) {
-          if (tasks[i].name !== 'ESM') {
-            if (tasks[i].completed === false && tasks[i].index !== task.index) {
-              return false
-            }
-          }
-        }
-      }
-      return true
-    })
+  isTaskExpired(task) {
+    // NOTE: This checks if completion window has passed or task is complete
+    return (
+      task.timestamp + task.completionWindow < new Date().getTime() ||
+      task.completed
+    )
+  }
+
+  wasTaskCompletedToday(task) {
+    return task.completed && this.isToday(task.timeCompleted)
   }
 
   /**
    * This function Retrieves the most current next task from a list of tasks.
-   * @param tasks : The list of tasks to retrieve the next task from.
+   * @param tasks : list of tasks to retrieve the next task from.
    * @returns {@link Task} : The next incomplete task from the list. This essentially
    *                         translates to which questionnaire the `START` button on home page corresponds to.
    */
-  retrieveNextTask(tasks: Task[]): Task {
+  getNextTask(tasks: Task[]): Task | undefined {
     if (tasks) {
-      const now = new Date()
-      const offsetTimeESM = 1000 * 60 * 10 // 10 min
-      const offsetForward = 1000 * 60 * 60 * 12
-      let lookFromTimestamp, lookToTimestamp
-      for (let i = 0; i < tasks.length; i++) {
-        switch (tasks[i].name) {
-          case 'ESM':
-            // NOTE: For ESM, just look from 10 mins before now
-            lookFromTimestamp = new Date().getTime() - offsetTimeESM
-            lookToTimestamp = lookFromTimestamp + offsetForward
-            break
-
-          default:
-            // NOTE: Check from midnight for other tasks
-            now.setHours(0, 0, 0, 0)
-            lookFromTimestamp = now.getTime()
-            lookToTimestamp = tasks[i].timestamp + offsetForward
-        }
-        // NOTE: Break out of the loop as soon as the next incomplete task is found
-        if (
-          tasks[i].timestamp >= lookFromTimestamp &&
-          tasks[i].timestamp < lookToTimestamp &&
-          tasks[i].completed === false
-        )
-          return tasks[i]
-      }
+      const nextTasksNow = tasks.filter(task => this.isTaskStartable(task))
+      if (nextTasksNow.length) {
+        return nextTasksNow.sort((a, b) => a.order - b.order)[0]
+      } else return tasks.find(task => !this.isTaskExpired(task))
     }
+    return undefined
   }
 
-  sendNonReportedTaskCompletion() {
-    this.schedule.getNonReportedCompletedTasks().then(nonReportedTasks => {
-      for (let i = 0; i < nonReportedTasks.length; i++) {
-        this.kafka.prepareNonReportedTasksKafkaObjectAndSend(
-          nonReportedTasks[i]
+  getCurrentDateMidnight() {
+    return setDateTimeToMidnight(new Date())
+  }
+
+  getPlatformInstanceName() {
+    return this.remoteConfig
+      .read()
+      .then(config =>
+        config.getOrDefault(
+          ConfigKeys.PLATFORM_INSTANCE,
+          DefaultPlatformInstance
         )
-        this.updateTaskToReportedCompletion(nonReportedTasks[i])
-      }
-    })
+      )
   }
 
-  updateTaskToReportedCompletion(task): Promise<any> {
-    const updatedTask = task
-    updatedTask.reportedCompletion = true
-    return this.schedule.insertTask(updatedTask)
+
+  formatTime(date) {
+    const hour = date.getHours()
+    const min = date.getMinutes()
+    const hourStr = date.getHours() < 10 ? '0' + String(hour) : String(hour)
+    const minStr = date.getMinutes() < 10 ? '0' + String(min) : String(min)
+    return hourStr + ':' + minStr
   }
 }

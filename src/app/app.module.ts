@@ -3,25 +3,39 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt'
-import { AndroidPermissions } from '@ionic-native/android-permissions'
-import { AppVersion } from '@ionic-native/app-version'
-import { BarcodeScanner } from '@ionic-native/barcode-scanner'
-import { Device } from '@ionic-native/device'
-import { Dialogs } from '@ionic-native/dialogs'
-import { File } from '@ionic-native/file'
-import { Globalization } from '@ionic-native/globalization'
-import { LocalNotifications } from '@ionic-native/local-notifications'
-import { SplashScreen } from '@ionic-native/splash-screen'
-import { StatusBar } from '@ionic-native/status-bar'
-import { Vibration } from '@ionic-native/vibration'
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
+import { AppVersion } from '@ionic-native/app-version/ngx'
+import { BackgroundMode } from '@ionic-native/background-mode/ngx'
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
+import { Device } from '@ionic-native/device/ngx'
+import { Dialogs } from '@ionic-native/dialogs/ngx'
+import { File } from '@ionic-native/file/ngx'
+import { Firebase } from '@ionic-native/firebase/ngx'
+import { Globalization } from '@ionic-native/globalization/ngx'
+import { Insomnia } from '@ionic-native/insomnia/ngx'
+import { Keyboard } from '@ionic-native/keyboard/ngx'
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
+import { MobileAccessibility } from '@ionic-native/mobile-accessibility/ngx'
+import { SplashScreen } from '@ionic-native/splash-screen/ngx'
+import { StatusBar } from '@ionic-native/status-bar/ngx'
+import { Vibration } from '@ionic-native/vibration/ngx'
+import { WebIntent } from '@ionic-native/web-intent/ngx'
 import { IonicStorageModule, Storage } from '@ionic/storage'
 import { IonicApp, IonicModule } from 'ionic-angular'
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
 
 import { AppComponent } from './core/containers/app.component'
+import {
+  FirebaseRemoteConfigService,
+  RemoteConfigService
+} from './core/services/config/remote-config.service'
+import { LogService } from './core/services/misc/log.service'
 import { PagesModule } from './pages/pages.module'
 import { AndroidPermissionUtility } from './shared/utilities/android-permission'
 import { jwtOptionsFactory } from './shared/utilities/jwtOptionsFactory'
 import { Utility } from './shared/utilities/util'
+import { KeycloakTokenService } from "./core/services/token/keycloak.token.service";
+import { TokenService } from "./core/services/token/token.service";
 
 @NgModule({
   imports: [
@@ -30,7 +44,8 @@ import { Utility } from './shared/utilities/util'
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(AppComponent, {
-      mode: 'md'
+      mode: 'md',
+      activator: 'none'
     }),
     IonicStorageModule.forRoot({
       name: '__appdb',
@@ -52,7 +67,6 @@ import { Utility } from './shared/utilities/util'
     StatusBar,
     SplashScreen,
     Utility,
-    LocalNotifications,
     BarcodeScanner,
     Dialogs,
     Vibration,
@@ -60,7 +74,18 @@ import { Utility } from './shared/utilities/util'
     AndroidPermissionUtility,
     AndroidPermissions,
     File,
-    AppVersion
+    AppVersion,
+    WebIntent,
+    MobileAccessibility,
+    Insomnia,
+    BackgroundMode,
+    Keyboard,
+    Firebase,
+    LocalNotifications,
+    LogService,
+    InAppBrowser,
+    { provide: RemoteConfigService, useClass: FirebaseRemoteConfigService },
+    { provide: TokenService, useClass: KeycloakTokenService }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

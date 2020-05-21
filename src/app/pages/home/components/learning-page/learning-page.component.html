@@ -1,0 +1,49 @@
+<!--<ion-content>-->
+<!--  <div *ngIf="!loading">-->
+
+    <ion-scroll
+      padding
+      scrollY="true"
+      class="scroll-page"
+    >
+      <div style="padding-bottom: 5px">
+        <img
+          class="logo"
+          src="assets/imgs/worldwideresources.png"
+          alias="RADAR LOGO"
+        >
+        <div class="padding text-sm text-justify" style="padding-bottom: 16px; padding-top: 16px;">We know your time is valuable. To thank you for your participation in
+          the HOME study, we have
+          compiled a list of resources covering different aspects of migration to the UK that you may find useful.
+        </div>
+
+        <div>
+          <ion-item-group>
+            <div *ngFor="let consentPageItem of learningPageItems">
+              <learning-item
+                [currentItem]="consentPageItem"
+              >
+              </learning-item>
+            </div>
+          </ion-item-group>
+        </div>
+      </div>
+
+    </ion-scroll>
+<!--  </div>-->
+
+<!--  <ion-slides *ngIf="loading" direction="horizontal">-->
+<!--    <ion-slide padding id="loadingSlide">-->
+<!--      <div class="position-center">-->
+<!--        <ion-spinner name="dots"></ion-spinner>-->
+<!--      </div>-->
+<!--      <div class="status-center">{{  "STATUS_LOADING" | translate  }}</div>-->
+<!--      <div class="status">-->
+<!--        <div id="outcome" *ngIf="showOutcomeStatus">-->
+<!--          {{ outcomeStatus }}-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </ion-slide>-->
+<!--  </ion-slides>-->
+
+<!--</ion-content>-->

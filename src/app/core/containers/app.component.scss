@@ -31,8 +31,6 @@ body {
 }
 
 .icons-big {
-  margin-top: 7%;
-  margin-left: 35%;
   width: 30%;
 }
 
@@ -43,6 +41,10 @@ body {
 
   &--full {
     @include button-round;
+  }
+
+  &--block {
+    @include button-square;
   }
 
   &.activated {
@@ -83,4 +85,8 @@ p {
 
 .alert-button-group {
   height: 15%;
+}
+
+.button-inner {
+  height: 5%;
 }

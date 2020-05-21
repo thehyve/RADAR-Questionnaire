@@ -1,0 +1,191 @@
+page-welcome {
+  color: white;
+
+  #logo {
+    width: 100%;
+  }
+
+  #logo-container {
+    margin: auto;
+    width: 100%;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .text {
+    margin: auto;
+    width: 90vw;
+  }
+
+  .scroll-page {
+    height:75vh !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 3px;
+    background-color: white;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $cl-light;
+  }
+
+  .text-ques {
+    margin-bottom: 2vh;
+    font-size: 25px;
+    margin-top: 2vh;
+  }
+
+  .text-justify {
+    text-align: justify;
+  }
+
+  .swipe-here {
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    left: 0;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .text-lg {
+    margin-bottom: 2vh;
+    font-size: 30px;
+  }
+
+  .text-md {
+    margin-bottom: 2vh;
+    font-size: 20px;
+  }
+
+  .padding {
+    margin-top: 3vh;
+    padding-bottom: 3px;
+  }
+
+  .extra-padding {
+    margin-top: 8vh;
+  }
+
+  #status {
+    display: flex;
+    margin: auto;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    width: 100%;
+  }
+
+  #loading {
+    flex: 1 0 100%;
+    height: 34px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  #outcome {
+    flex: 1 0 100%;
+    height: auto;
+    background-color: $cl-danger-40;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .padding-text {
+    padding-top: 5px;
+  }
+
+  .bottom {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+  }
+
+  ion-item.item {
+    margin-bottom: $item-separation-distance;
+  }
+
+  .item-md.item-block .item-inner {
+    border: none;
+  }
+
+  ion-item.item:last-child {
+    margin-bottom: 0;
+  }
+
+  ion-item-divider.item-divider {
+    background-color: $cl-primary-10;
+    color: $cl-font-light;
+    font-size: 2rem;
+  }
+
+  ion-slide.swiper-slide {
+    align-items: flex-start;
+    padding-top: 50px;
+  }
+
+  .pos-above {
+    margin-top: -50px;
+  }
+
+  .pref-info {
+    padding-bottom: 100px;
+  }
+
+  #settings {
+    margin-bottom: 5vh;
+    padding: 2vh 0;
+  }
+
+  .pref-icon {
+    margin: 2vh 0;
+    height: 20vh;
+  }
+
+  .token-input {
+    margin: 24px auto;
+    width: 320px;
+    border-bottom: 1px solid white;
+  }
+
+  li {
+    padding-bottom:10px;
+    list-style-type: decimal;
+    list-style-position: outside;
+  }
+
+  .position-center {
+    margin-top: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .text-paragraph {
+    text-align: left;
+    font-size: 12px;
+    padding-bottom: 10px;
+    line-height: 14px;
+  }
+
+  .status-center {
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  #introframe {
+    flex: 1 0 100%;
+    width: 100% !important;
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    border: none;
+  }
+
+  .player {
+    width: 100% !important;
+  }
+}

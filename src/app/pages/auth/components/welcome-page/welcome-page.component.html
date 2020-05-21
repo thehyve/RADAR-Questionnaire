@@ -1,0 +1,106 @@
+<ion-content>
+  <div *ngIf="!loading">
+  <ion-slides pager direction="horizontal" style="height: 80%;">
+    <ion-slide id="intro">
+      <div id="logo-container">
+        <img
+            id="logo"
+            src="assets/imgs/home-app.png"
+            alias="UCL LOGO"
+        >
+      </div>
+      <div class="swipe-here">Swipe Here</div>
+    </ion-slide>
+
+    <ion-slide id="aboutStudy" margin-bottom="10px">
+<!--      <ion-item>-->
+<!--        <ion-icon md="md-arrow-back" item-start (click)="goBack()"></ion-icon>-->
+<!--      </ion-item>-->
+
+      <ion-scroll
+        scrollY="true"
+        class="scroll-page"
+      >
+        <div >
+
+          <div >
+            <iframe id="introframe"
+                    src="https://player.vimeo.com/video/376190254?api=1&&background=1"
+                    frameborder="0" allowfullscreen
+            ></iframe>
+<!--            <iframe id="introframe"-->
+<!--                    src="https://player.vimeo.com/video/376190254?api=1&title=0&byline=0&portrait=0&controls=0&autoplay=1&dnt=1"-->
+<!--                    frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>-->
+
+          </div>
+
+          <div class="text-md" style="margin-top: 10px">{{ "ENROL_ABOUT_HEADING" | translate }}</div>
+        </div>
+
+        <div>
+
+          <div
+            padding
+            class="text-paragraph">
+            Welcome to Health On the MovE (HOME): a Research Study by University College London about the Health of Migrants to the UK.<br>
+            <br>
+            1 in 7 people in the UK are international migrants. International migrants in the UK are people who were born abroad but who have settled in the UK.<br>
+            <br>
+            Right now we do not know enough about the health of international migrants like you. We also do not know enough about how your health changes after living in the UK for some time. We hope that The​ HOME ​study will help us understand this better.<br>
+            <br>
+            The HOME study is a smartphone app study. Through surveys in the app, we will be asking you questions about your wellbeing and physical, mental and sexual health. In this way, we hope to better understand your health, wellbeing and experiences living in the UK.<br>
+            <br>
+            Any personally identifiable data you provide is kept securely and is strictly confidential. Only de-personalised results will be shared to improve health, care and services for the migrant community.<br>
+            <br>
+            By pressing “Join Study”, we will first check if you are eligible to participate. Then, more detailed information about the HOME study is provided before you actually agree to participate. <br>
+            <br>
+            This study was approved by the University College London (UCL) ethics committee (reference number: 13571/003).<br>
+            <br>
+
+          </div>
+        </div>
+      </ion-scroll>
+    </ion-slide>
+  </ion-slides>
+
+  <div
+      padding
+      class="bottom"
+      style="height: 20%;"
+  >
+    <button
+        ion-button
+        class="bt bt--full"
+        round
+        full
+        (tap)="joinStudy()"
+    >
+      Join Study
+    </button>
+    <button
+        ion-button
+        class="bt bt--full"
+        round
+        full
+        (tap)="goToLogin()"
+    >
+      Already participating
+    </button>
+  </div>
+  </div>
+
+  <ion-slides *ngIf="loading" direction="horizontal">
+
+    <ion-slide padding id="loadingSlide">
+      <div class="position-center">
+        <ion-spinner name="dots"></ion-spinner>
+      </div>
+      <div class="status-center">{{  "STATUS_LOADING" | translate  }}</div>
+      <div class="status">
+        <div id="outcome" *ngIf="showOutcomeStatus">
+          {{ outcomeStatus }}
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,27 +1,58 @@
 question {
-  p.stdformat {
+  text-align: initial;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: initial;
+  }
+
+  p {
     margin-top: 8px;
     margin-bottom: 0;
     color: $cl-light-80;
   }
 
-  p.taskformat {
-    margin: 5px;
-    font-size: 24px;
-  }
-
-  h2.stdformat {
+  h2 {
     margin-top: 16px;
     margin-bottom: 24px;
   }
 
-  h2.taskformat {
-    margin-top: 16px;
-    margin-bottom: 24px;
-    font-size: 16px;
+  .field-container {
+    max-height: 50vh !important;
   }
 
   .rangeformat {
     height: 30vh;
+  }
+
+  .fade {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  .header {
+    flex-grow: 0;
+  }
+
+  .input {
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 4px;
+  }
+
+  .input-scroll {
+    overflow-y: auto !important;
+    mask-image:
+      linear-gradient(to top, transparent 3%, black 7%),
+      linear-gradient(to bottom, transparent 0%, black 7%);
+    mask-size: 100% 50%, 100% 51%;
+    mask-position: bottom, top;
+    mask-repeat: no-repeat, no-repeat;
+  }
+
+  .spinner-container {
+    text-align: center;
   }
 }

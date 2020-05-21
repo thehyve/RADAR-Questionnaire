@@ -1,4 +1,4 @@
-import { Reminders } from './protocol'
+import { SingleNotification } from './notification-handler'
 
 export interface Task {
   index: number
@@ -7,13 +7,20 @@ export interface Task {
   timestamp: number
   name: string
   nQuestions: number
-  reminderSettings?: any
-  estimatedCompletionTime: number
+  estimatedCompletionTime?: number
+  completionWindow: number
   warning: string
   isClinical: boolean
+  notifications: SingleNotification[]
+  timeCompleted: number
+  showInCalendar: boolean
+  isDemo: boolean
+  order: number
+  iconInfo: string
 }
 
 export interface TasksProgress {
   numberOfTasks: number
   completedTasks: number
+  completedPercentage: number
 }
