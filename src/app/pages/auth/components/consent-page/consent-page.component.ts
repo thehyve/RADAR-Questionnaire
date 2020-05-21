@@ -226,8 +226,9 @@ export class ConsentPageComponent {
                     text: this.localization.translateKey(LocKeys.BTN_OKAY),
                     handler: () => {}
                   }],
-                  message: "Could not successfully register new participant. Please try again later."
+                  message: "Could not complete the registration process. Please try again later."
                 });
+        // this.navigateToWelcome()
       })
   }
 
