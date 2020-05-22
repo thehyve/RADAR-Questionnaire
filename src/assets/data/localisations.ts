@@ -633,7 +633,7 @@ export const Localisations = {
     en: "Log out"
   },
   SETTINGS_LOGOUT_ALERT_DESC:{
-    en: "You are about to log out the app."
+    en: "Are you sure you want to logout the app? You may lose your today's progress of completed surveys!"
   },
   BTN_LOGOUT:{
     en:"Log out"
