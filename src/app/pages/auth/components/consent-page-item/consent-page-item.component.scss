@@ -52,8 +52,13 @@ page-consent-item {
     padding-bottom: 5px;
     padding-left: 5px;
     font-size: 14px;
-    a{
+
+    a {
       color: $cl-light;
+    }
+
+    span {
+      text-decoration: underline;
     }
   }
 }

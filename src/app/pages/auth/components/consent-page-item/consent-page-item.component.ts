@@ -17,7 +17,10 @@ export class ConsentPageItemComponent {
   showDetail = false
 
   @Input()
-  currentItem: any = {}
+  title: string;
+
+  @Input()
+  iconMd: string
 
   language?: LanguageSetting = DefaultLanguage
 

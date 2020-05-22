@@ -1,9 +1,9 @@
 <ion-item (click)="showDetail = !showDetail">
   <ion-icon
-    [md]="currentItem.iconMd"
+    [md]="iconMd"
     item-start>
   </ion-icon>
-  <ion-label class="text-heading"> {{currentItem.title}}</ion-label>
+  <ion-label class="text-heading"> {{title}}</ion-label>
   <ion-icon
     md="md-arrow-down"
     *ngIf="!showDetail"
@@ -15,9 +15,6 @@
     item-end></ion-icon>
 </ion-item>
 
-<!--Add line for each text-->
 <ion-row *ngIf="showDetail">
-  <div *ngFor="let detail of currentItem.detail">
-    <div  class="detail text-justify" [innerHTML]="detail"></div>
-  </div>
+  <ng-content></ng-content>
 </ion-row>

@@ -31,6 +31,6 @@ import {StudyInfoComponent} from "./components/study-info/study-info.component";
     AuthModule,
   ],
   declarations: [HomePageComponent, StudyInfoComponent],
-  providers: [TasksService]
+  providers: [TasksService,{provide: Window, useValue: window }]
 })
 export class HomeModule {}

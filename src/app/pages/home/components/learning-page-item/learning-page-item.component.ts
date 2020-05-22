@@ -12,12 +12,15 @@ import {UsageService} from "../../../../core/services/usage/usage.service";
 })
 export class LearningPageItemComponent {
 
-  showDetail = false
+  showDetail = false;
 
   @Input()
-  currentItem: any = {}
+  title: string;
 
-  language?: LanguageSetting = DefaultLanguage
+  @Input()
+  iconMd: string;
+
+  language?: LanguageSetting = DefaultLanguage;
 
   constructor(
     public navCtrl: NavController,

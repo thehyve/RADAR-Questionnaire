@@ -36,7 +36,8 @@ import { YesOrNoOptionComponent } from "./components/yes-or-no-option/yes-or-no-
     ConsentPageItemComponent,
   ],
 	providers: [
-		{provide: AuthService, useClass: KeycloakAuthService}
+		{provide: AuthService, useClass: KeycloakAuthService},
+    {provide: Window, useValue: window }
 	]
 })
 export class AuthModule {}
