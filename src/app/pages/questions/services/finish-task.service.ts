@@ -8,6 +8,7 @@ import { ScheduleService } from '../../../core/services/schedule/schedule.servic
 import { SchemaType } from '../../../shared/models/kafka'
 import { QuestionType } from '../../../shared/models/question'
 import { TaskType, getTaskType } from '../../../shared/utilities/task-type'
+import { NotificationService } from '../../../core/services/notifications/notification.service';
 
 @Injectable()
 export class FinishTaskService {
@@ -16,6 +17,7 @@ export class FinishTaskService {
     private kafka: KafkaService,
     private config: ConfigService,
     private appConfig: AppConfigService,
+    private notification: NotificationService,
     private logger: LogService
   ) {}
 
@@ -49,6 +51,11 @@ export class FinishTaskService {
         })
       ])
     })
+  }
+
+  rescheduleNotifications() : Promise<any> {
+    this.logger.log("Reschedule future notifications...")
+    return this.notification.rescheduleForFutureTasks();
   }
 
   evalClinicalFollowUpTask(assessment): Promise<any> {

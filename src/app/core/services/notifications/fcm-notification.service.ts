@@ -86,6 +86,32 @@ export class FcmNotificationService extends NotificationService {
     })
   }
 
+  rescheduleForFutureTasks(limit: number = DefaultNumberOfNotificationsToSchedule): Promise<void[]> {
+    this.resetResends()
+    // first cancel notifications of this participant
+    return this.cancel().then(() => {
+      return this.config.getParticipantLogin().then(username => {
+        if (!username) return Promise.resolve([])
+        return this.schedule.getTasks(TaskType.ALL).then(tasks => {
+          // filter uncompleted tasks
+          this.logger.log("Total Tasks [] ..", tasks.length)
+          const futureTasks = tasks.filter(t => !t.completed)
+          this.logger.log("Future Tasks [] ..", futureTasks)
+          const fcmNotifications = this.notifications
+            .futureNotifications(futureTasks, limit)
+            .map(t => this.format(t, username))
+          this.logger.log('NOTIFICATIONS Scheduling FCM notifications')
+          this.logger.log(fcmNotifications)
+          return Promise.all(
+            fcmNotifications
+              .map(n => this.sendNotification(n))
+              .concat([this.setLastNotificationUpdate()])
+          )
+        })
+      })
+    })
+  }
+
   private sendNotification(notification): Promise<void> {
     if (!this.platform.is('cordova')) return Promise.resolve()
     FirebasePlugin.upstream(

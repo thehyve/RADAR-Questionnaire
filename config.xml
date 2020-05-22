@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="536" id="uk.ac.ucl.ihi.onthemove" ios-CFBundleIdentifier="uk.ac.ucl.ihi.onthemove" ios-CFBundleVersion="1" version="0.7.3" xmlns:android="http://schemas.android.com/apk/res/android">
+<widget android-versionCode="535" id="uk.ac.ucl.ihi.onthemove" ios-CFBundleIdentifier="uk.ac.ucl.homeapp" ios-CFBundleVersion="4" version="0.7.4" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>UCL HOME</name>
     <description>An application for analyzing health of migrants.</description>
     <author email="homeappstudy@ucl.ac.uk" href="http://radar-base.org/">RADAR-Base</author>
@@ -129,7 +129,6 @@
     <plugin name="cordova-plugin-firebase-with-upstream-messaging" spec="2.1.1" />
     <plugin name="cordova-plugin-androidx" spec="^1.0.2" />
     <plugin name="cordova-plugin-androidx-adapter" spec="^1.1.0" />
-    <plugin name="cordova-plugin-background-mode-fixes" spec="^0.7.6" />
     <plugin name="com-darryncampbell-cordova-plugin-intent" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.2.0" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.2" />
@@ -139,6 +138,6 @@
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^3.2.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <engine name="ios" spec="^5.0.1" />
     <engine name="android" spec="^8.1.0" />
-    <engine name="ios" spec="~5.0.1" />
 </widget>

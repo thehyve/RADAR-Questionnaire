@@ -41,6 +41,9 @@ export class TasksService {
           t => !this.isTaskExpired(t) || this.wasTaskCompletedToday(t)
         )
       )
+      .then( tasks =>
+        tasks.sort( ((a, b) => a.timestamp - b.timestamp))
+      )
   }
 
   getSortedTasksOfToday(): Promise<Map<number, Task[]>> {
@@ -90,7 +93,7 @@ export class TasksService {
 
   isTaskStartable(task) {
     // NOTE: This checks if the task timestamp has passed and if task is valid
-    return task.timestamp <= new Date().getTime() && !this.isTaskExpired(task)
+    return !this.isTaskExpired(task)
   }
 
   isTaskExpired(task) {
@@ -112,13 +115,18 @@ export class TasksService {
    *                         translates to which questionnaire the `START` button on home page corresponds to.
    */
   getNextTask(tasks: Task[]): Task | undefined {
+    let nextTask : Task = undefined
     if (tasks) {
       const nextTasksNow = tasks.filter(task => this.isTaskStartable(task))
+      const isLastTask = this.isLastTask(tasks)
       if (nextTasksNow.length) {
-        return nextTasksNow.sort((a, b) => a.order - b.order)[0]
-      } else return tasks.find(task => !this.isTaskExpired(task))
+        nextTask = nextTasksNow.sort((a, b) => a.order - b.order)[0]
+      } else {
+        nextTask = tasks.find(task => !this.isTaskExpired(task))
+      }
+      nextTask.isLastTask = isLastTask
     }
-    return undefined
+    return nextTask
   }
 
   getCurrentDateMidnight() {

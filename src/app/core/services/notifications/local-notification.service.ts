@@ -52,6 +52,28 @@ export class LocalNotificationService extends NotificationService {
     })
   }
 
+  rescheduleForFutureTasks(limit?: number): Promise<void[]> {
+    return this.cancel().then(() => {
+      return this.schedule.getTasks(TaskType.ALL).then(tasks => {
+        const futureTasks = tasks.filter( t => !t.completed)
+        const localNotifications = this.notifications
+          .futureNotifications(futureTasks, limit)
+          .map(t => this.format(t))
+        this.logger.log(
+          'NOTIFICATIONS Scheduling LOCAL notifications',
+          localNotifications
+        )
+        return Promise.all(
+          localNotifications
+            .map(n => {
+              return this.sendNotification(n)
+            })
+            .concat([this.setLastNotificationUpdate()])
+        )
+      })
+    })
+  }
+
   private sendNotification(notification): Promise<void> {
     return Promise.resolve(this.localNotifications.schedule(notification))
   }
