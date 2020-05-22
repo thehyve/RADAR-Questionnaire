@@ -48,15 +48,15 @@ export class LearningPageComponent {
         title: "Registering for work",
         iconMd: "md-create",
         detail: [
-          `<div class="detail text-justify">For all information related to work, taxes, benefits and unemployment support, please visit:<a href="http://www.gov.uk/">www.gov.uk</a> or visit your local Job centre Plus for face-to-face advice.  </div> `
+          `<div class="detail text-justify">For all information related to work, taxes, benefits and unemployment support, please visit: <a href="http://www.gov.uk/">www.gov.uk</a> or visit your local Job centre Plus for face-to-face advice.</div> `
         ]
       },
       {
         title: "Access to healthcare",
         iconMd: "md-medkit",
         detail: [
-          `<div class="detail text-justify"><li>All healthcare-related information can be found on the National Healthcare Service (NHS) website.<a href="https://www.nhs.uk/">www.nhs.uk</a></li></div>`,
-          `<div class="detail text-justify"><li>See Public Health England’s webpage for useful advice and guidance on the health needs of migrant patients<a href="https://www.gov.uk/guidance/nhs-entitlements-migrant-health-guide">https://www.gov.uk/guidance/nhs-entitlements-migrant-health-guide</a></li></div> `,
+          `<div class="detail text-justify"><li>All healthcare-related information can be found on the National Healthcare Service (NHS) website. <a href="https://www.nhs.uk/">www.nhs.uk</a></li></div>`,
+          `<div class="detail text-justify"><li>See Public Health England’s webpage for useful advice and guidance on the health needs of migrant patients <a href="https://www.gov.uk/guidance/nhs-entitlements-migrant-health-guide">https://www.gov.uk/guidance/nhs-entitlements-migrant-health-guide</a></li></div> `,
           `<div class="detail text-justify"><li>Find a local GP via <a href="https://www.nhs.uk/service-search/GP/LocationSearch/4">https://www.nhs.uk/service-search/GP/LocationSearch/4</a></li></div> `,
           `<div class="detail text-justify"><li>For non-urgent advice about any medical condition visit <a href="https://www.nhs.uk/conditions/">https://www.nhs.uk/conditions/</a></li></div> `,
           `<div class="detail text-justify"><li><b>Emergency number (Ambulance/Police/Fire): Call 999</b></li></div> `,
@@ -69,7 +69,12 @@ export class LearningPageComponent {
         iconMd: "md-heart",
         detail: [
           `<div ><b>Mental health support services</b></div>`,
-          `<div ><li>For advice and support to empower anyone experiencing a mental health problem.<a href="https://www.mind.org.uk/">https://www.mind.org.uk/</a></li></div>`,
+          `<div ><li>For advice and support to empower anyone experiencing a mental health problem. <a href="https://www.mind.org.uk/">https://www.mind.org.uk/</a>. They also have an information line for non-urgent support and advice 0300 123 3393.</li></div>`,
+          `<div><b>Sexual and reproductive health support services</b></div>`,
+          `<div><li>Visit <a href="https://www.sexwise.fpa.org.uk/">https://www.sexwise.fpa.org.uk/</a> for further information about sexual health and contraception.</li>`,
+          `<li>Visit <a href="https://www.nhs.uk/service-search/other-services/">https://www.nhs.uk/service-search/other-services/</a> to find local sexual health services in your area.</li>`,
+          `<li>Visit <a href="https://www.tht.org.uk/">https://www.tht.org.uk/</a> for support and advice. The Terrence Higgins Trust (THT) is a UK charity providing support, advice and information about sexual health. You can contact the THT directly on 0808 802 1221, via email or by post.</li>`,
+          `<li>Speak to your GP — they can refer you to specialist sexual health services if needed.</li></div>`,
           `<div ><b>Domestic abuse support services</b></div>`,
           `<div ><li>Advice and support for women, children & men experiencing domestic abuse.</li></div>`,
           `<div >

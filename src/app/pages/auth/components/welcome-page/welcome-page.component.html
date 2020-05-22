@@ -1,12 +1,17 @@
 <ion-content>
   <div *ngIf="!loading">
-  <ion-slides pager direction="horizontal" style="height: 80%;">
+  <ion-slides pager direction="horizontal" style="height: calc(100% - 144px);">
     <ion-slide id="intro">
       <div id="logo-container">
+<!--        <img-->
+<!--            id="logo"-->
+<!--            src="assets/imgs/home-app-3.png"-->
+<!--            alias="UCL LOGO"-->
+<!--        >-->
         <img
-            id="logo"
-            src="assets/imgs/home-app.png"
-            alias="UCL LOGO"
+          id="logo"
+          src="assets/imgs/home-app.png"
+          alias="UCL LOGO"
         >
       </div>
       <div class="swipe-here">Swipe Here</div>
@@ -19,13 +24,17 @@
 
       <ion-scroll
         scrollY="true"
-        class="scroll-page"
+        class="scroll-page" style="height: calc(100% - 16px) !important;"
       >
         <div >
 
           <div >
+<!--            <iframe id="introframe"-->
+<!--                    src="https://player.vimeo.com/video/376190254?api=1&player_id=player1&background=1"-->
+<!--                    frameborder="0" allowfullscreen-->
+<!--            ></iframe>-->
             <iframe id="introframe"
-                    src="https://player.vimeo.com/video/376190254?api=1&&background=1"
+                    src="https://player.vimeo.com/video/376190254?api=1&player_id=player1&controls=false&autoplay=true&loop=true"
                     frameborder="0" allowfullscreen
             ></iframe>
 <!--            <iframe id="introframe"-->
@@ -41,7 +50,7 @@
 
           <div
             padding
-            class="text-paragraph">
+            class="text-paragraph text-justify">
             Welcome to Health On the MovE (HOME): a Research Study by University College London about the Health of Migrants to the UK.<br>
             <br>
             1 in 7 people in the UK are international migrants. International migrants in the UK are people who were born abroad but who have settled in the UK.<br>
@@ -66,7 +75,7 @@
   <div
       padding
       class="bottom"
-      style="height: 20%;"
+      style="height: 144px;"
   >
     <button
         ion-button

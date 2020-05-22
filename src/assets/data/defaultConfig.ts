@@ -218,14 +218,14 @@ export const DefaultSettingsWeeklyReport: WeeklyReportSubSettings[] = [
     name: LocKeys.MEASURE_PROGRESS.toString(),
     show: false
   },
-  {
-    name: LocKeys.MEASURE_STEPS.toString(),
-    show: false
-  },
-  {
-    name: LocKeys.MEASURE_HEART_RATE.toString(),
-    show: false
-  }
+  // {
+  //   name: LocKeys.MEASURE_STEPS.toString(),
+  //   show: false
+  // },
+  // {
+  //   name: LocKeys.MEASURE_HEART_RATE.toString(),
+  //   show: false
+  // }
 ]
 
 export const DefaultLanguage: LanguageSetting = {

@@ -65,7 +65,8 @@
       <!--  Thank you slide, when not eligible-->
 
       <ion-slide id="thankyou">
-        <div id="logo-container">
+        <div style="height: calc(100% - 88px);">
+          <div id="logo-container" style="height: 50%;">
           <img
             id="logo"
             src="assets/imgs/home-app.png"
@@ -76,7 +77,7 @@
           <div class="text-lg">{{ "ENROL_ABORT_THANKYOU_1" | translate }}</div>
           <div class="text-md"> {{ "ENROL_NO_CONSENT_MESSAGE" | translate}}</div>
         </div>
-
+        </div>
         <div
           padding
           class="bottom"

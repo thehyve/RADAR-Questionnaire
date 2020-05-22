@@ -623,6 +623,21 @@ export const Localisations = {
     pl: 'Proszę czekać',
     hb: 'המתן בבקשה'
   },
+  BTN_SETTING_LOGOUT_CANCEL: {
+    en: "Cancel"
+  },
+  BTN_SETTING_LOGOUT_CONFIRM:{
+    en: "Confirm"
+  },
+  SETTINGS_LOGOUT_ALERT:{
+    en: "Log out"
+  },
+  SETTINGS_LOGOUT_ALERT_DESC:{
+    en: "You are about to log out the app."
+  },
+  BTN_LOGOUT:{
+    en:"Log out"
+  },
   LANGUAGE_ENGLISH: {
     da: 'Engelsk',
     de: 'Englisch',
@@ -1087,6 +1102,16 @@ export const Localisations = {
     nl: 'minuten.',
     pl: 'minut',
     hb: 'דקות'
+  },
+  NOTIFICATION_REMINDER_NOW_DESC_3: {
+    da: 'minut',
+    de: 'minute.',
+    en: 'minute.',
+    es: 'minuto',
+    it: 'minuto.',
+    nl: 'minuut.',
+    pl: 'minuta',
+    hb: 'דקה'
   },
   NOTIFICATION_REMINDER_FORGOTTEN: {
     da: 'Du mangler at svare på spørgsmål',

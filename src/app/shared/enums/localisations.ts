@@ -74,6 +74,12 @@ export class LocKeys {
   )
   static SETTINGS_SEND_CACHED_DATA = new LocKeys('SETTINGS_SEND_CACHED_DATA')
   static SETTINGS_WAIT_ALERT = new LocKeys('SETTINGS_WAIT_ALERT')
+
+  static BTN_SETTING_LOGOUT_CANCEL= new LocKeys('BTN_SETTING_LOGOUT_CANCEL')
+  static BTN_SETTING_LOGOUT_CONFIRM= new LocKeys('BTN_SETTING_LOGOUT_CONFIRM')
+  static SETTINGS_LOGOUT_ALERT= new LocKeys('SETTINGS_LOGOUT_ALERT')
+  static SETTINGS_LOGOUT_ALERT_DESC= new LocKeys('SETTINGS_LOGOUT_ALERT_DESC')
+
   static LANGUAGE_ENGLISH = new LocKeys('LANGUAGE_ENGLISH')
   static LANGUAGE_SPANISH = new LocKeys('LANGUAGE_SPANISH')
   static LANGUAGE_ITALIAN = new LocKeys('LANGUAGE_ITALIAN')
@@ -89,6 +95,8 @@ export class LocKeys {
   static BTN_START = new LocKeys('BTN_START')
   static BTN_STOP = new LocKeys('BTN_STOP')
   static BTN_RESET = new LocKeys('BTN_RESET')
+  static BTN_LOGOUT = new LocKeys('BTN_LOGOUT')
+
   static BTN_RETRY = new LocKeys('BTN_RETRY')
   static BTN_AGREE = new LocKeys('BTN_AGREE')
   static BTN_DISAGREE = new LocKeys('BTN_DISAGREE')
@@ -128,6 +136,9 @@ export class LocKeys {
   )
   static NOTIFICATION_REMINDER_NOW_DESC_2 = new LocKeys(
     'NOTIFICATION_REMINDER_NOW_DESC_2'
+  )
+  static NOTIFICATION_REMINDER_NOW_DESC_3 = new LocKeys(
+    'NOTIFICATION_REMINDER_NOW_DESC_3'
   )
   static NOTIFICATION_REMINDER_FORGOTTEN = new LocKeys(
     'NOTIFICATION_REMINDER_FORGOTTEN'

@@ -113,9 +113,9 @@ export class ConsentPageComponent {
         title: "Data Protection",
         iconMd: "md-paper",
         detail: [
-          `<div class="detail text-justify">The controller for this project will be University College London (UCL). The UCL Data Protection Officer provides oversight of UCL activities involving the processing of personal data, and can be contacted at data-protection@ucl.ac.uk. This ‘local’ privacy notice sets out the information that applies to this particular study. Further information on how UCL uses participant information can be found in our ‘general’ privacy notice. For participants in health and care research studies, click <a href="https://www.ucl.ac.uk/legal-services/privacy/ucl-general-privacy-notice-participants-and-researchers-health-and-care-research-studies">here</a>. </div>` +
+          `<div class="detail text-justify">The controller for this project will be University College London (UCL). The UCL Data Protection Officer provides oversight of UCL activities involving the processing of personal data, and can be contacted at <a href="mailto:data-protection@ucl.ac.uk">data-protection@ucl.ac.uk</a>. This ‘local’ privacy notice sets out the information that applies to this particular study. Further information on how UCL uses participant information can be found in our ‘general’ privacy notice. For participants in health and care research studies, click <a href="https://www.ucl.ac.uk/legal-services/privacy/ucl-general-privacy-notice-participants-and-researchers-health-and-care-research-studies">here</a>. </div>` +
           `<div class="detail text-justify">The information that is required to be provided to participants under data protection legislation (GDPR and DPA 2018) is provided across both the ‘local’ and ‘general’ privacy notices. The lawful basis that will be used to process your personal data are: ‘Public task’ for personal data and ‘Research purposes’ for special category data. </div>` +
-          `<div class="detail text-justify">Your personal data will be processed so long as it is required for the research project. If we are able to anonymise or pseudonymise the personal data you provide we will undertake this, and will endeavour to minimise the processing of personal data wherever possible. If you are concerned about how your personal data is being processed, or if you would like to contact us about your rights, please contact UCL in the first instance at data-protection@ucl.ac.uk.</div>`
+          `<div class="detail text-justify">Your personal data will be processed so long as it is required for the research project. If we are able to anonymise or pseudonymise the personal data you provide we will undertake this, and will endeavour to minimise the processing of personal data wherever possible. If you are concerned about how your personal data is being processed, or if you would like to contact us about your rights, please contact UCL in the first instance at <a href="mailto:data-protection@ucl.ac.uk">data-protection@ucl.ac.uk</a>.</div>`
         ]
       },
       {
@@ -131,14 +131,14 @@ export class ConsentPageComponent {
         title: "Withdrawing",
         iconMd: "md-log-out",
         detail: [
-          `<div class="detail text-justify">Your participation in this study is entirely voluntary. You may withdraw your consent and stop your participation in this study at any time. If you choose to withdraw, we will stop collecting any new data and can destroy all of the data we have previously collected. To withdraw from the study, simply send an email to the research team at r.aldridge@ucl.ac.uk.</div>`
+          `<div class="detail text-justify">Your participation in this study is entirely voluntary. You may withdraw your consent and stop your participation in this study at any time. If you choose to withdraw, we will stop collecting any new data and can destroy all of the data we have previously collected. To withdraw from the study, simply send an email to the research team at <a href="mailto:r.aldridge@ucl.ac.uk>r.aldridge@ucl.ac.uk</a>.</div>`
         ]
       },
       {
         title: "Contact Us",
         iconMd: "md-paper-plane",
         detail: [
-          `<div class="detail text-justify">If you have any questions prior to participating in the study or during the course of the study, please feel free to contact the HOME study team at any time by sending us an email at homeappstudy@ucl.ac.uk.</div>` +
+          `<div class="detail text-justify">If you have any questions prior to participating in the study or during the course of the study, please feel free to contact the HOME study team at any time by sending us an email at <a href="mailto:homeappstudy@ucl.ac.uk">homeappstudy@ucl.ac.uk</a>.</div>` +
           `<div class="detail text-justify">We will reply to your message as soon as we can.</div>`
         ]
       }
