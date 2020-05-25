@@ -45,7 +45,10 @@ export class KeycloakAuthService extends AuthService {
     zoom: 'no',
     location: 'no',
     clearsessioncache: 'yes',
-    clearcache: 'yes'
+    clearcache: 'yes',
+    closebuttoncaption: 'Back',
+    toolbarcolor: '#ceeeff',
+    hidenavigationbuttons: 'yes'
   }
 
   constructor(

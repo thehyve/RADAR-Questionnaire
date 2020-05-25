@@ -139,6 +139,7 @@ export class ConsentPageComponent {
       .catch(e => {
         this.handleError(e)
         this.loading = false
+        this.slides.lockSwipes(true)
         this.alertService.showAlert({
                   title: "Something went wrong",
                   buttons: [{
