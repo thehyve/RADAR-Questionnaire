@@ -93,7 +93,7 @@ export class KeycloakTokenService extends TokenService {
     this.logger.log("Refresh token", refreshToken)
     // get access token and setToken
     return Promise.all([
-      this.authConfigService.getRealmUrl(),
+      this.authConfigService.getTokenUrl(),
       this.getTokenHeaders(DefaultRequestEncodedContentType),
       this.getRefreshParams(refreshToken)
     ])
@@ -110,6 +110,9 @@ export class KeycloakTokenService extends TokenService {
           }) - 10
         this.logger.log("Refreshed Token is ", JSON.stringify(res))
         return this.setTokens(res)
+      })
+      .catch((err: any) => {
+        this.logger.log("Could not refresh token ", JSON.stringify(err))
       })
   }
 
