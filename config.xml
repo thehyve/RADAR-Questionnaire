@@ -138,6 +138,6 @@
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^3.2.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
-    <engine name="ios" spec="^5.0.1" />
+    <engine name="ios" spec="~5.0.1" />
     <engine name="android" spec="^8.1.0" />
 </widget>
