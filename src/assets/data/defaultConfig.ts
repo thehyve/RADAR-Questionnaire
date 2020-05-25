@@ -62,7 +62,7 @@ export const DefaultTask: Task = {
 }
 
 // *Default schedule coverage in years (length of schedule to generate tasks until)
-export const DefaultScheduleYearCoverage: number = 1
+export const DefaultScheduleYearCoverage: number = 0.75
 
 // *Default time interval of protocol
 export const DefaultScheduleTimeInterval = { unit: 'day', amount: 1 }
@@ -82,10 +82,11 @@ export const DefaultNotificationType: string = 'FCM'
 export const FCMPluginProjectSenderId: string = '776941468489'
 
 // *Default maximum upstream retries when sending fails
-export const DefaultMaxUpstreamResends = 50
+export const DefaultMaxUpstreamResends = 20
 
 // *Default number of notifications to schedule
 export const DefaultNumberOfNotificationsToSchedule: number = 100
+export const DefaultNumberOfNotificationsToReschedule: number = 25
 
 // *Default length of time to wait before refreshing notifications (15 mins in ms)
 export const DefaultNotificationRefreshTime: number = 900000
