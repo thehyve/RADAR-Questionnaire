@@ -72,8 +72,11 @@ export class FcmNotificationService extends NotificationService {
     return this.config.getParticipantLogin().then(username => {
       if (!username) return Promise.resolve([])
       return this.schedule.getTasks(TaskType.ALL).then(tasks => {
+        this.logger.log("Total Tasks [] ..", tasks.length)
+        const futureTasks = tasks.filter(t => !t.completed)
+        this.logger.log("Future Tasks [] ..", futureTasks.length)
         const fcmNotifications = this.notifications
-          .futureNotifications(tasks, limit)
+          .futureNotifications(futureTasks, limit)
           .map(t => this.format(t, username))
         this.logger.log('NOTIFICATIONS Scheduling FCM notifications ', fcmNotifications.length)
         this.logger.log(fcmNotifications)
@@ -89,27 +92,7 @@ export class FcmNotificationService extends NotificationService {
   rescheduleForFutureTasks(limit: number = DefaultNumberOfNotificationsToReschedule): Promise<void[]> {
     this.resetResends()
     // first cancel notifications of this participant
-    return this.cancel().then(() => {
-      return this.config.getParticipantLogin().then(username => {
-        if (!username) return Promise.resolve([])
-        return this.schedule.getTasks(TaskType.ALL).then(tasks => {
-          // filter uncompleted tasks
-          this.logger.log("Total Tasks [] ..", tasks.length)
-          const futureTasks = tasks.filter(t => !t.completed)
-          this.logger.log("Future Tasks [] ..", futureTasks.length)
-          const fcmNotifications = this.notifications
-            .futureNotifications(futureTasks, limit)
-            .map(t => this.format(t, username))
-          this.logger.log('Rescheduling FCM notifications {}', fcmNotifications.length )
-          this.logger.log(fcmNotifications)
-          return Promise.all(
-            fcmNotifications
-              .map(n => this.sendNotification(n))
-              .concat([this.setLastNotificationUpdate()])
-          )
-        })
-      })
-    })
+    return this.publish(limit)
   }
 
   private sendNotification(notification): Promise<void> {
