@@ -49,7 +49,9 @@ export class WelcomePageComponent {
     private authService: AuthService,
     private alertService: AlertService,
     private usage: UsageService,
-    private logger: LogService
+    private logger: LogService,
+    private config: ConfigService,
+    private authConfig: AuthConfigService
   ) {}
 
   ionViewDidLoad() {
@@ -93,7 +95,12 @@ export class WelcomePageComponent {
   // }
 
   joinStudy() {
-    this.navCtrl.setRoot(EligibilityPageComponent)
+    this.reset()
+      .then(() => this.navCtrl.setRoot(EligibilityPageComponent))
+  }
+
+  reset() {
+    return this.config.resetAll().then(() => this.authConfig.init())
   }
 
   goToLogin() {

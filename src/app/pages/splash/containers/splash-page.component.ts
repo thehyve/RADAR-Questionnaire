@@ -2,13 +2,9 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, Platform } from 'ionic-angular'
 
 import { DefaultPackageName } from '../../../../assets/data/defaultConfig'
-import { AuthConfigService } from '../../../core/services/config/auth-config.service'
-import { RemoteConfigService } from '../../../core/services/config/remote-config.service'
 import { AlertService } from '../../../core/services/misc/alert.service'
 import { LocalizationService } from '../../../core/services/misc/localization.service'
-import { LogService } from '../../../core/services/misc/log.service'
 import { UsageService } from '../../../core/services/usage/usage.service'
-import { ConfigEventType } from '../../../shared/enums/events'
 import { LocKeys } from '../../../shared/enums/localisations'
 import { WelcomePageComponent } from '../../auth/components/welcome-page/welcome-page.component'
 import { HomePageComponent } from '../../home/containers/home-page.component'
@@ -112,8 +108,6 @@ export class SplashPageComponent {
   // }
 
   welcome() {
-    this.splashService
-      .reset()
-      .then(() => this.navCtrl.setRoot(WelcomePageComponent))
+    this.navCtrl.setRoot(WelcomePageComponent)
   }
 }

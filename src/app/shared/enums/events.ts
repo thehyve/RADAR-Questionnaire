@@ -41,7 +41,8 @@ export enum ConfigEventType {
   TIMEZONE_CHANGE = 'timezone_change',
   ERROR = 'config_error',
   APP_RESET = 'app_reset',
-  APP_RESET_PARTIAL = 'app_reset_partial'
+  APP_RESET_PARTIAL = 'app_reset_partial',
+  APP_LOGOUT = 'app_logout'
 }
 
 export enum NotificationEventType {

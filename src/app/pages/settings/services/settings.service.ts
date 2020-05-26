@@ -27,7 +27,7 @@ export class SettingsService {
   }
 
   resetAuth() {
-    return this.config.resetAll()
+    return this.config.resetAuth()
   }
 
   reset() {
