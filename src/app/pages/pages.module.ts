@@ -2,6 +2,7 @@ import { CommonModule, DatePipe } from '@angular/common'
 import { NgModule } from '@angular/core'
 
 import { AppConfigService } from '../core/services/config/app-config.service'
+import { AuthConfigService } from "../core/services/config/auth-config.service";
 import { ConfigService } from '../core/services/config/config.service'
 import { ProtocolService } from '../core/services/config/protocol.service'
 import { QuestionnaireService } from '../core/services/config/questionnaire.service'
@@ -18,8 +19,8 @@ import { ScheduleGeneratorService } from '../core/services/schedule/schedule-gen
 import { ScheduleService } from '../core/services/schedule/schedule.service'
 import { StorageService } from '../core/services/storage/storage.service'
 import { TokenService } from '../core/services/token/token.service'
-import { FirebaseAnalyticsService } from '../core/services/usage/firebase-analytics.service'
 import { AnalyticsService } from '../core/services/usage/analytics.service'
+import { FirebaseAnalyticsService } from '../core/services/usage/firebase-analytics.service'
 import { UsageService } from '../core/services/usage/usage.service'
 import { PipesModule } from '../shared/pipes/pipes.module'
 import { TranslatePipe } from '../shared/pipes/translate/translate'
@@ -30,7 +31,6 @@ import { QuestionsModule } from './questions/questions.module'
 import { ReportModule } from './report/report.module'
 import { SettingsModule } from './settings/settings.module'
 import { SplashModule } from './splash/splash.module'
-import { AuthConfigService } from "../core/services/config/auth-config.service";
 
 @NgModule({
   imports: [

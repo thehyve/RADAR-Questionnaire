@@ -4,11 +4,11 @@ import { AppConfigService } from '../../../core/services/config/app-config.servi
 import { ConfigService } from '../../../core/services/config/config.service'
 import { KafkaService } from '../../../core/services/kafka/kafka.service'
 import { LogService } from '../../../core/services/misc/log.service'
+import { NotificationService } from '../../../core/services/notifications/notification.service';
 import { ScheduleService } from '../../../core/services/schedule/schedule.service'
 import { SchemaType } from '../../../shared/models/kafka'
 import { QuestionType } from '../../../shared/models/question'
 import { TaskType, getTaskType } from '../../../shared/utilities/task-type'
-import { NotificationService } from '../../../core/services/notifications/notification.service';
 
 @Injectable()
 export class FinishTaskService {

@@ -1,22 +1,22 @@
 import { Component, ViewChild } from '@angular/core'
 import { NavController, Slides } from 'ionic-angular'
-import { LanguageSetting } from "../../../../shared/models/settings";
-import { AuthService } from "../../services/auth.service";
-import { LocalizationService } from "../../../../core/services/misc/localization.service";
+
+import { DefaultLanguage } from "../../../../../assets/data/defaultConfig";
 import { AlertService } from "../../../../core/services/misc/alert.service";
-import { UsageService } from "../../../../core/services/usage/usage.service";
+import { LocalizationService } from "../../../../core/services/misc/localization.service";
 import { LogService } from "../../../../core/services/misc/log.service";
 import { StorageService } from "../../../../core/services/storage/storage.service";
-import { DefaultLanguage } from "../../../../../assets/data/defaultConfig";
+import { UsageService } from "../../../../core/services/usage/usage.service";
+import { EnrolmentEventType } from "../../../../shared/enums/events";
 import { LocKeys } from "../../../../shared/enums/localisations";
 import { StorageKeys } from "../../../../shared/enums/storage";
-import { EnrolmentEventType } from "../../../../shared/enums/events";
-import { SplashPageComponent } from "../../../splash/containers/splash-page.component";
+import { ConsentPageItem, YesOrNoQuestion } from "../../../../shared/models/auth";
+import { LanguageSetting } from "../../../../shared/models/settings";
 import { HomePageComponent } from "../../../home/containers/home-page.component";
-import { WelcomePageComponent } from "../welcome-page/welcome-page.component";
+import { SplashPageComponent } from "../../../splash/containers/splash-page.component";
+import { AuthService } from "../../services/auth.service";
 import { EligibilityPageComponent } from "../eligibility-page/eligibility-page.component";
-import { YesOrNoQuestion, ConsentPageItem } from "../../../../shared/models/auth";
-
+import { WelcomePageComponent } from "../welcome-page/welcome-page.component";
 
 @Component({
   selector: 'page-consent',

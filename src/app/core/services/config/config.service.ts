@@ -12,6 +12,7 @@ import {
   ConfigEventType,
   NotificationEventType
 } from '../../../shared/enums/events'
+import { StorageKeys } from "../../../shared/enums/storage";
 import { User } from '../../../shared/models/user'
 import { TaskType } from '../../../shared/utilities/task-type'
 import { KafkaService } from '../kafka/kafka.service'
@@ -19,14 +20,13 @@ import { LocalizationService } from '../misc/localization.service'
 import { LogService } from '../misc/log.service'
 import { NotificationService } from '../notifications/notification.service'
 import { ScheduleService } from '../schedule/schedule.service'
+import { StorageService } from "../storage/storage.service";
 import { AnalyticsService } from '../usage/analytics.service'
 import { AppConfigService } from './app-config.service'
 import { ProtocolService } from './protocol.service'
 import { QuestionnaireService } from './questionnaire.service'
 import { RemoteConfigService } from './remote-config.service'
 import { SubjectConfigService } from './subject-config.service'
-import { StorageService } from "../storage/storage.service";
-import { StorageKeys } from "../../../shared/enums/storage";
 
 @Injectable()
 export class ConfigService {

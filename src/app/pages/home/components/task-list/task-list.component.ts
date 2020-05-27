@@ -6,12 +6,12 @@ import {
   Output
 } from '@angular/core'
 
-import { LocKeys } from '../../../../shared/enums/localisations'
-import { Task } from '../../../../shared/models/task'
-import { TasksService } from '../../services/tasks.service'
 import { AlertService } from "../../../../core/services/misc/alert.service";
 import { LocalizationService } from "../../../../core/services/misc/localization.service";
 import {LogService} from "../../../../core/services/misc/log.service";
+import { LocKeys } from '../../../../shared/enums/localisations'
+import { Task } from '../../../../shared/models/task'
+import { TasksService } from '../../services/tasks.service'
 
 @Component({
   selector: 'task-list',
