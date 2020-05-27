@@ -24,6 +24,7 @@
         (task)="startQuestionnaire($event)"
         [tasks]="tasks | async"
         [currentDate]="currentDate.getTime()"
+        [progress]="tasksProgress | async"
       >
       </task-list>
 
