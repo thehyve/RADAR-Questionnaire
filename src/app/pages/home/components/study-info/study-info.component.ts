@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {ConsentPageItem} from "../../../../shared/models/auth";
 
 @Component({

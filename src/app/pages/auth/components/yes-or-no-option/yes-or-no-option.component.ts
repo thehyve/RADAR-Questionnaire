@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { Item } from "../../../../shared/models/question";
-import { YesOrNoQuestion } from "../../../../shared/models/auth";
 
+import { YesOrNoQuestion } from "../../../../shared/models/auth";
+import { Item } from "../../../../shared/models/question";
 
 let uniqueID = 0
 

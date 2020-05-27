@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core'
 import { Insomnia } from '@ionic-native/insomnia/ngx'
 import { NavController, NavParams, Platform, Slides } from 'ionic-angular'
 
+import { AlertService } from "../../../core/services/misc/alert.service";
 import { LocalizationService } from '../../../core/services/misc/localization.service'
 import { UsageService } from '../../../core/services/usage/usage.service'
 import { UsageEventType } from '../../../shared/enums/events'
@@ -15,7 +16,6 @@ import { Task } from '../../../shared/models/task'
 import { TaskType } from '../../../shared/utilities/task-type'
 import { HomePageComponent } from '../../home/containers/home-page.component'
 import { QuestionsService } from '../services/questions.service'
-import {AlertService} from "../../../core/services/misc/alert.service";
 
 @Component({
   selector: 'page-questions',

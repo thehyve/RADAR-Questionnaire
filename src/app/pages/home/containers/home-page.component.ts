@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs'
 
 import { AlertService } from '../../../core/services/misc/alert.service'
 import { LocalizationService } from '../../../core/services/misc/localization.service'
+import { LogService } from "../../../core/services/misc/log.service";
 import { UsageService } from '../../../core/services/usage/usage.service'
 import { UsageEventType } from '../../../shared/enums/events'
 import { LocKeys } from '../../../shared/enums/localisations'
@@ -15,7 +16,6 @@ import { SettingsPageComponent } from '../../settings/containers/settings-page.c
 import { SplashPageComponent } from '../../splash/containers/splash-page.component'
 import { TasksService } from '../services/tasks.service'
 import { HomePageAnimations } from './home-page.animation'
-import {LogService} from "../../../core/services/misc/log.service";
 
 enum Page {Settings = 'settings', Learn = 'learn', Home = 'home' }
 

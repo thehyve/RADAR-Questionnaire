@@ -1,16 +1,16 @@
 import { Component } from '@angular/core'
 import { NavController } from 'ionic-angular'
-import {ConsentPageItem} from "../../../../shared/models/auth";
-import {LanguageSetting} from "../../../../shared/models/settings";
+
 import {DefaultLanguage} from "../../../../../assets/data/defaultConfig";
-import {UsageService} from "../../../../core/services/usage/usage.service";
 import {AlertService} from "../../../../core/services/misc/alert.service";
 import {LocalizationService} from "../../../../core/services/misc/localization.service";
 import {LogService} from "../../../../core/services/misc/log.service";
 import {StorageService} from "../../../../core/services/storage/storage.service";
-import {HomePageComponent} from "../../containers/home-page.component";
+import {UsageService} from "../../../../core/services/usage/usage.service";
+import {ConsentPageItem} from "../../../../shared/models/auth";
+import {LanguageSetting} from "../../../../shared/models/settings";
 import {SettingsPageComponent} from "../../../settings/containers/settings-page.component";
-
+import {HomePageComponent} from "../../containers/home-page.component";
 
 @Component({
   selector: 'page-learning',

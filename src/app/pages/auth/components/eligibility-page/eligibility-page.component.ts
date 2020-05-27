@@ -1,15 +1,16 @@
 import { Component, ViewChild } from '@angular/core'
 import { NavController, Slides } from 'ionic-angular'
+
+import { AlertService } from "../../../../core/services/misc/alert.service";
+import { LocalizationService } from "../../../../core/services/misc/localization.service";
+import { LogService } from "../../../../core/services/misc/log.service";
+import { UsageService } from "../../../../core/services/usage/usage.service";
+import { EnrolmentEventType } from "../../../../shared/enums/events";
+import { YesOrNoQuestion } from "../../../../shared/models/auth";
 import { HomePageComponent } from "../../../home/containers/home-page.component";
 import { AuthService } from "../../services/auth.service";
-import { LocalizationService } from "../../../../core/services/misc/localization.service";
-import { AlertService } from "../../../../core/services/misc/alert.service";
-import { UsageService } from "../../../../core/services/usage/usage.service";
-import { LogService } from "../../../../core/services/misc/log.service";
-import { EnrolmentEventType } from "../../../../shared/enums/events";
-import { WelcomePageComponent } from "../welcome-page/welcome-page.component";
 import { ConsentPageComponent } from "../consent-page/consent-page.component";
-import { YesOrNoQuestion } from "../../../../shared/models/auth";
+import { WelcomePageComponent } from "../welcome-page/welcome-page.component";
 
 @Component({
   selector: 'page-eligibility',

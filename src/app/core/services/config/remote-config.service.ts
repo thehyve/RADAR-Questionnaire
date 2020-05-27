@@ -7,9 +7,9 @@ import { BehaviorSubject, Observable, from } from 'rxjs'
 
 import { ConfigKeys } from '../../../shared/enums/config'
 import { StorageKeys } from '../../../shared/enums/storage'
+import { getSeconds } from "../../../shared/utilities/time";
 import { LogService } from '../misc/log.service'
 import { StorageService } from '../storage/storage.service'
-import { getSeconds } from "../../../shared/utilities/time";
 
 declare var FirebasePlugin
 

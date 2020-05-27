@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core'
 import { NavController } from 'ionic-angular'
-import {LanguageSetting} from "../../../../shared/models/settings";
+
 import {DefaultLanguage} from "../../../../../assets/data/defaultConfig";
 import {LocalizationService} from "../../../../core/services/misc/localization.service";
 import {UsageService} from "../../../../core/services/usage/usage.service";
-
+import {LanguageSetting} from "../../../../shared/models/settings";
 
 @Component({
   selector: 'learning-item',

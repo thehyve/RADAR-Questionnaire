@@ -15,12 +15,12 @@ import {
 } from '../../../../assets/data/defaultConfig'
 import { ConfigKeys } from '../../../shared/enums/config'
 import { StorageKeys } from '../../../shared/enums/storage'
+import { KeycloakConfig } from "../../../shared/models/auth";
 import { OAuthToken } from '../../../shared/models/token'
 import { getSeconds } from '../../../shared/utilities/time'
 import { RemoteConfigService } from '../config/remote-config.service'
-import { StorageService } from '../storage/storage.service'
 import { LogService } from '../misc/log.service'
-import { KeycloakConfig } from "../../../shared/models/auth";
+import { StorageService } from '../storage/storage.service'
 
 @Injectable()
 export class TokenService {
