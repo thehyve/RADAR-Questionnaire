@@ -18,6 +18,7 @@ import { HomePageComponent } from '../../../home/containers/home-page.component'
 import { SplashPageComponent } from '../../../splash/containers/splash-page.component'
 import { AuthService } from '../../services/auth.service'
 import { EligibilityPageComponent } from '../eligibility-page/eligibility-page.component'
+import { LocKeys } from "../../../../shared/enums/localisations";
 
 /**
  * Generated class for the WelcomePage page.
@@ -118,7 +119,15 @@ export class WelcomePageComponent {
       })
       .catch(e => {
         this.handleError(e)
-        setTimeout(() => (this.loading = false), 500)
+        this.loading = false
+        this.alertService.showAlert({
+          title: "Something went wrong",
+          buttons: [{
+            text: this.localization.translateKey(LocKeys.BTN_OKAY),
+            handler: () => {}
+          }],
+          message: "Could not login successfully. Please try again later."
+        });
       })
   }
 
