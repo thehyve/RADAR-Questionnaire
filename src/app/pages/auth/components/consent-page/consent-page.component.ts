@@ -122,7 +122,6 @@ export class ConsentPageComponent {
   }
 
   authenticate() {
-    // this.usage.sendGeneralEvent(EnrolmentEventType.ELIGIBILITY_MET)
     this.loading = true
     this.clearStatus()
     this.auth
@@ -148,7 +147,6 @@ export class ConsentPageComponent {
                   }],
                   message: "Could not complete the registration process. Please try again later."
                 });
-        // this.navigateToWelcome()
       })
   }
 

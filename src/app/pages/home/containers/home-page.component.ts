@@ -43,8 +43,6 @@ export class HomePageComponent implements OnDestroy {
   learnItems: any
   selectedPage: Page
 
-  // consentPageItems: ConsentPageItem[]
-
   constructor(
     public navCtrl: NavController,
     public alertService: AlertService,

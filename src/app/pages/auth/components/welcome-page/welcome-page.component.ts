@@ -118,7 +118,6 @@ export class WelcomePageComponent {
       })
       .catch(e => {
         this.handleError(e)
-        // this.loading = false
         setTimeout(() => (this.loading = false), 500)
       })
   }
@@ -155,7 +154,6 @@ export class WelcomePageComponent {
   }
 
   showStatus() {
-    // setTimeout(() => (this.showOutcomeStatus = true), 500)
     this.showOutcomeStatus = true
   }
 

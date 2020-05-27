@@ -145,18 +145,6 @@ export class SettingsPageComponent {
   }
 
   showConfirmReset() {
-    // const buttons = [
-    //   {
-    //     text: this.localization.translateKey(LocKeys.BTN_DISAGREE),
-    //     handler: () => console.log('Reset cancel')
-    //   },
-    //   {
-    //     text: this.localization.translateKey(LocKeys.BTN_AGREE),
-    //     handler: () => {
-    //       return this.showResetOptions()
-    //     }
-    //   }
-    // ]
     const buttons = [
       {
         text: this.localization.translateKey(LocKeys.BTN_SETTING_LOGOUT_CANCEL),
@@ -165,18 +153,10 @@ export class SettingsPageComponent {
       {
         text: this.localization.translateKey(LocKeys.BTN_SETTING_LOGOUT_CONFIRM),
         handler: () => {
-          //return this.showResetOptions()
           this.settingsService.resetAuth().then(() => this.backToSplash())
         }
       }
     ]
-    // return this.alertService.showAlert({
-    //   title: this.localization.translateKey(LocKeys.SETTINGS_RESET_ALERT),
-    //   message: this.localization.translateKey(
-    //     LocKeys.SETTINGS_RESET_ALERT_DESC
-    //   ),
-    //   buttons: buttons
-    // })
     return this.alertService.showAlert({
       title: this.localization.translateKey(LocKeys.SETTINGS_LOGOUT_ALERT),
       message: this.localization.translateKey(

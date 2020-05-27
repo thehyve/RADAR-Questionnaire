@@ -26,14 +26,6 @@
         [currentDate]="currentDate.getTime()"
       >
       </task-list>
-
-      <!--      <task-list-->
-      <!--        *ngIf="(sortedTasks | async)?.size"-->
-      <!--        (task)="startQuestionnaire($event)"-->
-      <!--        [tasks]="sortedTasks | async"-->
-      <!--        [currentDate]="currentDate.getTime()"-->
-      <!--      >-->
-      <!--      </task-list>-->
     </div>
 
     <div
@@ -74,17 +66,14 @@
 
     <ion-segment-button value="home">
       <ion-icon name="create"></ion-icon>
-      <!--      <ion-title text-center>{{ "SURVEYS_HEADING" | translate }}</ion-title>-->
     </ion-segment-button>
 
     <ion-segment-button value="learn">
       <ion-icon name="bookmarks"></ion-icon>
-      <!--      <ion-title text-center>{{ "LEARN_HEADING" | translate }}</ion-title>-->
     </ion-segment-button>
 
     <ion-segment-button value="studyInfo">
       <ion-icon name="school"></ion-icon>
-      <!--      <ion-title text-center>{{ "SETTINGS_SETTINGS" | translate }}</ion-title>-->
     </ion-segment-button>
   </ion-segment>
 </ion-footer>
