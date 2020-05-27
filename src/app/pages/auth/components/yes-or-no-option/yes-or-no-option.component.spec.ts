@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NavController } from 'ionic-angular'
 
-import { AppModule } from '../../../app.module'
 import { YesOrNoOptionComponent } from "./yes-or-no-option.component";
+import { AppModule } from '../../../../app.module';
 
-describe('ConsentPagecomponent', () => {
+describe('YesOrNoOptionComponent', () => {
   let component
   let fixture: ComponentFixture<any>
 

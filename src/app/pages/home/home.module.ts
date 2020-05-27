@@ -15,7 +15,6 @@ import { TickerBarModule } from './components/ticker-bar/ticker-bar.module'
 import { HomePageComponent } from './containers/home-page.component'
 import { TasksService } from './services/tasks.service'
 
-
 @NgModule({
   imports: [
     CommonModule,
