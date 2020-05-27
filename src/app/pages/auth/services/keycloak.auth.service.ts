@@ -45,7 +45,10 @@ export class KeycloakAuthService extends AuthService {
     zoom: 'no',
     location: 'no',
     clearsessioncache: 'yes',
-    clearcache: 'yes'
+    clearcache: 'yes',
+    closebuttoncaption: 'Back',
+    toolbarcolor: '#ceeeff',
+    hidenavigationbuttons: 'yes'
   }
 
   constructor(
@@ -93,7 +96,7 @@ export class KeycloakAuthService extends AuthService {
       this.createAuthenticationUrl(isRegistration).then(authUrl => {
         const browser = this.inAppBrowser.create(
           authUrl,
-          '_blank', 'location=no,zoom=no,closebuttoncaption=Back,toolbarcolor=#ceeeff,hidenavigationbuttons=yes,clearsessioncache=yes,clearcache=yes'
+          '_blank', this.inAppBrowserOptions
         )
         let authRes = null
         const listener = browser.on('loadstart').subscribe((event: any) => {

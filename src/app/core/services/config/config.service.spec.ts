@@ -12,9 +12,9 @@ import {
   NotificationServiceMock,
   ProtocolServiceMock,
   QuestionnaireServiceMock,
+  RemoteConfigServiceMock,
   ScheduleServiceMock,
-  SubjectConfigServiceMock,
-  RemoteConfigServiceMock
+  SubjectConfigServiceMock
 } from '../../../shared/testing/mock-services'
 import { KafkaService } from '../kafka/kafka.service'
 import { LocalizationService } from '../misc/localization.service'
@@ -26,8 +26,8 @@ import { AppConfigService } from './app-config.service'
 import { ConfigService } from './config.service'
 import { ProtocolService } from './protocol.service'
 import { QuestionnaireService } from './questionnaire.service'
-import { SubjectConfigService } from './subject-config.service'
 import { RemoteConfigService } from './remote-config.service';
+import { SubjectConfigService } from './subject-config.service'
 
 describe('ConfigService', () => {
   let service

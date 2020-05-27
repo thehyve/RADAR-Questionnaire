@@ -53,18 +53,19 @@
       <!--  Thank you slide, when not eligible-->
 
       <ion-slide id="thankyou">
-        <div id="logo-container">
-          <img
-            id="logo"
-            src="assets/imgs/home-app.png"
-            alias="RADAR LOGO"
-          >
+        <div style="height: calc(100% - 88px);">
+          <div id="logo-container" style="height: 50%;">
+            <img
+              id="logo"
+              src="assets/imgs/home-app.png"
+              alias="RADAR LOGO"
+            >
+          </div>
+          <div class="text">
+            <div class="text-lg">{{ "ENROL_ABORT_THANKYOU_1" | translate }}</div>
+            <div class="text-md"> {{ "ENROL_ABORT_MESSAGE" | translate}}</div>
+          </div>
         </div>
-        <div class="text">
-          <div class="text-lg">{{ "ENROL_ABORT_THANKYOU_1" | translate }}</div>
-          <div class="text-md"> {{ "ENROL_ABORT_MESSAGE" | translate}}</div>
-        </div>
-
         <div
           padding
           class="bottom"
@@ -79,6 +80,7 @@
             Finish
           </button>
         </div>
+
       </ion-slide>
     </ion-slides>
   </div>

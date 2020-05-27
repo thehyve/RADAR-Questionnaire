@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { NavController } from 'ionic-angular'
 
-import { AppModule } from '../../../app.module'
 import { EligibilityPageComponent } from './eligibility-page.component'
+import { AppModule } from '../../../../app.module';
 
 describe('EligibilityPageComponent', () => {
   let component

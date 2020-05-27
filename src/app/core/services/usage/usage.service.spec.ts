@@ -9,8 +9,8 @@ import {
 } from '../../../shared/testing/mock-services'
 import { KafkaService } from '../kafka/kafka.service'
 import { LogService } from '../misc/log.service'
-import { UsageService } from './usage.service'
 import { AnalyticsService } from './analytics.service';
+import { UsageService } from './usage.service'
 
 describe('UsageService', () => {
   let service

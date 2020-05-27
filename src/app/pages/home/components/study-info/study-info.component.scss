@@ -1,6 +1,5 @@
 study-info {
-  //align-content: center;
-  //color: white;
+
 
   .logo {
     height: 200px;
@@ -14,10 +13,6 @@ study-info {
   .text {
     margin: auto;
     width: 90vw;
-  }
-
-  .text-justify {
-    text-align: justify;
   }
 
   .text-md {
@@ -38,4 +33,17 @@ study-info {
   ::-webkit-scrollbar-thumb {
     background-color: $cl-light;
   }
+}
+
+#introframe {
+  flex: 1 0 100%;
+  width: 100% !important;
+  height: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  border: none;
+}
+
+span.link {
+  text-decoration: underline;
 }

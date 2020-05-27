@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NavController } from 'ionic-angular'
 
-import { AppModule } from '../../../app.module'
-import { ConsentPageItemComponent } from './consent-page.component'
+import { AppModule } from '../../../../app.module';
+import { ConsentPageItemComponent } from './consent-page-item.component';
 
 describe('ConsentPagecomponent', () => {
   let component

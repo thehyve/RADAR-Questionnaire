@@ -53,7 +53,7 @@ export class ScheduleGeneratorService {
             )
           )
           .catch(e => {
-            this.logger.error('Failed to schedule assessement', e)
+            this.logger.error('Failed to schedule assessment', e)
           })
       case TaskType.CLINICAL:
         return Promise.resolve({

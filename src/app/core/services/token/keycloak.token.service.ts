@@ -1,17 +1,17 @@
-import {Injectable} from "@angular/core";
-import {TokenService} from "./token.service";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {StorageService} from "../storage/storage.service";
+import {Injectable} from "@angular/core";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {RemoteConfigService} from "../config/remote-config.service";
-import {LogService} from "../misc/log.service";
-import {StorageKeys} from "../../../shared/enums/storage";
+
 import {
   DefaultRequestEncodedContentType
 } from "../../../../assets/data/defaultConfig";
+import {StorageKeys} from "../../../shared/enums/storage";
 import {getSeconds} from "../../../shared/utilities/time";
 import {AuthConfigService} from "../config/auth-config.service";
-
+import {RemoteConfigService} from "../config/remote-config.service";
+import {LogService} from "../misc/log.service";
+import {StorageService} from "../storage/storage.service";
+import {TokenService} from "./token.service";
 
 @Injectable()
 export class KeycloakTokenService extends TokenService {
@@ -93,7 +93,7 @@ export class KeycloakTokenService extends TokenService {
     this.logger.log("Refresh token", refreshToken)
     // get access token and setToken
     return Promise.all([
-      this.authConfigService.getRealmUrl(),
+      this.authConfigService.getTokenUrl(),
       this.getTokenHeaders(DefaultRequestEncodedContentType),
       this.getRefreshParams(refreshToken)
     ])
@@ -110,6 +110,9 @@ export class KeycloakTokenService extends TokenService {
           }) - 10
         this.logger.log("Refreshed Token is ", JSON.stringify(res))
         return this.setTokens(res)
+      })
+      .catch((err: any) => {
+        this.logger.log("Could not refresh token ", JSON.stringify(err))
       })
   }
 

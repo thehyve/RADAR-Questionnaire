@@ -1,13 +1,20 @@
+<ion-scroll
+  padding
+  scrollY="true"
+  class="scroll-page"
+  style="height: calc(100% - 88px);"
+
+>
+  <div style="padding-bottom: 5px">
 <ion-item no-lines>
   <ion-icon item-right name="close-circle" (tap)="hideIntro()"></ion-icon>
 </ion-item>
-<img class="icons-big" src="assets/imgs/radar-logo.svg" alt="RADAR_Base Logo" />
 <h1 text-center class="questionnaire-title">
   {{ title }}
 </h1>
-<div>
-  <h2 text-center>{{ introduction }}</h2>
-</div>
+<h2 text-center>{{ introduction }}</h2>
+  </div>
+</ion-scroll>
 <div class="pos-bottom" padding>
   <button
     ion-button

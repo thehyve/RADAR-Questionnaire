@@ -61,13 +61,15 @@ page-eligibility {
   }
 
   .scroll-page {
-    height:72vh !important;
+    //height:72vh !important;
+    height: calc(100% - 166px);
   }
 
   ::-webkit-scrollbar {
     width: 3px;
     background-color: white;
   }
+
   ::-webkit-scrollbar-thumb {
     background-color: $cl-light;
   }
@@ -84,7 +86,7 @@ page-eligibility {
     flex-grow: 1;
     align-items: center;
     justify-content: flex-start;
-    padding: 4px 4px;
+    padding: 4px;
   }
 
   label:hover {
@@ -134,20 +136,22 @@ page-eligibility {
 
   .top {
     position: fixed;
-    top: 0px;
+    top: 0;
     width: 100%;
   }
 
   .center {
-    position:relative; /*it can be fixed too*/
-    left:0; right:0;
-    top:0; bottom:0;
-    margin:auto;
+    position: relative; /* it can be fixed too */
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
   }
 
   hr {
     display: block;
-    height: 0px;
+    height: 0;
     border: 2px solid $cl-light;
     margin: 1em 0;
     padding: 0;
@@ -230,5 +234,9 @@ page-eligibility {
     height: 75px;
     font-size: 18px;
     line-height: 1.35em;
+  }
+
+  .slide-zoom {
+    height: 100%;
   }
 }

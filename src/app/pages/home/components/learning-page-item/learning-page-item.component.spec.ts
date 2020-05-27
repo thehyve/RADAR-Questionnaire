@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NavController } from 'ionic-angular'
 
-import { AppModule } from '../../../app.module'
+import { AppModule } from '../../../../app.module'
 import { LearningPageItemComponent } from "./learning-page-item.component";
 
 describe('LearningPageItemComponent', () => {
