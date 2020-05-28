@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar text-center>
     <button class="logo-small" ion-button menuToggle left>
-      <img class="logo-small" src="assets/imgs/homeapp-xxxhdpi-icon.png" alt="Logo"/>
+      <img class="logo-small" src="assets/imgs/homeapp-xxxhdpi-icon-2.png" alt="Logo"/>
     </button>
     <!--    <ion-title text-center>{{ title | async }}</ion-title>-->
     <ion-title *ngIf="selectedPage === 'home'">{{ "SURVEYS_HEADING" | translate }}</ion-title>
@@ -24,20 +24,13 @@
         (task)="startQuestionnaire($event)"
         [tasks]="tasks | async"
         [currentDate]="currentDate.getTime()"
+        [progress]="tasksProgress | async"
       >
       </task-list>
-
-      <!--      <task-list-->
-      <!--        *ngIf="(sortedTasks | async)?.size"-->
-      <!--        (task)="startQuestionnaire($event)"-->
-      <!--        [tasks]="sortedTasks | async"-->
-      <!--        [currentDate]="currentDate.getTime()"-->
-      <!--      >-->
-      <!--      </task-list>-->
     </div>
 
     <div
-      class="size-dynamic" style="margin-top: 20%;"
+      class="size-dynamic" style="height: 100%;"
       [class.hidden]="showCalendar"
       [@moveProgress]="showCalendar"
     >
@@ -74,17 +67,14 @@
 
     <ion-segment-button value="home">
       <ion-icon name="create"></ion-icon>
-      <!--      <ion-title text-center>{{ "SURVEYS_HEADING" | translate }}</ion-title>-->
     </ion-segment-button>
 
     <ion-segment-button value="learn">
       <ion-icon name="bookmarks"></ion-icon>
-      <!--      <ion-title text-center>{{ "LEARN_HEADING" | translate }}</ion-title>-->
     </ion-segment-button>
 
     <ion-segment-button value="studyInfo">
       <ion-icon name="school"></ion-icon>
-      <!--      <ion-title text-center>{{ "SETTINGS_SETTINGS" | translate }}</ion-title>-->
     </ion-segment-button>
   </ion-segment>
 </ion-footer>

@@ -45,7 +45,10 @@ export class KeycloakAuthService extends AuthService {
     zoom: 'no',
     location: 'no',
     clearsessioncache: 'yes',
-    clearcache: 'yes'
+    clearcache: 'yes',
+    closebuttoncaption: 'Back',
+    toolbarcolor: '#ceeeff',
+    hidenavigationbuttons: 'yes'
   }
 
   constructor(
@@ -86,9 +89,6 @@ export class KeycloakAuthService extends AuthService {
       .then(authResponse => {
         return this.registerAuthorizationCode(authResponse)
       })
-      .catch(err => {
-        this.logger.error('Auth failed', JSON.stringify(err))
-      })
   }
 
   authenticateWithKeycloak(isRegistration: boolean): Promise<any> {
@@ -96,7 +96,7 @@ export class KeycloakAuthService extends AuthService {
       this.createAuthenticationUrl(isRegistration).then(authUrl => {
         const browser = this.inAppBrowser.create(
           authUrl,
-          '_blank', 'location=no,hardwareback=no,toolbar=no,clearsessioncache=yes,clearcache=yes'
+          '_blank', this.inAppBrowserOptions
         )
         let authRes = null
         const listener = browser.on('loadstart').subscribe((event: any) => {
@@ -109,6 +109,11 @@ export class KeycloakAuthService extends AuthService {
             this.logger.log('Returned auth-code is ', JSON.stringify(authRes))
             resolve(authRes)
           }
+        })
+        browser.on('exit').subscribe((event: any) => {
+          //Check the redirect uri
+          this.logger.log("BROWSER EXITED")
+          reject('Could not complete login or registration')
         })
       })
     })

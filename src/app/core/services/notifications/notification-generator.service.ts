@@ -129,9 +129,16 @@ export class NotificationGeneratorService {
         current.sound = true
         current.vibrate = true
         current.title = this.localization.translateKey(LocKeys.NOTIFICATION_REMINDER_NOW)
-        current.text = this.localization.translateKey(LocKeys.NOTIFICATION_REMINDER_NOW_DESC_1)
+        if (task.estimatedCompletionTime > 1) {
+          current.text = this.localization.translateKey(LocKeys.NOTIFICATION_REMINDER_NOW_DESC_1)
             + ' ' + task.estimatedCompletionTime + ' '
             + this.localization.translateKey(LocKeys.NOTIFICATION_REMINDER_NOW_DESC_2)
+        } else {
+          current.text = this.localization.translateKey(LocKeys.NOTIFICATION_REMINDER_NOW_DESC_1)
+            + ' ' + task.estimatedCompletionTime + ' '
+            + this.localization.translateKey(LocKeys.NOTIFICATION_REMINDER_NOW_DESC_3)
+        }
+
         break
       case NotificationType.MISSED:
         current.sound = false

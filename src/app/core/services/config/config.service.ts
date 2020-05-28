@@ -12,6 +12,7 @@ import {
   ConfigEventType,
   NotificationEventType
 } from '../../../shared/enums/events'
+import { StorageKeys } from "../../../shared/enums/storage";
 import { User } from '../../../shared/models/user'
 import { TaskType } from '../../../shared/utilities/task-type'
 import { KafkaService } from '../kafka/kafka.service'
@@ -19,6 +20,7 @@ import { LocalizationService } from '../misc/localization.service'
 import { LogService } from '../misc/log.service'
 import { NotificationService } from '../notifications/notification.service'
 import { ScheduleService } from '../schedule/schedule.service'
+import { StorageService } from "../storage/storage.service";
 import { AnalyticsService } from '../usage/analytics.service'
 import { AppConfigService } from './app-config.service'
 import { ProtocolService } from './protocol.service'
@@ -39,7 +41,8 @@ export class ConfigService {
     private localization: LocalizationService,
     private analytics: AnalyticsService,
     private logger: LogService,
-    private remoteConfig: RemoteConfigService
+    private remoteConfig: RemoteConfigService,
+    private storageService: StorageService
   ) {}
 
   fetchConfigState(force?: boolean) {
@@ -277,6 +280,12 @@ export class ConfigService {
   resetAll() {
     this.sendConfigChangeEvent(ConfigEventType.APP_RESET)
     return this.subjectConfig.reset()
+  }
+
+  resetAuth() {
+    this.sendConfigChangeEvent(ConfigEventType.APP_LOGOUT)
+    this.logger.log("Removing auth token")
+    return this.storageService.remove(StorageKeys.OAUTH_TOKENS)
   }
 
   resetConfig() {

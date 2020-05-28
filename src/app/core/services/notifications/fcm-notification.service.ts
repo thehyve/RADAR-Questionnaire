@@ -4,22 +4,24 @@ import { Platform } from 'ionic-angular'
 import * as uuid from 'uuid/v4'
 
 import {
-  DefaultMaxUpstreamResends, DefaultNotificationTtlMinutes,
+  DefaultMaxUpstreamResends,
+  DefaultNotificationTtlMinutes,
+  DefaultNumberOfNotificationsToReschedule,
   DefaultNumberOfNotificationsToSchedule,
   FCMPluginProjectSenderId,
 } from '../../../../assets/data/defaultConfig'
+import { ConfigKeys } from '../../../shared/enums/config'
 import { StorageKeys } from '../../../shared/enums/storage'
 import { SingleNotification } from '../../../shared/models/notification-handler'
 import { TaskType } from '../../../shared/utilities/task-type'
 import { getSeconds } from '../../../shared/utilities/time'
+import { RemoteConfigService } from '../config/remote-config.service'
 import { SubjectConfigService } from '../config/subject-config.service'
 import { LogService } from '../misc/log.service'
 import { ScheduleService } from '../schedule/schedule.service'
 import { StorageService } from '../storage/storage.service'
 import { NotificationGeneratorService } from './notification-generator.service'
 import { NotificationService } from './notification.service'
-import { RemoteConfigService } from '../config/remote-config.service'
-import { ConfigKeys } from '../../../shared/enums/config'
 
 declare var FirebasePlugin
 
@@ -72,10 +74,13 @@ export class FcmNotificationService extends NotificationService {
     return this.config.getParticipantLogin().then(username => {
       if (!username) return Promise.resolve([])
       return this.schedule.getTasks(TaskType.ALL).then(tasks => {
+        this.logger.log("Total Tasks [] ..", tasks.length)
+        const futureTasks = tasks.filter(t => !t.completed)
+        this.logger.log("Future Tasks [] ..", futureTasks.length)
         const fcmNotifications = this.notifications
-          .futureNotifications(tasks, limit)
+          .futureNotifications(futureTasks, limit)
           .map(t => this.format(t, username))
-        this.logger.log('NOTIFICATIONS Scheduling FCM notifications')
+        this.logger.log('NOTIFICATIONS Scheduling FCM notifications ', fcmNotifications.length)
         this.logger.log(fcmNotifications)
         return Promise.all(
           fcmNotifications
@@ -84,6 +89,12 @@ export class FcmNotificationService extends NotificationService {
         )
       })
     })
+  }
+
+  rescheduleForFutureTasks(limit: number = DefaultNumberOfNotificationsToReschedule): Promise<void[]> {
+    this.resetResends()
+    // first cancel notifications of this participant
+    return this.publish(limit)
   }
 
   private sendNotification(notification): Promise<void> {

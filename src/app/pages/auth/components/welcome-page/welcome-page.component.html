@@ -1,36 +1,29 @@
 <ion-content>
   <div *ngIf="!loading">
-  <ion-slides pager direction="horizontal" style="height: 80%;">
+  <ion-slides pager direction="horizontal" style="height: calc(100% - 144px);">
     <ion-slide id="intro">
       <div id="logo-container">
         <img
-            id="logo"
-            src="assets/imgs/home-app.png"
-            alias="UCL LOGO"
+          id="logo"
+          src="assets/imgs/home-app.png"
+          alias="UCL LOGO"
         >
       </div>
       <div class="swipe-here">Swipe Here</div>
     </ion-slide>
 
     <ion-slide id="aboutStudy" margin-bottom="10px">
-<!--      <ion-item>-->
-<!--        <ion-icon md="md-arrow-back" item-start (click)="goBack()"></ion-icon>-->
-<!--      </ion-item>-->
-
       <ion-scroll
         scrollY="true"
-        class="scroll-page"
+        class="scroll-page" style="height: calc(100% - 16px) !important;"
       >
         <div >
 
           <div >
             <iframe id="introframe"
-                    src="https://player.vimeo.com/video/376190254?api=1&&background=1"
-                    frameborder="0" allowfullscreen
+                    src="https://player.vimeo.com/video/376190254?api=1&player_id=player1"
+                    frameborder="0"
             ></iframe>
-<!--            <iframe id="introframe"-->
-<!--                    src="https://player.vimeo.com/video/376190254?api=1&title=0&byline=0&portrait=0&controls=0&autoplay=1&dnt=1"-->
-<!--                    frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>-->
 
           </div>
 
@@ -41,7 +34,7 @@
 
           <div
             padding
-            class="text-paragraph">
+            class="text-paragraph text-justify">
             Welcome to Health On the MovE (HOME): a Research Study by University College London about the Health of Migrants to the UK.<br>
             <br>
             1 in 7 people in the UK are international migrants. International migrants in the UK are people who were born abroad but who have settled in the UK.<br>
@@ -66,7 +59,7 @@
   <div
       padding
       class="bottom"
-      style="height: 20%;"
+      style="height: 144px;"
   >
     <button
         ion-button
