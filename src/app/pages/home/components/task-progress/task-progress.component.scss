@@ -166,7 +166,7 @@ task-progress {
   }
 
   .completed {
-    margin: auto;
+    margin: 6vh auto;
     width: 56vw;
     height: 56vw;
     border-radius: 100%;
@@ -185,7 +185,7 @@ task-progress {
   }
 
   .large {
-    font-size: 50px;//70px; // TODO FIXME 70px; UCL
+    font-size: 70px; // TODO FIXME 70px; UCL
     line-height: 0;
   }
 
