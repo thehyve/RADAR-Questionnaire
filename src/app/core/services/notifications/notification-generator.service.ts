@@ -46,14 +46,16 @@ export class NotificationGeneratorService {
     task: Task
   ): SingleNotification[] {
     let notifications: SingleNotification[] = []
-    notifications.push(
-      this.createNotification(
-        task,
-        task.timestamp,
-        NotificationType.NOW,
-        assessment.protocol.notification
-      )
-    )
+    // remove default notification from HOME App.
+
+    // notifications.push(
+    //   this.createNotification(
+    //     task,
+    //     task.timestamp,
+    //     NotificationType.NOW,
+    //     assessment.protocol.notification
+    //   )
+    // )
     const reminders = assessment.protocol.reminders
 
     if (reminders) {

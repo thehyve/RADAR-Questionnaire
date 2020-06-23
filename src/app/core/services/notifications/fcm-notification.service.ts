@@ -76,7 +76,7 @@ export class FcmNotificationService extends NotificationService {
       return this.schedule.getTasks(TaskType.ALL).then(tasks => {
         this.logger.log("Total Tasks [] ..", tasks.length)
         const futureTasks = tasks.filter(t => !t.completed)
-        this.logger.log("Future Tasks [] ..", futureTasks.length)
+        this.logger.log("Future Tasks [] .. ", futureTasks.length )
         const fcmNotifications = this.notifications
           .futureNotifications(futureTasks, limit)
           .map(t => this.format(t, username))
@@ -94,7 +94,8 @@ export class FcmNotificationService extends NotificationService {
   rescheduleForFutureTasks(limit: number = DefaultNumberOfNotificationsToReschedule): Promise<void[]> {
     this.resetResends()
     // first cancel notifications of this participant
-    return this.publish(limit)
+    return this.cancel()
+      .then(() => this.publish(limit))
   }
 
   private sendNotification(notification): Promise<void> {
