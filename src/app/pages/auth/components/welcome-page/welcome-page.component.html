@@ -1,6 +1,6 @@
 <ion-content>
   <div *ngIf="!loading">
-  <ion-slides pager direction="horizontal" style="height: calc(100% - 144px);">
+  <ion-slides pager direction="horizontal" style="height: calc(100% - 216px);">
     <ion-slide id="intro">
       <div id="logo-container">
         <img
@@ -9,7 +9,7 @@
           alias="UCL LOGO"
         >
       </div>
-      <div class="swipe-here">Swipe Here</div>
+      <div class="swipe-here">{{ "WELCOME_SWIPE_HERE" | translate }}</div>
     </ion-slide>
 
     <ion-slide id="aboutStudy" margin-bottom="10px">
@@ -27,29 +27,14 @@
 
           </div>
 
-          <div class="text-md" style="margin-top: 10px">{{ "ENROL_ABOUT_HEADING" | translate }}</div>
+          <div class="text-md" style="margin-top: 10px;">{{ "ENROL_ABOUT_HEADING" | translate }}</div>
         </div>
 
         <div>
 
           <div
             padding
-            class="text-paragraph text-justify">
-            Welcome to Health On the MovE (HOME): a Research Study by University College London about the Health of Migrants to the UK.<br>
-            <br>
-            1 in 7 people in the UK are international migrants. International migrants in the UK are people who were born abroad but who have settled in the UK.<br>
-            <br>
-            Right now we do not know enough about the health of international migrants like you. We also do not know enough about how your health changes after living in the UK for some time. We hope that The​ HOME ​study will help us understand this better.<br>
-            <br>
-            The HOME study is a smartphone app study. Through surveys in the app, we will be asking you questions about your wellbeing and physical, mental and sexual health. In this way, we hope to better understand your health, wellbeing and experiences living in the UK.<br>
-            <br>
-            Any personally identifiable data you provide is kept securely and is strictly confidential. Only de-personalised results will be shared to improve health, care and services for the migrant community.<br>
-            <br>
-            By pressing “Join Study”, we will first check if you are eligible to participate. Then, more detailed information about the HOME study is provided before you actually agree to participate. <br>
-            <br>
-            This study was approved by the University College London (UCL) ethics committee (reference number: 13571/003).<br>
-            <br>
-
+            class="text-paragraph text-justify" style="white-space: pre-wrap;">{{ "WELCOME_ABOUT" | translate }}
           </div>
         </div>
       </ion-scroll>
@@ -59,8 +44,17 @@
   <div
       padding
       class="bottom"
-      style="height: 144px;"
+      style="height: 216px;"
   >
+    <button
+      ion-button
+      class="bt bt--full"
+      round
+      full
+      (tap)="showSelectLanguage()"
+    >
+      {{ "WELCOME_SELECT_LANGUAGE" | translate }}
+    </button>
     <button
         ion-button
         class="bt bt--full"
@@ -68,7 +62,7 @@
         full
         (tap)="joinStudy()"
     >
-      Join Study
+      {{ "WELCOME_JOIN_STUDY" | translate }}
     </button>
     <button
         ion-button
@@ -77,7 +71,7 @@
         full
         (tap)="goToLogin()"
     >
-      Already participating
+      {{ "WELCOME_ALREADY_PARTICIPATING" | translate}}
     </button>
   </div>
   </div>
