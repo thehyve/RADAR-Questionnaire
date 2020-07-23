@@ -190,6 +190,9 @@ export class LocKeys {
   )
   static SPLASH_STATUS_SENDING_LOGS = new LocKeys('SPLASH_STATUS_SENDING_LOGS')
 
+  //------------------------
+  static ELIGIBILITY_QUESTION_1 = new LocKeys('ELIGIBILITY_QUESTION_1')
+  //------------------------
   constructor(public value: string) {}
 
   toString() {
