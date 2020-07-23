@@ -30,64 +30,7 @@ export const Localisations = {
     pl: 'w RADAR-Base',
     hb: 'RADAR-Base-ל'
   },
-  ENROLE_STUDY_DESCRIPTION: {
-    en: 'A Research Study by University College London about the Health of Migrants to the UK'
-  },
 
-  ABOUT_STUDY_1: {
-    en: 'The purpose of this study is to learn about the health of international migrants who come to live in the United Kingdom. An international migrant is someone who was born outside of the UK, including people who come to work, study, or reunite their families or for refugee.'
-  },
-  ABOUT_STUDY_2: {
-    en: "Right now in the UK, we do not really know about the health of international migrants or how they use the UK's National Health Service. By asking survey questions on this application, we hope to collect information to better understand their health, wellbeing and experiences after moving to the UK. We believe that your data can help the UK better support the health of migrants"
-  },
-  ABOUT_HOW_THIS_STUDY_WORKS_Q: {
-    en: 'How this study works?'
-  },
-  ABOUT_HOW_THIS_STUDY_WORKS_ANS: {
-    en: 'TO be added'
-  },
-  ABOUT_WHO_IS_RUNNING_THIS_STUDY_Q: {
-    en: 'Who is running this study?'
-  },
-  ABOUT_WHO_IS_RUNNING_THIS_STUDY_ANS: {
-    en: 'TO be added'
-  },
-  CONSENT_TITLE: {
-    en: 'Consent Process'
-  },
-  CONSENT_EXPLANATION_1: {
-    en: 'Please review the information below before you agree to participate in this study.'
-  },
-  CONSENT_TIME_COMMITMENT_INTRO: {
-    en: 'This survey questions will take you only 3 minutes every few weeks. Click to read more.'
-  },
-  CONSENT_TIME_COMMITMENT_DETAILS: {
-    en: "Every few weeks there will be a new set of questions about your health and wellbeing that should take you no more than 3 minutes to complete. Surverys will be should and sweet, but will provide us with meaningful information about your health and the health of people like you."
-  },
-  CONSENT_PRIVACY_POLICY_INTRO: {
-    en: 'This survey questions will take you only 3 minutes every few weeks. Click to read more.'
-  },
-  CONSENT_PRIVACY_POLICY_DETAILS: {
-    en: "Every few weeks there will be a new set of questions about your health and wellbeing that should take you no more than 3 minutes to complete. Surverys will be should and sweet, but will provide us with meaningful information about your health and the health of people like you."
-  },
-  CONSENT_WITHDRAWAL_INTRO: {
-    en: 'This survey questions will take you only 3 minutes every few weeks. Click to read more.'
-  },
-  CONSENT_WITHDRAWAL_DETAILS: {
-    en: "Every few weeks there will be a new set of questions about your health and wellbeing that should take you no more than 3 minutes to complete. Surverys will be should and sweet, but will provide us with meaningful information about your health and the health of people like you."
-  },
-  CONSENT_CONTACT_YOU_INTRO: {
-    en: 'This survey questions will take you only 3 minutes every few weeks. Click to read more.'
-  },
-  CONSENT_CONTACT_YOU_DETAILS: {
-    en: "Every few weeks there will be a new set of questions about your health and wellbeing that should take you no more than 3 minutes to complete. Surverys will be should and sweet, but will provide us with meaningful information about your health and the health of people like you."
-  },
-  CONSENT_PARTICIPATION: {
-    en: 'I consent to participate in the UCL Health on the Move Study.'
-  },
-  CONSENT_NHS_RECORD_ACCESS: {
-    en: 'I consent to allow the researchers to access my NHS electronic health records.'
-  },
   ENROL_WELCOME_DESC: {
     da:
       'Tak fordi  du vil deltage i dette studie.  Lad os komme i gang med at opstarte registreringsprocessen.',
@@ -105,18 +48,6 @@ export const Localisations = {
       'Dziękujemy za wzięcie udziału w badaniu. Przejdź przez proces rejestracji, byś mógł zacząć korzystać z aplikacji',
     hb: '.תודה שאתם משתתף במחקר זה. בוא נתחיל את הליך ההרשמה באפליקציה'
   },
-  ENROL_ABORT_THANKYOU_1: {
-    en: 'Thank you for your time',
-    nl: 'Bedankt'
-  },
-
-  ENROL_ABORT_MESSAGE: {
-    en: 'It seems you do not meet the criteria to participate in this study.'
-  },
-
-  ENROL_NO_CONSENT_MESSAGE: {
-    en: 'Thank you for trying to participate in our study.'
-  },
   ENROL_ABOUT_HEADING: {
     da: 'Velkommen',
     de: 'Herzlich willkommen',
@@ -124,17 +55,6 @@ export const Localisations = {
     es: 'Bienvenido',
     it: 'Benvenuto',
     nl: 'Welkom'
-  },
-  ENROL_HOW_STUDY_WORKS_HEADING: {
-    en: 'How this study works',
-  },
-
-  ENROL_PURPOSE_OF_THE_STUDY: {
-    en: 'Purpose of this study',
-  },
-
-  ENROL_ELIGIBILITY_HEADING: {
-    en: 'Eligibility'
   },
   ENROL_REGISTRATION: {
     da: 'Registrering',
@@ -285,27 +205,7 @@ export const Localisations = {
     pl: 'Ukończone w klinice',
     hb: '?מילאת במרפאה'
   },
-  LEARN_HEADING: {
-    en: 'Resources'
-  },
-  STUDY_INFO_HEADING: {
-    en: 'Study Information'
-  },
-  SURVEYS_HEADING: {
-    en: 'Your Surveys'
-  },
-  TODO_LIST_TITLE: {
-    en: 'TODO List'
-  },
-  TODO_TIME_ESTIMATE_NOTICE: {
-    en: 'Estimated time for each survey: 3 minutes'
-  },
-  TODO_SELECT_INFO: {
-    en: 'Select a survey to complete'
-  },
-  NO_SURVEYS_AVAILABLE: {
-    en: 'Well done! You have completed 100% of your surveys'
-  },
+
   CALENDAR_TASK_MISSED_TITLE: {
     da: 'Blokeret',
     de: 'Nich erlaubt',
@@ -623,21 +523,7 @@ export const Localisations = {
     pl: 'Proszę czekać',
     hb: 'המתן בבקשה'
   },
-  BTN_SETTING_LOGOUT_CANCEL: {
-    en: "Cancel"
-  },
-  BTN_SETTING_LOGOUT_CONFIRM:{
-    en: "Confirm"
-  },
-  SETTINGS_LOGOUT_ALERT:{
-    en: "Log out"
-  },
-  SETTINGS_LOGOUT_ALERT_DESC:{
-    en: "Are you sure you want to logout from the app?"
-  },
-  BTN_LOGOUT:{
-    en:"Log out"
-  },
+
   LANGUAGE_ENGLISH: {
     da: 'Engelsk',
     de: 'Englisch',
