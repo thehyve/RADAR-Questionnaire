@@ -52,13 +52,13 @@ export class ConsentPageComponent {
       {
         questionId: 1,
         isAnswered: false,
-        question: "I consent (agree) to take part in the Health on the MovE (HOME) Study",
+        question: this.localization.translate("CONSENT_QUESTION_1"),
         answer: undefined
       },
       {
         questionId: 2,
         isAnswered: false,
-        question: "I consent (agree) to the collection of data about my physical, mental and sexual health",
+        question: this.localization.translate("CONSENT_QUESTION_2"),
         answer: undefined
       }
     ];
