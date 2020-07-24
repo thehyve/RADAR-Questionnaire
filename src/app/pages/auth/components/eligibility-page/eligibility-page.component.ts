@@ -49,13 +49,13 @@ export class EligibilityPageComponent {
       {
         questionId: 2,
         isAnswered: false,
-        question: this.localization.translate("ELIGIBILITY_QUESTION_2"),// .translateKey("ELIGIBILITY_QUESTION_2"),
+        question: this.localization.translateKey(LocKeys.ELIGIBILITY_QUESTION_2),
         answer: undefined
       },
       {
         questionId: 3,
         isAnswered: false,
-        question: this.localization.translate("ELIGIBILITY_QUESTION_3"),
+        question: this.localization.translateKey(LocKeys.ELIGIBILITY_QUESTION_3),
         answer: undefined
       }
     ];

@@ -191,7 +191,13 @@ export class LocKeys {
   static SPLASH_STATUS_SENDING_LOGS = new LocKeys('SPLASH_STATUS_SENDING_LOGS')
 
   //------------------------
+
   static ELIGIBILITY_QUESTION_1 = new LocKeys('ELIGIBILITY_QUESTION_1')
+  static ELIGIBILITY_QUESTION_2 = new LocKeys('ELIGIBILITY_QUESTION_2')
+  static ELIGIBILITY_QUESTION_3 = new LocKeys('ELIGIBILITY_QUESTION_3')
+  static CONSENT_QUESTION_1 = new LocKeys('CONSENT_QUESTION_1')
+  static CONSENT_QUESTION_2 = new LocKeys('CONSENT_QUESTION_2')
+
   //------------------------
   constructor(public value: string) {}
 

@@ -52,13 +52,13 @@ export class ConsentPageComponent {
       {
         questionId: 1,
         isAnswered: false,
-        question: this.localization.translate("CONSENT_QUESTION_1"),
+        question: this.localization.translateKey(LocKeys.CONSENT_QUESTION_1),
         answer: undefined
       },
       {
         questionId: 2,
         isAnswered: false,
-        question: this.localization.translate("CONSENT_QUESTION_2"),
+        question: this.localization.translateKey(LocKeys.CONSENT_QUESTION_2),
         answer: undefined
       }
     ];
