@@ -953,7 +953,7 @@ export const Localisations = {
   SURVEYS_HEADING: {
     da: '',
     de: '',
-    en: '',
+    en: 'Your Surveys',
     es: 'ES: Your Surveys',
     it: '',
     nl: '',
