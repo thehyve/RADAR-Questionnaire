@@ -64,8 +64,6 @@ export class WelcomePageComponent {
     this.localization.update().then(lang => (this.language = lang))
   }
 
-  ionViewDidEnter() {}
-
   showSelectLanguage() {
     const buttons = [
       {
