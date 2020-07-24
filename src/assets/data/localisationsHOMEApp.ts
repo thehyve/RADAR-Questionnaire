@@ -51,29 +51,50 @@ export const Localisations = {
     hb: ''
   },
 
-  // ABOUT_STUDY_1: {
-  //   en: 'The purpose of this study is to learn about the health of international migrants who come to live in the United Kingdom. An international migrant is someone who was born outside of the UK, including people who come to work, study, or reunite their families or for refugee.'
-  // },
+  // --- Enrolment ---
 
-  // ABOUT_STUDY_2: {
-  //   en: "Right now in the UK, we do not really know about the health of international migrants or how they use the UK's National Health Service. By asking survey questions on this application, we hope to collect information to better understand their health, wellbeing and experiences after moving to the UK. We believe that your data can help the UK better support the health of migrants"
-  // },
+  ENROL_ABORT_THANKYOU_1: {
+    da: '',
+    de: '',
+    en: 'Thank you for your time',
+    es: 'ES: Thank you for your time',
+    it: '',
+    nl: 'Bedankt',
+    pl: '',
+    hb: ''
+  },
 
-  // ABOUT_HOW_THIS_STUDY_WORKS_Q: {
-  //   en: 'How this study works?'
-  // },
+  ENROL_FINISH: {
+    da: '',
+    de: '',
+    en: 'Finish',
+    es: 'Terminar',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
 
-  // ABOUT_HOW_THIS_STUDY_WORKS_ANS: {
-  //   en: 'TO be added'
-  // },
-
-  // ABOUT_WHO_IS_RUNNING_THIS_STUDY_Q: {
-  //   en: 'Who is running this study?'
-  // },
-
-  // ABOUT_WHO_IS_RUNNING_THIS_STUDY_ANS: {
-  //   en: 'TO be added'
-  // },
+  ENROL_REGISTRATION_ERROR_TITLE: {
+    da: '',
+    de: '',
+    en: 'Something went wrong',
+    es: 'ES: Something went wrong',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
+  ENROL_REGISTRATION_ERROR_DESC: {
+    da: '',
+    de: '',
+    en: 'Could not complete the registration process. Please try again later.',
+    es: 'ES: Could not complete the registration process. Please try again later.',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
 
   // --- Eligibility ---
 
@@ -128,31 +149,11 @@ export const Localisations = {
     hb: ''
   },
 
-  ELIGIBILITY_ABORT_THANKYOU_1: {
-    da: '',
-    de: '',
-    en: 'Thank you for your time',
-    es: 'Gracias por tu tiempo',
-    it: '',
-    nl: 'Bedankt',
-    pl: '',
-    hb: ''
-  },
   ELIGIBILITY_ABORT_MESSAGE: {
     da: '',
     de: '',
     en: 'It seems you do not meet the criteria to participate in this study.',
     es: 'Parece que no cumple con los criterios para participar en este estudio.',
-    it: '',
-    nl: '',
-    pl: '',
-    hb: ''
-  },
-  ELIGIBILITY_FINISH: {
-    da: '',
-    de: '',
-    en: 'Finish',
-    es: 'Terminar',
     it: '',
     nl: '',
     pl: '',
@@ -182,20 +183,20 @@ export const Localisations = {
     hb: ''
   },
 
-  // --- Enrolment ---
+  // --- Consent ---
 
-  ENROL_ABORT_THANKYOU_1: {
+  CONSENT_TITLE: {
     da: '',
     de: '',
-    en: 'Thank you for your time',
-    es: 'ES: Thank you for your time',
+    en: 'Consent Process',
+    es: 'Proceso de consentimiento',
     it: '',
     nl: '',
     pl: '',
     hb: ''
   },
 
-  ENROL_NO_CONSENT_MESSAGE: {
+  CONSENT_ABORT_MESSAGE: {
     da: '',
     de: '',
     en: 'Thank you for trying to participate in our study.',
@@ -206,35 +207,22 @@ export const Localisations = {
     hb: ''
   },
 
-  //----------------------------
-
-  // ENROLE_STUDY_DESCRIPTION: {
-  //   en: 'A Research Study by University College London about the Health of Migrants to the UK'
-  // },
-
-  // ENROL_ABORT_MESSAGE: {
-  //   en: 'It seems you do not meet the criteria to participate in this study.'
-  // },
-
-  // ENROL_HOW_STUDY_WORKS_HEADING: {
-  //   en: 'How this study works',
-  // },
-
-  // ENROL_PURPOSE_OF_THE_STUDY: {
-  //   en: 'Purpose of this study',
-  // },
-
-  // ENROL_ELIGIBILITY_HEADING: {
-  //   en: 'Eligibility'
-  // },
-
-  // --- Consent ---
-
-  CONSENT_TITLE: {
+  CONSENT_FULL_CONSENT_REQUIRED_TITLE: {
     da: '',
     de: '',
-    en: 'Consent Process',
-    es: 'Proceso de consentimiento',
+    en: 'Full Consent Required',
+    es: 'ES: Full Consent Required',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
+
+  CONSENT_FULL_CONSENT_REQUIRED_DESC: {
+    da: '',
+    de: '',
+    en: 'Your consent to both points is required to be able to participate in the HOME study.',
+    es: 'ES: Your consent to both points is required to be able to participate in the HOME study.',
     it: '',
     nl: '',
     pl: '',
@@ -596,37 +584,6 @@ export const Localisations = {
     pl: '',
     hb: ''
   },
-
-  // CONSENT_TIME_COMMITMENT_INTRO: {
-  //   en: 'This survey questions will take you only 3 minutes every few weeks. Click to read more.'
-  // },
-  // CONSENT_TIME_COMMITMENT_DETAILS: {
-  //   en: "Every few weeks there will be a new set of questions about your health and wellbeing that should take you no more than 3 minutes to complete. Surverys will be should and sweet, but will provide us with meaningful information about your health and the health of people like you."
-  // },
-  // CONSENT_PRIVACY_POLICY_INTRO: {
-  //   en: 'This survey questions will take you only 3 minutes every few weeks. Click to read more.'
-  // },
-  // CONSENT_PRIVACY_POLICY_DETAILS: {
-  //   en: "Every few weeks there will be a new set of questions about your health and wellbeing that should take you no more than 3 minutes to complete. Surverys will be should and sweet, but will provide us with meaningful information about your health and the health of people like you."
-  // },
-  // CONSENT_WITHDRAWAL_INTRO: {
-  //   en: 'This survey questions will take you only 3 minutes every few weeks. Click to read more.'
-  // },
-  // CONSENT_WITHDRAWAL_DETAILS: {
-  //   en: "Every few weeks there will be a new set of questions about your health and wellbeing that should take you no more than 3 minutes to complete. Surverys will be should and sweet, but will provide us with meaningful information about your health and the health of people like you."
-  // },
-  // CONSENT_CONTACT_YOU_INTRO: {
-  //   en: 'This survey questions will take you only 3 minutes every few weeks. Click to read more.'
-  // },
-  // CONSENT_CONTACT_YOU_DETAILS: {
-  //   en: "Every few weeks there will be a new set of questions about your health and wellbeing that should take you no more than 3 minutes to complete. Surverys will be should and sweet, but will provide us with meaningful information about your health and the health of people like you."
-  // },
-  // CONSENT_PARTICIPATION: {
-  //   en: 'I consent to participate in the UCL Health on the Move Study.'
-  // },
-  // CONSENT_NHS_RECORD_ACCESS: {
-  //   en: 'I consent to allow the researchers to access my NHS electronic health records.'
-  // },
 
   // --- Study Info ---
 
@@ -1008,18 +965,57 @@ export const Localisations = {
   // --- Settings ---
 
   BTN_LOGOUT:{
-    en:"Log out"
+    da: '',
+    de: '',
+    en: 'Log out',
+    es: 'ES: Log out',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
   },
+
   BTN_SETTING_LOGOUT_CANCEL: {
-    en: "Cancel"
+    da: '',
+    de: '',
+    en: 'Cancel',
+    es: 'ES: Cancel',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
   },
+
   BTN_SETTING_LOGOUT_CONFIRM:{
-    en: "Confirm"
+    da: '',
+    de: '',
+    en: 'Confirm',
+    es: 'ES: Confirm',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
   },
+
   SETTINGS_LOGOUT_ALERT:{
-    en: "Log out"
+    da: '',
+    de: '',
+    en: 'Log out',
+    es: 'ES: Log out',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
   },
+
   SETTINGS_LOGOUT_ALERT_DESC:{
-    en: "Are you sure you want to logout from the app?"
+    da: '',
+    de: '',
+    en: 'Are you sure you want to logout from the app?',
+    es: 'ES: Are you sure you want to logout from the app?',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
   },
 }
