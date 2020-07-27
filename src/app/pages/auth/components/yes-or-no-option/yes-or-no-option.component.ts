@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 
 import { YesOrNoQuestion } from "../../../../shared/models/auth";
 import { Item } from "../../../../shared/models/question";
-import {NavController} from "ionic-angular";
-import {AuthService} from "../../services/auth.service";
 import {LocalizationService} from "../../../../core/services/misc/localization.service";
 
 let uniqueID = 0

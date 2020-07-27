@@ -19,7 +19,6 @@ import { SplashPageComponent } from '../../../splash/containers/splash-page.comp
 import { AuthService } from '../../services/auth.service'
 import { EligibilityPageComponent } from '../eligibility-page/eligibility-page.component'
 import {LocKeys} from "../../../../shared/enums/localisations";
-import {SettingsService} from "../../../settings/services/settings.service";
 
 /**
  * Generated class for the WelcomePage page.
@@ -57,7 +56,6 @@ export class WelcomePageComponent {
     private logger: LogService,
     private config: ConfigService,
     private authConfig: AuthConfigService,
-    private settingsService: SettingsService,
   ) {}
 
   ionViewDidLoad() {
