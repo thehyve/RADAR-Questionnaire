@@ -202,8 +202,8 @@ export class LocKeys {
   static ENROL_REGISTRATION_ERROR_TITLE = new LocKeys('ENROL_REGISTRATION_ERROR_TITLE')
   static ENROL_REGISTRATION_ERROR_DESC = new LocKeys('ENROL_REGISTRATION_ERROR_DESC')
 
-
   //------------------------
+  
   constructor(public value: string) {}
 
   toString() {
