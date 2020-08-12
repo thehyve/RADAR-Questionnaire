@@ -166,9 +166,13 @@ page-welcome {
   }
 
   .text-paragraph {
-    font-size: 12px;
     padding-bottom: 10px;
+    font-size: 12px;
     line-height: 14px;
+
+    p {
+      font-size: 12px;
+    }
   }
 
   .status-center {
