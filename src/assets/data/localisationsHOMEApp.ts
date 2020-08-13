@@ -30,25 +30,26 @@ export const Localisations = {
       ' information about the HOME study is provided before you actually agree to participate.</p>' +
       '<p>This study was approved by the University College London (UCL) ethics committee (reference number:' +
       ' 13571/003).</p>',
-    es: '<p>Bienvenido a Health On the MovE (HOME): un Estudio de Investigación realizado por el University College' +
-      ' London acerca de la Salud de los Migrantes en el Reino Unido<p>' +
+    es: '<p>Bienvenido a Estudio Salud en Movimiento (HOME): un Estudio de Investigación realizado por el University' +
+      ' College London sobre la Salud de los Migrantes en el Reino Unido</p>' +
       '<p>Una de cada 7 personas en el Reino Unido es un migrante internacional. Los migrantes internacionales en el' +
-      ' Reino Unido son aquellas personas que nacieron en el extranjero, pero se han establecido en el Reino Unido.\n' +
-      'En este momento, no hay suficiente información acerca de la salud de los migrantes internacionales como' +
+      ' Reino Unido son aquellas personas que nacieron en el extranjero, pero se han establecido en el Reino' +
+      ' Unido.</p>' +
+      '<p>En este momento, no hay suficiente información acerca de la salud de los migrantes internacionales como' +
       ' usted. Tampoco es suficiente lo que sabemos sobre los cambios en su salud después de vivir durante un tiempo' +
       ' en el Reino Unido. Esperamos que el estudio HOME nos ayude a entender mejor esta situación.</p>' +
-      '<p>El estudio HOME es un estudio realizado por medio de una aplicación en su teléfono inteligente. A través de' +
-      ' encuestas en esta aplicación, estaremos haciéndole preguntas acerca de su bienestar y salud física, mental y' +
-      ' sexual. De esta manera, esperamos comprender mejor su salud, bienestar y experiencias viviendo en el Reino' +
-      ' Unido.</p>' +
+      '<p>El estudio HOME es un estudio realizado por medio de una aplicación en su teléfono inteligente. A través' +
+      ' de encuestas en esta aplicación, estaremos haciéndole preguntas acerca de su bienestar y salud física,' +
+      ' mental y sexual. De esta manera, esperamos comprender mejor su salud, bienestar y experiencias viviendo en' +
+      ' el Reino Unido.</p>' +
       '<p>Cualquier dato que provea que lo identifique personalmente será guardado de manera segura y es' +
       ' estrictamente confidencial. Solo resultados de-personalizados serán compartidos para mejorar la salud,' +
       ' cuidado y servicios para la comunidad migrante.</p>' +
       '<p>Al presionar “Unirse al Estudio”, primero nos aseguraremos de que usted sea elegible para participar.' +
       ' Después, se le brindará información más detallada acerca del estudio HOME antes de que usted acceda a' +
       ' participar.</p>' +
-      '<p>Este estudio fue aprobado por el Comité de Ética del University College London (UCL) (número de referencia:' +
-      ' 13571/003)</p>',
+      '<p>Este estudio fue aprobado por el Comité de Ética del University College London (UCL) (número de' +
+      ' referencia: 13571/003)</p>',
     it: '',
     nl: '',
     pl: '',
@@ -590,8 +591,8 @@ export const Localisations = {
       ' incluiremos información para indicarle donde puede recibir apoyo nacional relacionado con la encuesta que' +
       ' acaba de realizar. Además, la sección de recursos de la aplicación HOME tendrá más información sobre los' +
       ' servicios de salud y migración disponibles en el Reino Unido.</p>' +
-      '<p>Le aconsejamos que contacte a su Médico de Atención Primaria o servicios locales de salud mental si siente' +
-      ' que necesita más apoyo.</p>',
+      '<p>Le aconsejamos que contacte a su Médico de Atención Primaria o a los servicios locales de salud mental si' +
+      ' siente que necesita más apoyo.</p>',
     it: '',
     nl: '',
     pl: '',
@@ -683,7 +684,7 @@ export const Localisations = {
     da: '',
     de: '',
     en: 'Share Movie',
-    es: 'Compartir Película',
+    es: 'Compartir Video',
     it: '',
     nl: '',
     pl: '',
@@ -695,8 +696,8 @@ export const Localisations = {
     de: '',
     en: '<p>Feel free to share our movie about the HOME study with your friends, family or within your wider' +
       ' community, via social media. The link for sharing the movie can be found below it.</p>',
-    es: '<p>Siéntase libre de compartir nuestra película acerca del estudio HOME con sus amigos, familia o dentro de' +
-      ' su comunidad, vía redes sociales. El link para compartir la película se encontrará debajo de ella.</p>',
+    es: '<p>Siéntase libre de compartir nuestro video sobre el estudio HOME con sus amigos, familia o dentro de su' +
+      ' comunidad, vía redes sociales. El link para compartir el video se encontrará debajo del mismo.</p>',
     it: '',
     nl: '',
     pl: '',
@@ -835,7 +836,7 @@ export const Localisations = {
     da: '',
     de: '',
     en: 'Health support',
-    es: 'Apoyo a la salud',
+    es: 'Servicios de apoyo a la salud',
     it: '',
     nl: '',
     pl: '',
@@ -845,7 +846,7 @@ export const Localisations = {
   RESOURCES_HEALTH_SUPPORT_CONTENT:{
     da: '',
     de: '',
-    en: '<div><b>Mental health support services</b></div>' +
+    en: '<div><b>Mental health support services</b></div> ' +
       '<ul>' +
       '<li>For advice and support to empower anyone experiencing a mental health problem. <a' +
       ' href="https://www.mind.org.uk/">https://www.mind.org.uk/</a>. They also have an information line for' +
@@ -896,25 +897,26 @@ export const Localisations = {
       ' recomendar un servicio local de apoyo a la salud mental o referirlo a ellos. Visite <a' +
       ' href="https://www.nhs.uk/service-search/other-services/">www.nhs.uk/service-search/other-services/</a> para' +
       ' encontrar servicios de salud mental en su área.</li>' +
-      '<li>Para asesoramiento y apoyo para empoderar a cualquier persona que se encuentre experimentando un problema' +
-      ' de salud mental, visite <a href="https://www.mind.org.uk/">https://www.mind.org.uk/</a>. También tienen' +
-      ' una línea de información para apoyo no urgente y asesoramiento: 0300 123 3393</li>' +
+      '<li>Para asesoramiento y apoyo para dar soporte a cualquier persona que se encuentre experimentando un' +
+      ' problema de salud mental, visite <a href="https://www.mind.org.uk/">https://www.mind.org.uk/</a>. También' +
+      ' tienen una línea de información para apoyo no urgente y asesoramiento: 0300 123 3393</li>' +
       '</ul>' +
       '<div><b>Servicios de apoyo para salud sexual y reproductiva</b></div>' +
       '<ul>' +
-      '<li>Visite <a href="https://www.sexwise.fpa.org.uk/">https://www.sexwise.fpa.org.uk/</a> para más' +
-      ' información acerca de salud sexual y anticonceptivos.</li>' +
+      '<li>Visite <a href="https://www.sexwise.fpa.org.uk/">https://www.sexwise.fpa.org.uk/</a> para más información' +
+      ' acerca de salud sexual y anticonceptivos.</li>' +
       '<li>Visite <a' +
       ' href="https://www.nhs.uk/service-search/other-services/">https://www.nhs.uk/service-search/other-services</a>' +
       ' para encontrar servicios locales de salud sexual en su área.</li>' +
-      '<li>Visite <a href="https://www.tht.org.uk/">https://www.tht.org.uk/</a> para apoyo y asesoramiento. El' +
-      ' Terrence Higgins Trust (THT) es una caridad del Reino Unido que provee apoyo, asesoramiento e información' +
-      ' acerca de salud sexual. Puede contactar al THT directamente en: 0808 802 1221, vía correo electrónico o' +
-      ' correo postal.</li>' +
+      '<li>' +
+      'Visite <a href="https://www.tht.org.uk/">https://www.tht.org.uk/</a> para apoyo y asesoramiento. El Terrence' +
+      ' Higgins Trust (THT) es una caridad del Reino Unido que provee apoyo, asesoramiento e información acerca de' +
+      ' salud sexual. Puede contactar al THT directamente en: 0808 802 1221, vía correo electrónico o correo postal.' +
+      '</li>' +
       '<li>Hable con su Médico de Atención Primaria – pueden referirlo a un servicios especializados de salud sexual' +
       ' si es necesario.</li>' +
       '</ul>' +
-      '<div><b>Servicios de apoyo para el abuso doméstico</b></div>' +
+      '<div><b>Servicios de apoyo para la violencia doméstica</b></div>' +
       '<ul>' +
       '<li>Asesoramiento y apoyo para mujeres, niños y hombres experimentando abuso doméstico.</li>' +
       '</ul>' +
@@ -986,7 +988,7 @@ export const Localisations = {
       ' Kingdom. <a' +
       ' href="https://www.internations.org/great-britain-expats/guide">https://www.internations.org/great-britain-expats/guide</a></li>' +
       '</ul>',
-    es: '<div><b>Consejos de los ciudadanos</b></div>' +
+    es: '<div><b>Consejos ciudadanos</b></div>' +
       '<ul>' +
       '<li>Servicio nacional que brinda información y asesoramiento gratuitos y confidenciales para asistir a' +
       ' personas con problemas de vivienda, dinero, legales, de consumo y otros. <a' +
