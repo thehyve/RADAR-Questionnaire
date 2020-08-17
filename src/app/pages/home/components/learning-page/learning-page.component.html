@@ -1,54 +1,35 @@
-<!--<ion-content>-->
-<!--  <div *ngIf="!loading">-->
+<ion-scroll
+  padding
+  scrollY="true"
+  class="scroll-page"
+>
+  <div padding-bottom="5px">
+    <img
+      class="logo"
+      src="assets/imgs/worldwideresources.png"
+      alt="RADAR LOGO">
+    <div class="padding text-sm text-justify" padding-bottom="16px" padding-top="16px">
+      {{ "RESOURCES_EXPLANATION_1" | translate }}
+    </div>
 
-    <ion-scroll
-      padding
-      scrollY="true"
-      class="scroll-page"
-    >
-      <div style="padding-bottom: 5px">
-        <img
-          class="logo"
-          src="assets/imgs/worldwideresources.png"
-          alias="RADAR LOGO"
-        >
-        <div class="padding text-sm text-justify" style="padding-bottom: 16px; padding-top: 16px;">{{ "RESOURCES_EXPLANATION_1" | translate }}</div>
-
-        <div>
-          <ion-item-group>
-            <learning-item title="{{'RESOURCES_VISAS_AND_IMMIGRATION_TITLE' | translate }}" iconMd="md-globe">
-              <div class="detail text-align" [innerHTML]=" 'RESOURCES_VISAS_AND_IMMIGRATION_CONTENT' | translate "></div>
-            </learning-item>
-            <learning-item title="{{'RESOURCES_REGISTERING_FOR_WORK_TITLE' | translate }}" iconMd="md-create">
-              <div class="detail text-align" [innerHTML]=" 'RESOURCES_REGISTERING_FOR_WORK_CONTENT' | translate "></div>
-            </learning-item>
-            <learning-item title="{{'RESOURCES_ACCESS_TO_HEALTHCARE_TITLE' | translate }}" iconMd="md-medkit">
-              <div class="detail text-align" [innerHTML]=" 'RESOURCES_ACCESS_TO_HEALTHCARE_CONTENT' | translate "></div>
-            </learning-item>
-            <learning-item title="{{'RESOURCES_HEALTH_SUPPORT_TITLE' | translate }}" iconMd="md-heart">
-              <div class="detail text-align" [innerHTML]=" 'RESOURCES_HEALTH_SUPPORT_CONTENT' | translate "></div>
-            </learning-item>
-            <learning-item title="{{'RESOURCES_COMMUNITY_SUPPORT_TITLE' | translate }}" iconMd="md-people">
-              <div class="detail text-align" [innerHTML]=" 'RESOURCES_COMMUNITY_SUPPORT_CONTENT' | translate "></div>
-            </learning-item>
-          </ion-item-group>
-        </div>
-      </div>
-    </ion-scroll>
-<!--  </div>-->
-
-<!--  <ion-slides *ngIf="loading" direction="horizontal">-->
-<!--    <ion-slide padding id="loadingSlide">-->
-<!--      <div class="position-center">-->
-<!--        <ion-spinner name="dots"></ion-spinner>-->
-<!--      </div>-->
-<!--      <div class="status-center">{{  "STATUS_LOADING" | translate  }}</div>-->
-<!--      <div class="status">-->
-<!--        <div id="outcome" *ngIf="showOutcomeStatus">-->
-<!--          {{ outcomeStatus }}-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </ion-slide>-->
-<!--  </ion-slides>-->
-
-<!--</ion-content>-->
+    <div>
+      <ion-item-group>
+        <learning-item title="{{'RESOURCES_VISAS_AND_IMMIGRATION_TITLE' | translate }}" iconMd="md-globe">
+          <div class="detail text-align" [innerHTML]=" 'RESOURCES_VISAS_AND_IMMIGRATION_CONTENT' | translate "></div>
+        </learning-item>
+        <learning-item title="{{'RESOURCES_REGISTERING_FOR_WORK_TITLE' | translate }}" iconMd="md-create">
+          <div class="detail text-align" [innerHTML]=" 'RESOURCES_REGISTERING_FOR_WORK_CONTENT' | translate "></div>
+        </learning-item>
+        <learning-item title="{{'RESOURCES_ACCESS_TO_HEALTHCARE_TITLE' | translate }}" iconMd="md-medkit">
+          <div class="detail text-align" [innerHTML]=" 'RESOURCES_ACCESS_TO_HEALTHCARE_CONTENT' | translate "></div>
+        </learning-item>
+        <learning-item title="{{'RESOURCES_HEALTH_SUPPORT_TITLE' | translate }}" iconMd="md-heart">
+          <div class="detail text-align" [innerHTML]=" 'RESOURCES_HEALTH_SUPPORT_CONTENT' | translate "></div>
+        </learning-item>
+        <learning-item title="{{'RESOURCES_COMMUNITY_SUPPORT_TITLE' | translate }}" iconMd="md-people">
+          <div class="detail text-align" [innerHTML]=" 'RESOURCES_COMMUNITY_SUPPORT_CONTENT' | translate "></div>
+        </learning-item>
+      </ion-item-group>
+    </div>
+  </div>
+</ion-scroll>

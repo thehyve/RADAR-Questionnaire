@@ -142,19 +142,19 @@ page-consent {
 
   .center {
     position: relative; /* it can be fixed too */
-    left: 0;
-    right: 0;
     top: 0;
+    right: 0;
     bottom: 0;
+    left: 0;
     margin: auto;
   }
 
   hr {
     display: block;
-    height: 0;
-    border: 2px solid $cl-light;
     margin: 1em 0;
     padding: 0;
+    height: 0;
+    border: 2px solid $cl-light;
   }
 
   ion-item.item {
@@ -211,8 +211,8 @@ page-consent {
 
   li {
     padding-bottom: 10px;
-    list-style-type: decimal;
     list-style-position: outside;
+    list-style-type: decimal;
   }
 
   .position-center {
@@ -234,5 +234,25 @@ page-consent {
     height: 75px;
     font-size: 18px;
     line-height: 1.35em;
+  }
+
+  .consent-title {
+    margin-top: 10px;
+  }
+
+  .consent-explanation {
+    padding-bottom: 10px;
+  }
+
+  .consent-questions-container {
+    padding-top: 15px;
+  }
+
+  .consent-thankyou-wrapper {
+    height: calc(100% - 88px);
+  }
+
+  .consent-logo-container {
+    height: 50%;
   }
 }

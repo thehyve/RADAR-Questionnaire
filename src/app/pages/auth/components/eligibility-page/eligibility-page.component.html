@@ -1,35 +1,28 @@
 <ion-content>
   <div *ngIf="!loading">
     <ion-slides padding direction="horizontal">
-
       <ion-slide id="eligibility">
         <ion-item>
           <ion-icon md="md-arrow-back" item-start (click)="navigateToWelcome()"></ion-icon>
         </ion-item>
-
         <ion-scroll
           scrollY="true"
           class="scroll-page"
         >
-
           <div>
             <img
               class="logo"
               src="assets/imgs/eligibility.png"
-              alias="Eligibility LOGO"
-            >
+              alt="Eligibility LOGO">
           </div>
-          <div class="text-md" style="margin-top: 10px">{{ "ELIGIBILITY_HEADING" | translate }}</div>
+          <div class="text-md eligibility-title">{{ "ELIGIBILITY_HEADING" | translate }}</div>
           <div class="center" *ngFor="let question of questions">
             <yes-or-no-option
               (valueChange)="onValueChange($event)"
               [question]="question"
             >
             </yes-or-no-option>
-
           </div>
-
-
         </ion-scroll>
 
         <div
@@ -53,13 +46,12 @@
       <!--  Thank you slide, when not eligible-->
 
       <ion-slide id="thankyou">
-        <div style="height: calc(100% - 88px);">
-          <div id="logo-container" style="height: 50%;">
+        <div class="eligibility-thankyou-wrapper">
+          <div id="logo-container" class="eligibility-logo-container">
             <img
               id="logo"
               src="assets/imgs/home-app.png"
-              alias="RADAR LOGO"
-            >
+              alt="RADAR LOGO">
           </div>
           <div class="text">
             <div class="text-lg">{{ "ENROL_ABORT_THANKYOU_1" | translate }}</div>

@@ -1,13 +1,9 @@
 <ion-content>
   <div *ngIf="!loading">
-  <ion-slides pager direction="horizontal" style="height: calc(100% - 216px);">
+  <ion-slides pager direction="horizontal" class="slide-wrapper">
     <ion-slide id="intro">
       <div id="logo-container">
-        <img
-          id="logo"
-          src="assets/imgs/home-app.png"
-          alias="UCL LOGO"
-        >
+        <img id="logo" src="assets/imgs/home-app.png" alt="UCL LOGO">
       </div>
       <div class="swipe-here">{{ "WELCOME_SWIPE_HERE" | translate }}</div>
     </ion-slide>
@@ -15,23 +11,19 @@
     <ion-slide id="aboutStudy" margin-bottom="10px">
       <ion-scroll
         scrollY="true"
-        class="scroll-page" style="height: calc(100% - 16px) !important;"
+        class="scroll-page scroll-page-wrapper"
       >
-        <div >
-
-          <div >
+        <div>
+          <div>
             <iframe id="introframe"
                     src="https://player.vimeo.com/video/376190254?api=1&player_id=player1"
                     frameborder="0"
             ></iframe>
-
           </div>
-
-          <div class="text-md" style="margin-top: 10px;">{{ "ENROL_ABOUT_HEADING" | translate }}</div>
+          <div class="text-md " margin-top="10px">{{ "ENROL_ABOUT_HEADING" | translate }}</div>
         </div>
 
         <div>
-
           <div
             padding
             class="text-paragraph text-justify" [innerHTML]=" 'WELCOME_ABOUT' | translate ">
@@ -41,11 +33,7 @@
     </ion-slide>
   </ion-slides>
 
-  <div
-      padding
-      class="bottom"
-      style="height: 216px;"
-  >
+  <div padding class="bottom">
     <button
       ion-button
       class="bt bt--full"
