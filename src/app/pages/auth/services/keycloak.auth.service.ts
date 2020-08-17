@@ -9,7 +9,7 @@ import {
   DefaultCallbackURL,
   DefaultClientId,
   DefaultEndPoint,
-  DefaultKeycloakURL,
+  DefaultKeycloakURL, DefaultLanguage,
   DefaultProjectName,
   DefaultRealmName,
   DefaultRequestEncodedContentType
@@ -25,6 +25,8 @@ import { ConfigKeys } from '../../../shared/enums/config'
 import { StorageKeys } from '../../../shared/enums/storage'
 import { KeycloakConfig } from '../../../shared/models/auth'
 import { AuthService } from './auth.service'
+import {LocalizationService} from "../../../core/services/misc/localization.service";
+import {LanguageSetting} from "../../../shared/models/settings";
 
 const uuid = require('uuid/v4')
 
@@ -51,6 +53,9 @@ export class KeycloakAuthService extends AuthService {
     hidenavigationbuttons: 'yes'
   }
 
+  language?: LanguageSetting = DefaultLanguage
+
+
   constructor(
     public http: HttpClient,
     token: TokenService,
@@ -60,7 +65,8 @@ export class KeycloakAuthService extends AuthService {
     private storage: StorageService,
     private inAppBrowser: InAppBrowser,
     private remoteConfig: RemoteConfigService,
-    private authConfigService: AuthConfigService
+    private authConfigService: AuthConfigService,
+    private localization: LocalizationService,
   ) {
     super(http, token, config, logger, analytics)
     this.init().then(() => {
@@ -238,6 +244,7 @@ export class KeycloakAuthService extends AuthService {
     const responseMode = 'query'
     const responseType = 'code'
     const scope = 'openid'
+    this.language = this.localization.getLanguage()
     return this.getUrlBasedOnAuthAction(isRegistration).then(baseUrl => {
       return (
         baseUrl +
@@ -254,7 +261,9 @@ export class KeycloakAuthService extends AuthService {
         '&scope=' +
         encodeURIComponent(scope) +
         '&nonce=' +
-        encodeURIComponent(nonce)
+        encodeURIComponent(nonce) +
+        '&kc_locale=' +
+        encodeURIComponent(this.language.value)
       )
     })
   }
