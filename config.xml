@@ -19,6 +19,7 @@
     <allow-navigation href="https://player.vimeo.com/*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="android-targetSdkVersion" value="29" />
         <preference name="AndroidLaunchMode" value="singleTop" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
