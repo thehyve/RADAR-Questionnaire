@@ -98,15 +98,6 @@ export class SplashPageComponent {
     window.location.replace(url)
   }
 
-  // enrol() {
-  //   this.splashService
-  //     .reset()
-  //     .then(() => this.navCtrl.setRoot(EnrolmentPageComponent))
-  //   // enrol() {
-  //   //   this.splash.reset().then(() => this.navCtrl.setRoot(EnrolmentPageComponent))
-  //   // }
-  // }
-
   welcome() {
     this.navCtrl.setRoot(WelcomePageComponent)
   }

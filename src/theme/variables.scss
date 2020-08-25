@@ -32,6 +32,7 @@ $cl-primary-80: rgba(map_get($colors, primary), 0.8);
 $cl-light: map_get($colors, light);
 $cl-light-10: rgba(map_get($colors, light), 0.1);
 $cl-light-20: rgba(map_get($colors, light), 0.2);
+$cl-light-30: rgba(map_get($colors, light), 0.3);
 $cl-light-40: rgba(map_get($colors, light), 0.4);
 $cl-light-60: rgba(map_get($colors, light), 0.6);
 $cl-light-80: rgba(map_get($colors, light), 0.8);
@@ -88,6 +89,27 @@ $alert-md-head-text-align: center;
 .alert-button {
   color: $cl-light !important;
 }
+
+.alert-radio-label {
+  color: $cl-light-30 !important;
+}
+
+.alert-md .alert-radio-icon {
+  color: $cl-light-30 !important;
+}
+
+.alert-md .alert-radio-inner {
+  background-color: $cl-light !important;
+}
+
+.alert-md [aria-checked=true] .alert-radio-label {
+  color: $cl-light !important;
+}
+
+.alert-md [aria-checked=true] .alert-radio-icon {
+  border-color: $cl-light !important;
+}
+
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:

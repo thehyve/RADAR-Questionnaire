@@ -52,13 +52,13 @@ export class ConsentPageComponent {
       {
         questionId: 1,
         isAnswered: false,
-        question: "I consent (agree) to take part in the Health on the MovE (HOME) Study",
+        question: this.localization.translateKey(LocKeys.CONSENT_QUESTION_1),
         answer: undefined
       },
       {
         questionId: 2,
         isAnswered: false,
-        question: "I consent (agree) to the collection of data about my physical, mental and sexual health",
+        question: this.localization.translateKey(LocKeys.CONSENT_QUESTION_2),
         answer: undefined
       }
     ];
@@ -104,12 +104,12 @@ export class ConsentPageComponent {
       } else {
         this.usage.sendGeneralEvent(EnrolmentEventType.CONSENT_PARTIALLY_RECEIVED)
         this.alertService.showAlert({
-          title: "Full Consent Required",
+          title: this.localization.translateKey(LocKeys.CONSENT_FULL_CONSENT_REQUIRED_TITLE),
           buttons: [{
             text: this.localization.translateKey(LocKeys.BTN_OKAY),
             handler: () => {}
           }],
-          message: "Your consent to both points is required to be able to participate in the HOME study."
+          message: this.localization.translateKey(LocKeys.CONSENT_FULL_CONSENT_REQUIRED_DESC)
         })
       }
     }
@@ -140,13 +140,13 @@ export class ConsentPageComponent {
         this.loading = false
         this.slides.lockSwipes(true)
         this.alertService.showAlert({
-                  title: "Something went wrong",
+                  title: this.localization.translateKey(LocKeys.ENROL_REGISTRATION_ERROR_TITLE),
                   buttons: [{
                     text: this.localization.translateKey(LocKeys.BTN_OKAY),
                     handler: () => {}
                   }],
-                  message: "Could not complete the registration process. Please try again later."
-                });
+                  message: this.localization.translateKey(LocKeys.ENROL_REGISTRATION_ERROR_DESC),
+        });
       })
   }
 

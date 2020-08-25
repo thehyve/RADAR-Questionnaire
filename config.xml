@@ -12,11 +12,11 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="*" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackgroundColor" value="0xff6d9aa5" />
     <preference name="Orientation" value="portrait" />
+    <allow-navigation href="https://player.vimeo.com/*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="AndroidLaunchMode" value="singleTop" />

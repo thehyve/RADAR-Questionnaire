@@ -11,6 +11,7 @@ import { HomePageComponent } from "../../../home/containers/home-page.component"
 import { AuthService } from "../../services/auth.service";
 import { ConsentPageComponent } from "../consent-page/consent-page.component";
 import { WelcomePageComponent } from "../welcome-page/welcome-page.component";
+import {LocKeys} from "../../../../shared/enums/localisations";
 
 @Component({
   selector: 'page-eligibility',
@@ -42,19 +43,19 @@ export class EligibilityPageComponent {
       {
         questionId: 1,
         isAnswered: false,
-        question: "Are you at least 18 years old?",
+        question: this.localization.translateKey(LocKeys.ELIGIBILITY_QUESTION_1),
         answer: undefined
       },
       {
         questionId: 2,
         isAnswered: false,
-        question: "Were you born outside of the United Kingdom?",
+        question: this.localization.translateKey(LocKeys.ELIGIBILITY_QUESTION_2),
         answer: undefined
       },
       {
         questionId: 3,
         isAnswered: false,
-        question: "Are you currently living in the UK?",
+        question: this.localization.translateKey(LocKeys.ELIGIBILITY_QUESTION_3),
         answer: undefined
       }
     ];
