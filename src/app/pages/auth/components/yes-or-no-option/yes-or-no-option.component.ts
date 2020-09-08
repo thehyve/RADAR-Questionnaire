@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 
 import { YesOrNoQuestion } from "../../../../shared/models/auth";
 import { Item } from "../../../../shared/models/question";
+import {LocalizationService} from "../../../../core/services/misc/localization.service";
 
 let uniqueID = 0
 
@@ -17,12 +18,16 @@ export class YesOrNoOptionComponent implements OnInit {
   question: YesOrNoQuestion
 
 
-  responses: any = [{label: "Yes", code: true}, {label: "No", code: false}]
+  responses: any = [
+    {label: this.localization.translate("QUESTION_YES"), code: true},
+    {label: this.localization.translate("QUESTION_NO"), code: false}
+  ]
   value: number = null
   uniqueID: number = uniqueID++
   name = `yes-or-no-${this.uniqueID}`
   items: Item[] = Array()
 
+  constructor(private localization: LocalizationService){}
 
   ngOnInit() {
     this.responses.map((item, i) => {

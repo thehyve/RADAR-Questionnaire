@@ -10,6 +10,7 @@ import * as localeNL from 'moment/locale/nl'
 
 import { DefaultSettingsSupportedLanguages } from '../../../../assets/data/defaultConfig'
 import { Localisations } from '../../../../assets/data/localisations'
+import { Localisations as LocalisationHOMEApp } from '../../../../assets/data/localisationsHOMEApp'
 import { LocKeys } from '../../../shared/enums/localisations'
 import { StorageKeys } from '../../../shared/enums/storage'
 import { LanguageSetting } from '../../../shared/models/settings'
@@ -91,7 +92,10 @@ export class LocalizationService {
   }
 
   translate(value: string) {
-    const loc = Localisations[value]
+    let loc: any = LocalisationHOMEApp[value]
+    if (!loc) {
+      loc = Localisations[value]
+    }
     if (!loc) {
       console.log('Missing localization ' + value)
       return value

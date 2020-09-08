@@ -47,12 +47,13 @@ learning-item {
   }
 
   .detail {
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    padding-top: 5px;
+    padding: 5px;
     text-align: start;
     font-size: 14px;
+
+    p {
+      font-size: 14px;
+    }
 
     a {
       padding: 0;

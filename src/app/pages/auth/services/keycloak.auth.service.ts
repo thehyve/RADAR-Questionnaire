@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import {
   InAppBrowser,
@@ -9,7 +9,7 @@ import {
   DefaultCallbackURL,
   DefaultClientId,
   DefaultEndPoint,
-  DefaultKeycloakURL,
+  DefaultKeycloakURL, DefaultLanguage,
   DefaultProjectName,
   DefaultRealmName,
   DefaultRequestEncodedContentType
@@ -25,6 +25,8 @@ import { ConfigKeys } from '../../../shared/enums/config'
 import { StorageKeys } from '../../../shared/enums/storage'
 import { KeycloakConfig } from '../../../shared/models/auth'
 import { AuthService } from './auth.service'
+import {LocalizationService} from "../../../core/services/misc/localization.service";
+import {LanguageSetting} from "../../../shared/models/settings";
 
 const uuid = require('uuid/v4')
 
@@ -51,6 +53,9 @@ export class KeycloakAuthService extends AuthService {
     hidenavigationbuttons: 'yes'
   }
 
+  language?: LanguageSetting = DefaultLanguage
+
+
   constructor(
     public http: HttpClient,
     token: TokenService,
@@ -60,7 +65,8 @@ export class KeycloakAuthService extends AuthService {
     private storage: StorageService,
     private inAppBrowser: InAppBrowser,
     private remoteConfig: RemoteConfigService,
-    private authConfigService: AuthConfigService
+    private authConfigService: AuthConfigService,
+    private localization: LocalizationService,
   ) {
     super(http, token, config, logger, analytics)
     this.init().then(() => {
@@ -110,7 +116,7 @@ export class KeycloakAuthService extends AuthService {
             resolve(authRes)
           }
         })
-        browser.on('exit').subscribe((event: any) => {
+        browser.on('exit').subscribe(() => {
           //Check the redirect uri
           this.logger.log("BROWSER EXITED")
           reject('Could not complete login or registration')
@@ -118,27 +124,6 @@ export class KeycloakAuthService extends AuthService {
       })
     })
   }
-
-  // initSubjectInformation() {
-  //   return Promise.all([
-  //     this.authConfigService.getBaseUrl(),
-  //     this.getSubjectInformation()
-  //   ]).then(([baseUrl, subjectInformation]) => {
-  //     return this.getProjectName(subjectInformation).then((projectName) => {
-  //       this.logger.log("Project name is :", projectName)
-  //       this.logger.log("subject info: "+ JSON.stringify(subjectInformation))
-  //       // treating keycloak user-id as the subjectId. This will make sure that subjectId is always unique
-  //       return this.config.setAll({
-  //         projectId: projectName,
-  //         subjectId: subjectInformation.user_id,
-  //         sourceId: uuid(),
-  //         humanReadableId: subjectInformation.preferred_username,
-  //         enrolmentDate: new Date(subjectInformation.createdTimestamp).getTime(),
-  //         baseUrl: baseUrl? baseUrl : DefaultEndPoint,
-  //       })
-  //     })
-  //   })
-  // }
 
   initSubjectInformation() {
     return Promise.all([
@@ -172,44 +157,6 @@ export class KeycloakAuthService extends AuthService {
             )
     })
   }
-  // getProjectName(subjectInfo: any) {
-  //     const projectFromSubject = subjectInfo.projectName
-  //     this.logger.log("project from subjectInfo" , projectFromSubject)
-  //     return projectFromSubject ? projectFromSubject :
-  //       this.assignProject(subjectInfo).then(() => {
-  //         return this.getSubjectInformation().then((sub) => {
-  //           return this.getProjectName(sub)
-  //       })
-  //     })
-  // }
-  //
-  // assignProject(subjectInfo: any): Promise<any> {
-  //   return this.remoteConfig
-  //     .read()
-  //     .then(config =>
-  //       config.getOrDefault(ConfigKeys.PROJECT_NAME, DefaultProjectName)
-  //     ).then((projectName) => {
-  //       this.logger.log("project from remote ", projectName)
-  //       return this.setProjectNameOnUser(subjectInfo.user_id, projectName)
-  //     })
-  // }
-
-  // setProjectNameOnUser(userId: any, projectName: string) {
-  //   return Promise.all([
-  //     this.token.getAccessHeaders(DefaultRequestEncodedContentType),
-  //     this.authConfigService.getBaseUrl()
-  //   ]).then(([headers, baseUrl]) => {
-  //     const userMgntUrl = baseUrl + '/user-management/api/users/' + userId + '/attributes'
-  //     const body = new HttpParams()
-  //       .set('projectName', projectName)
-  //     this.logger.log(
-  //       `"Setting project: ${projectName},URI: ${userMgntUrl} and headers`,
-  //       headers)
-  //     return this.http
-  //       .post(userMgntUrl, body, { headers: headers })
-  //       .toPromise()
-  //   })
-  // }
 
   getSubjectInformation(): Promise<any> {
     return Promise.all([
@@ -238,6 +185,7 @@ export class KeycloakAuthService extends AuthService {
     const responseMode = 'query'
     const responseType = 'code'
     const scope = 'openid'
+    this.language = this.localization.getLanguage()
     return this.getUrlBasedOnAuthAction(isRegistration).then(baseUrl => {
       return (
         baseUrl +
@@ -254,7 +202,9 @@ export class KeycloakAuthService extends AuthService {
         '&scope=' +
         encodeURIComponent(scope) +
         '&nonce=' +
-        encodeURIComponent(nonce)
+        encodeURIComponent(nonce) +
+        '&kc_locale=' +
+        encodeURIComponent(this.language.value)
       )
     })
   }
@@ -266,28 +216,6 @@ export class KeycloakAuthService extends AuthService {
         : realmUrl + '/protocol/openid-connect/auth'
     })
   }
-
-  // getRealmUrl() : Promise<string> {
-  //   return  this.storage.get(StorageKeys.REALM_URI).then((realmFromStorage) => {
-  //     if (realmFromStorage) {
-  //       this.logger.log("RealmUrl from storage: ", realmFromStorage)
-  //       return realmFromStorage
-  //     } else {
-  //       return this.getRealmName().then((realmName) => {
-  //         return this.getAuthBaseURI().then(
-  //           (keycloakUrl) => {
-  //             this.logger.log("keycloakUrl is ", keycloakUrl)
-  //             if (typeof keycloakUrl != 'undefined' && keycloakUrl.charAt(keycloakUrl.length - 1) == '/') {
-  //               return (keycloakUrl + 'realms/' + encodeURIComponent(realmName));
-  //             } else {
-  //               return(keycloakUrl + '/realms/' + encodeURIComponent(realmName));
-  //             }
-  //           }
-  //         )
-  //       })
-  //     }
-  //   })
-  // }
 
   parseAuthorizationResponse(url: any) {
     const hashes = url.slice(url.indexOf('?') + 1).split('&')
