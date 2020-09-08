@@ -201,9 +201,12 @@ export class LocKeys {
   static CONSENT_FULL_CONSENT_REQUIRED_DESC = new LocKeys('CONSENT_FULL_CONSENT_REQUIRED_DESC')
   static ENROL_REGISTRATION_ERROR_TITLE = new LocKeys('ENROL_REGISTRATION_ERROR_TITLE')
   static ENROL_REGISTRATION_ERROR_DESC = new LocKeys('ENROL_REGISTRATION_ERROR_DESC')
+  static QUESTION_QUIT_THIS_SURVEY = new LocKeys('QUESTION_QUIT_THIS_SURVEY')
+  static QUESTION_PROGRESS_WILL_BE_LOST = new LocKeys('QUESTION_PROGRESS_WILL_BE_LOST')
+  static KEYCLOAK_BACK = new LocKeys('KEYCLOAK_BACK')
 
   //------------------------
-  
+
   constructor(public value: string) {}
 
   toString() {

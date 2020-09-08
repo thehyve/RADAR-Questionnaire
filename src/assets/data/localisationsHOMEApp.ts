@@ -352,9 +352,9 @@ export const Localisations = {
     es: '<p>Sabemos que su tiempo es valioso. Por ello, la aplicación HOME tiene dos tipos de encuestas – una larga' +
       ' y una más corta. Cada vez que queramos que usted complete una de estas encuestas se le enviará una' +
       ' notificación para abrir la aplicación HOME.</p>' +
-      '<p>En la encuesta corta, enviadas una vez a la semana o cada tres días, se le preguntará acerca de su salud en' +
-      ' la última semana. Si se ha sentido bien, le tomará menos de 15 segundos completarlo. Si no se ha sentido' +
-      ' bien, completarlo le tomará alrededor de 1 minuto.</p>' +
+      '<p>En las encuestas cortas, enviadas una vez a la semana o cada tres días, se le preguntará acerca de su' +
+      ' salud en la última semana. Si se ha sentido bien, le tomará menos de 15 segundos completarlo. Si no se ha' +
+      ' sentido bien, completarlo le tomará alrededor de 1 minuto.</p>' +
       '<p>En las encuestas más largas, enviadas una vez a la semana, se le hará un rango más amplio de preguntas' +
       ' relacionadas y no relacionadas a la salud. Estas encuestas están diseñadas para ser completadas en menos de' +
       ' 5 minutos.</p>' +
@@ -382,9 +382,9 @@ export const Localisations = {
     en: '<p>Taking part in this study will help us gain a better understanding of the health of migrants like you in' +
       ' the UK. While there are no immediate benefits for you, every survey that you fill out will increase our' +
       ' understanding of the health and wellbeing of migrants.</p>',
-    es: '<p>Tomar parte en este estudio nos ayudará a ganar un mejor entendimiento acerca de la salud de migrantes' +
-      ' en el Reino Unido como usted. Aunque no hayan beneficios inmediatos para usted, cada encuesta que complete' +
-      ' aumentará nuestro entendimiento acerca de la salud y bienestar de los migrantes.</p>',
+    es: '<p>Su participacion en este estudio nos ayudará a entender mejor la salud de migrantes como usted que viven' +
+      ' en el Reino Unido. Aunque no hayan beneficios inmediatos para usted, cada encuesta que complete aumentará' +
+      ' nuestro entendimiento acerca de la salud y bienestar de los migrantes.</p>',
     it: '',
     nl: '',
     pl: '',
@@ -415,8 +415,9 @@ export const Localisations = {
       ' bienestar, como su alimentacion, vivienda, empleo, y experiencias con su Médico de Atención Primaria o' +
       ' proveedor de salud. Podría encontrar que algunas preguntas no aplican a usted o lo hacen sentir incómodo.' +
       ' Usted podrá detener la encuesta en cualquier momento presionando el botón de ‘cerrar’.</p>' +
-      '<p>Su data será utilizada para investigación académica por la UCL y solo resultados de-personalizados serán' +
-      ' compartidos para mejorar la salud, cuidado y servicios para la comunidad inmigrante.</p>',
+      '<p>Su data será utilizada para investigación académica por el University College London (UCL) y solo' +
+      ' resultados sin su identificacion serán compartidos para mejorar la salud, cuidado y servicios para la' +
+      ' comunidad inmigrante.</p>',
     it: '',
     nl: '',
     pl: '',
@@ -500,8 +501,8 @@ export const Localisations = {
       ' go from the app, to a secure server hosted by Amazon, and then straight to UCL.</p>',
     es: '<p>Nos comprometemos seriamente a proteger su privacidad. Toda su información será mantenida como' +
       ' estrictamente confidencial a través del proyecto de investigación. No será posible identificarlo a usted a' +
-      ' través de las publicaciones o reportes basados en este estudio. Las respuestas que provea en las preguntas' +
-      ' de encuestas irán desde la aplicación a un servidor seguro alojado por Amazon, y luego directamente al UCL.' +
+      ' través de las publicaciones o reportes basados en este estudio. Las respuestas que provea a las preguntas de' +
+      ' las encuestas irán desde la aplicación a un servidor seguro alojado por Amazon, y luego directamente al UCL.' +
       '</p>',
     it: '',
     nl: '',
@@ -735,7 +736,7 @@ export const Localisations = {
     da: '',
     de: '',
     en: 'Visas and immigration',
-    es: 'Visa e inmigración',
+    es: 'Visas e Inmigración',
     it: '',
     nl: '',
     pl: '',
@@ -792,9 +793,6 @@ export const Localisations = {
     hb: ''
   },
 
-  // missing para
-  //'<li><b>Mental health crisis: Call 111 (for local crisis team) or go to A&E (place of safety)</b></li>' +
-  //       '<li><b>Urgent medical advice number (not an emergency): Call 111 </b></li>' +
   RESOURCES_ACCESS_TO_HEALTHCARE_CONTENT:{
     da: '',
     de: '',
@@ -812,7 +810,7 @@ export const Localisations = {
       '<li><b>Urgent medical advice number (not an emergency): Call 111 </b></li>' +
       '</ul>',
     es: '<ul>'+
-      '<li>Toda la información relacionada a salud puede ser encontrada en el sitio web del National Healthcare' +
+      '<li>Toda la información relacionada a salud la puede encontrar en el sitio web del National Healthcare' +
       ' Service (NHS) <a href="https://www.nhs.uk/">www.nhs.uk</a></li>' +
       '<li>Visite la página web de Salud Pública Inglaterra para consejos útiles y guías sobre las necesidades' +
       ' sanitarias de los pacientes migrantes <a href="https://www.gov.uk/guidance/nhs-entitlements-migrant-health-guide">' +
@@ -1124,4 +1122,91 @@ export const Localisations = {
     pl: '',
     hb: ''
   },
+
+  // Misc
+  FINISH_NEXT_TASK_REMINDER: {
+    da: '',
+    de: '',
+    en: 'Remember, you still have surveys to be completed. It would be great if you could finish those too!',
+    es: 'Recuerde, aún tiene encuestas por completar. ¡Sería genial si pudiera terminarlas!',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
+
+  WARNING_DO_NOT_CLOSE_APP: {
+    da: '',
+    de: '',
+    en: 'Do not close the App',
+    es: 'No cierre la aplicación',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
+
+  QUESTION_QUIT_THIS_SURVEY: {
+    da: '',
+    de: '',
+    en: 'Are you sure you want to quit this survey?',
+    es: '¿Está seguro que desea salir de la encuesta?',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
+
+  QUESTION_PROGRESS_WILL_BE_LOST: {
+    da: '',
+    de: '',
+    en: 'Your progress will be lost. But you can redo it later!',
+    es: 'Su progreso se perderá. ¡Pero puede rehacerla más tarde!',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
+
+  BTN_DONE: {
+    da: '',
+    de: '',
+    en: 'Done',
+    es: 'Completado',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
+  BTN_SET: {
+    da: '',
+    de: '',
+    en: 'Set',
+    es: 'Confirmar',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
+  BTN_CANCEL: {
+    da: '',
+    de: '',
+    en: 'Cancel',
+    es: 'Cancelar',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  },
+
+  KEYCLOAK_BACK:{
+    de: '',
+    en: 'Back',
+    es: 'Regresar',
+    it: '',
+    nl: '',
+    pl: '',
+    hb: ''
+  }
+
 }

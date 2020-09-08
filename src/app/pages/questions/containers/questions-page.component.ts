@@ -194,7 +194,7 @@ export class QuestionsPageComponent implements OnInit {
   stopQuestionnaire() {
     this.sendEvent(UsageEventType.QUESTIONNAIRE_INTERRUPTED)
     this.alertService.showAlert({
-      title: "Are you sure you want to quit this survey?",
+      title: this.localization.translateKey(LocKeys.QUESTION_QUIT_THIS_SURVEY),
       buttons: [
         {
           text: this.localization.translateKey(LocKeys.BTN_YES),
@@ -212,7 +212,7 @@ export class QuestionsPageComponent implements OnInit {
           }
         }
       ],
-      message: "Your progress will be lost. But you can redo it later!"
+      message: this.localization.translateKey(LocKeys.QUESTION_PROGRESS_WILL_BE_LOST)
     })
 
   }
