@@ -97,11 +97,18 @@ page-welcome {
     padding-top: 5px;
   }
 
-  .bottom {
+  .bottom-3x {
     position: fixed;
     bottom: 10px;
     width: 100%;
     height: 216px;
+  }
+
+  .bottom-2x {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 144px;
   }
 
   ion-item.item {
@@ -194,8 +201,12 @@ page-welcome {
     width: 100% !important;
   }
 
-  .slide-wrapper {
+  .slide-wrapper-3x {
     height: calc(100% - 216px);
+  }
+
+  .slide-wrapper-2x {
+    height: calc(100% - 144px);
   }
 
   .scroll-page-wrapper {
