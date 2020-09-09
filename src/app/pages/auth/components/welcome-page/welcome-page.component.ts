@@ -44,6 +44,7 @@ export class WelcomePageComponent {
 
   settings: Settings = {}
   showLoading = false
+  showJoinStudy: Boolean = true
 
   constructor(
     private navCtrl: NavController,
@@ -56,10 +57,13 @@ export class WelcomePageComponent {
     private logger: LogService,
     private config: ConfigService,
     private authConfig: AuthConfigService,
-  ) {}
+  ) {
+    this.loadJoinStudy()
+  }
 
   ionViewDidLoad() {
     this.localization.update().then(lang => (this.language = lang))
+    this.loadJoinStudy()
   }
 
   showSelectLanguage() {
@@ -177,4 +181,10 @@ export class WelcomePageComponent {
     this.navCtrl.setRoot(SplashPageComponent)
   }
 
+  loadJoinStudy() {
+    this.config.checkParticipantEnrolled().then((result) => {
+      console.log("Participant enrolled: ", result)
+      this.showJoinStudy = !result
+    })
+  }
 }
