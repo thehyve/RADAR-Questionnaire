@@ -27,6 +27,7 @@ import { KeycloakConfig } from '../../../shared/models/auth'
 import { AuthService } from './auth.service'
 import {LocalizationService} from "../../../core/services/misc/localization.service";
 import {LanguageSetting} from "../../../shared/models/settings";
+import {LocKeys} from "../../../shared/enums/localisations";
 
 const uuid = require('uuid/v4')
 
@@ -48,7 +49,7 @@ export class KeycloakAuthService extends AuthService {
     location: 'no',
     clearsessioncache: 'yes',
     clearcache: 'yes',
-    closebuttoncaption: 'Back',
+    closebuttoncaption: this.localization.translateKey(LocKeys.KEYCLOAK_BACK),
     toolbarcolor: '#ceeeff',
     hidenavigationbuttons: 'yes'
   }
