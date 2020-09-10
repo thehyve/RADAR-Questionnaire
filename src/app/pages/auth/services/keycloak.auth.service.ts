@@ -44,15 +44,6 @@ export class KeycloakAuthService extends AuthService {
       'realms/' +
       encodeURIComponent(DefaultRealmName)
   }
-  inAppBrowserOptions: InAppBrowserOptions = {
-    zoom: 'no',
-    location: 'no',
-    clearsessioncache: 'yes',
-    clearcache: 'yes',
-    closebuttoncaption: this.localization.translateKey(LocKeys.KEYCLOAK_BACK),
-    toolbarcolor: '#ceeeff',
-    hidenavigationbuttons: 'yes'
-  }
 
   language?: LanguageSetting = DefaultLanguage
 
@@ -101,9 +92,18 @@ export class KeycloakAuthService extends AuthService {
   authenticateWithKeycloak(isRegistration: boolean): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.createAuthenticationUrl(isRegistration).then(authUrl => {
+        const inAppBrowserOptions: InAppBrowserOptions = {
+          zoom: 'no',
+          location: 'no',
+          clearsessioncache: 'yes',
+          clearcache: 'yes',
+          closebuttoncaption: this.localization.translateKey(LocKeys.KEYCLOAK_BACK),
+          toolbarcolor: '#ceeeff',
+          hidenavigationbuttons: 'yes'
+        }
         const browser = this.inAppBrowser.create(
           authUrl,
-          '_blank', this.inAppBrowserOptions
+          '_blank', inAppBrowserOptions
         )
         let authRes = null
         const listener = browser.on('loadstart').subscribe((event: any) => {
