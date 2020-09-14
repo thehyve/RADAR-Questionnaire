@@ -206,10 +206,10 @@ export class ConfigService {
       .catch(() => false)
   }
 
-  checkParticipantEnrolled() {
+  checkParticipantEnrolled() : Promise<Boolean>{
     return this.subjectConfig
       .getParticipantLogin()
-      .then(participant => (participant ? participant : Promise.reject([])))
+      .then(participant => (!!participant))
   }
 
   updateConfigStateOnProtocolChange(protocol) {

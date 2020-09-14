@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="7" id="uk.ac.ucl.homeapp" ios-CFBundleIdentifier="uk.ac.ucl.homeapp" ios-CFBundleVersion="8" version="0.7.7" xmlns:android="http://schemas.android.com/apk/res/android">
+<widget android-versionCode="9" id="uk.ac.ucl.homeapp" ios-CFBundleIdentifier="uk.ac.ucl.homeapp" ios-CFBundleVersion="9" version="0.7.8" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>UCL HOME</name>
     <description>An application for analyzing health of migrants.</description>
     <author email="homeappstudy@ucl.ac.uk" href="http://radar-base.org/">RADAR-Base</author>

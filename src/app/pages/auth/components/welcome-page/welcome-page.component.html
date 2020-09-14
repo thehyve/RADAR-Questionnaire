@@ -1,6 +1,6 @@
 <ion-content>
   <div *ngIf="!loading">
-  <ion-slides pager direction="horizontal" class="slide-wrapper">
+  <ion-slides pager direction="horizontal" [ngClass]="showJoinStudy? 'slide-wrapper-3x':'slide-wrapper-2x'">
     <ion-slide id="intro">
       <div id="logo-container">
         <img id="logo" src="assets/imgs/home-app.png" alt="UCL LOGO">
@@ -33,7 +33,7 @@
     </ion-slide>
   </ion-slides>
 
-  <div padding class="bottom">
+  <div padding [ngClass]="showJoinStudy? 'bottom-3x':'bottom-2x'">
     <button
       ion-button
       class="bt bt--full"
@@ -44,6 +44,7 @@
       {{ "WELCOME_SELECT_LANGUAGE" | translate }}
     </button>
     <button
+      *ngIf="showJoinStudy"
         ion-button
         class="bt bt--full"
         round
