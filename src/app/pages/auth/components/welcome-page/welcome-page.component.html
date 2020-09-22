@@ -2,9 +2,18 @@
   <div *ngIf="!loading">
   <ion-slides pager direction="horizontal" [ngClass]="showJoinStudy? 'slide-wrapper-3x':'slide-wrapper-2x'">
     <ion-slide id="intro">
+      <div class="select-language-container">
+        <span class="info-value">
+          {{ language?.label | translate }}
+        </span>
+        <span class="select-language-dropdown" (tap)="showSelectLanguage()">
+          <ion-icon class="space-right" name="arrow-dropdown"></ion-icon>
+        </span>
+      </div>
       <div id="logo-container">
         <img id="logo" src="assets/imgs/home-app.png" alt="UCL LOGO">
       </div>
+
       <div class="swipe-here">{{ "WELCOME_SWIPE_HERE" | translate }}</div>
     </ion-slide>
 
@@ -34,15 +43,7 @@
   </ion-slides>
 
   <div padding [ngClass]="showJoinStudy? 'bottom-3x':'bottom-2x'">
-    <button
-      ion-button
-      class="bt bt--full"
-      round
-      full
-      (tap)="showSelectLanguage()"
-    >
-      {{ "WELCOME_SELECT_LANGUAGE" | translate }}
-    </button>
+
     <button
       *ngIf="showJoinStudy"
         ion-button
