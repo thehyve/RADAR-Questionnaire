@@ -2,11 +2,11 @@
   <div *ngIf="!loading">
   <ion-slides pager direction="horizontal" [ngClass]="showJoinStudy? 'slide-wrapper-3x':'slide-wrapper-2x'">
     <ion-slide id="intro">
-      <div class="select-language-container">
+      <div class="select-language-container" (tap)="showSelectLanguage()">
         <span class="info-value">
           {{ language?.label | translate }}
         </span>
-        <span class="select-language-dropdown" (tap)="showSelectLanguage()">
+        <span class="select-language-dropdown">
           <ion-icon class="space-right" name="arrow-dropdown"></ion-icon>
         </span>
       </div>
