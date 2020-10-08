@@ -28,25 +28,7 @@
       </span>
     </ion-item>
   </ion-item-group>
-
-  <ion-item-group>
-    <ion-item-divider no-lines>{{
-      'SETTINGS_LANGUAGE' | translate
-    }}</ion-item-divider>
-    <ion-item no-lines *ngIf="!showLoading">
-      <span class="info-value">
-        {{ settings.language?.label | translate }}
-      </span>
-      <span item-right (tap)="showSelectLanguage()">
-        <ion-icon class="space-right" name="arrow-dropdown"></ion-icon>
-        {{ 'BTN_SELECT' | translate }}
-      </span>
-    </ion-item>
-    <ion-item no-lines *ngIf="showLoading">
-      <ion-spinner name="dots"></ion-spinner>
-    </ion-item>
-  </ion-item-group>
-
+ 
   <ion-item-group>
     <ion-item-divider no-lines class="item-divider">
       {{ 'SETTINGS_NOTIFICATIONS' | translate }}
@@ -86,20 +68,6 @@
         (ionChange)="notificationChange()"
       >
       </ion-toggle>
-    </ion-item>
-  </ion-item-group>
-
-  <ion-item-group>
-    <ion-item-divider no-lines>{{
-      'SETTINGS_REPORT' | translate
-    }}</ion-item-divider>
-    <ion-item no-lines *ngFor="let subSetting of weeklyReport; let i = index">
-      <ion-label>{{ subSetting.name | translate }}</ion-label>
-      <ion-toggle
-        item-right
-        [(ngModel)]="subSetting.show"
-        (ionChange)="weeklyReportChange(i)"
-      ></ion-toggle>
     </ion-item>
   </ion-item-group>
 
