@@ -10,7 +10,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx'
 import { Device } from '@ionic-native/device/ngx'
 import { Dialogs } from '@ionic-native/dialogs/ngx'
 import { File } from '@ionic-native/file/ngx'
-import { Firebase } from '@ionic-native/firebase/ngx'
+import { FirebaseX } from '@ionic-native/firebase-x/ngx'
 import { Globalization } from '@ionic-native/globalization/ngx'
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
 import { Insomnia } from '@ionic-native/insomnia/ngx'
@@ -30,8 +30,8 @@ import {
   RemoteConfigService
 } from './core/services/config/remote-config.service'
 import { LogService } from './core/services/misc/log.service'
-import { KeycloakTokenService } from "./core/services/token/keycloak.token.service";
-import { TokenService } from "./core/services/token/token.service";
+import { KeycloakTokenService } from './core/services/token/keycloak.token.service'
+import { TokenService } from './core/services/token/token.service'
 import { PagesModule } from './pages/pages.module'
 import { AndroidPermissionUtility } from './shared/utilities/android-permission'
 import { jwtOptionsFactory } from './shared/utilities/jwtOptionsFactory'
@@ -80,7 +80,7 @@ import { Utility } from './shared/utilities/util'
     Insomnia,
     BackgroundMode,
     Keyboard,
-    Firebase,
+    FirebaseX,
     LocalNotifications,
     LogService,
     InAppBrowser,

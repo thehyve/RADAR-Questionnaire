@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Firebase } from '@ionic-native/firebase/ngx'
+import { FirebaseX } from '@ionic-native/firebase-x/ngx'
 import { Platform } from 'ionic-angular'
 import * as uuid from 'uuid/v4'
 
@@ -8,7 +8,7 @@ import {
   DefaultNotificationTtlMinutes,
   DefaultNumberOfNotificationsToReschedule,
   DefaultNumberOfNotificationsToSchedule,
-  FCMPluginProjectSenderId,
+  FCMPluginProjectSenderId
 } from '../../../../assets/data/defaultConfig'
 import { ConfigKeys } from '../../../shared/enums/config'
 import { StorageKeys } from '../../../shared/enums/storage'
@@ -38,7 +38,7 @@ export class FcmNotificationService extends NotificationService {
     private storage: StorageService,
     private schedule: ScheduleService,
     private config: SubjectConfigService,
-    private firebase: Firebase,
+    private firebase: FirebaseX,
     private platform: Platform,
     private logger: LogService,
     private remoteConfig: RemoteConfigService
@@ -46,11 +46,17 @@ export class FcmNotificationService extends NotificationService {
     super()
     this.ttlMinutes = 10
 
-    this.remoteConfig.subject()
-      .subscribe(cfg => {
-        cfg.getOrDefault(ConfigKeys.NOTIFICATION_TTL_MINUTES, String(this.ttlMinutes))
-          .then(ttl => this.ttlMinutes = Number(ttl) || DefaultNotificationTtlMinutes)
-      })
+    this.remoteConfig.subject().subscribe(cfg => {
+      cfg
+        .getOrDefault(
+          ConfigKeys.NOTIFICATION_TTL_MINUTES,
+          String(this.ttlMinutes)
+        )
+        .then(
+          ttl =>
+            (this.ttlMinutes = Number(ttl) || DefaultNotificationTtlMinutes)
+        )
+    })
   }
 
   init() {
@@ -74,13 +80,16 @@ export class FcmNotificationService extends NotificationService {
     return this.config.getParticipantLogin().then(username => {
       if (!username) return Promise.resolve([])
       return this.schedule.getTasks(TaskType.ALL).then(tasks => {
-        this.logger.log("Total Tasks [] ..", tasks.length)
+        this.logger.log('Total Tasks [] ..', tasks.length)
         const futureTasks = tasks.filter(t => !t.completed)
-        this.logger.log("Future Tasks [] .. ", futureTasks.length )
+        this.logger.log('Future Tasks [] .. ', futureTasks.length)
         const fcmNotifications = this.notifications
           .futureNotifications(futureTasks, limit)
           .map(t => this.format(t, username))
-        this.logger.log('NOTIFICATIONS Scheduling FCM notifications ', fcmNotifications.length)
+        this.logger.log(
+          'NOTIFICATIONS Scheduling FCM notifications ',
+          fcmNotifications.length
+        )
         this.logger.log(fcmNotifications)
         return Promise.all(
           fcmNotifications
@@ -91,11 +100,12 @@ export class FcmNotificationService extends NotificationService {
     })
   }
 
-  rescheduleForFutureTasks(limit: number = DefaultNumberOfNotificationsToReschedule): Promise<void[]> {
+  rescheduleForFutureTasks(
+    limit: number = DefaultNumberOfNotificationsToReschedule
+  ): Promise<void[]> {
     this.resetResends()
     // first cancel notifications of this participant
-    return this.cancel()
-      .then(() => this.publish(limit))
+    return this.cancel().then(() => this.publish(limit))
   }
 
   private sendNotification(notification): Promise<void> {
@@ -151,7 +161,7 @@ export class FcmNotificationService extends NotificationService {
     if (!this.platform.is('ios')) return Promise.resolve()
     return this.firebase
       .hasPermission()
-      .then(res => (res.isEnabled ? true : this.firebase.grantPermission()))
+      .then(res => (res ? true : this.firebase.grantPermission()))
   }
 
   sendTestNotification(): Promise<void> {
