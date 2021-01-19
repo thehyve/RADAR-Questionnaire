@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="12" id="uk.ac.ucl.homeapp" ios-CFBundleIdentifier="uk.ac.ucl.homeapp" ios-CFBundleVersion="17" version="1.0.1" xmlns:android="http://schemas.android.com/apk/res/android">
+<widget android-versionCode="12" id="uk.ac.ucl.homeapp" ios-CFBundleIdentifier="uk.ac.ucl.homeapp" ios-CFBundleVersion="19" version="1.0.1" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>UCL HOME</name>
     <description>An application for analyzing health of migrants.</description>
     <author email="homeappstudy@ucl.ac.uk" href="http://radar-base.org/">RADAR-Base</author>
@@ -96,6 +96,11 @@
         <splash height="2688" src="resources/ios/splash/Default-2688h~iphone.png" width="1242" />
         <splash height="1792" src="resources/ios/splash/Default-1792h~iphone.png" width="828" />
         <preference name="AllowInlineMediaPlayback" value="true" />
+        <preference name="WKWebViewOnly" value="true" />
+        <feature name="CDVWKWebViewEngine">`
+                                                          <param name="ios-package" value="CDVWKWebViewEngine" />
+</feature>
+        <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     </platform>
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenBackgroundColor" value="0xff6d9aa5" />
