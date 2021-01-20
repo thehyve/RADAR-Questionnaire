@@ -98,7 +98,7 @@
         <preference name="AllowInlineMediaPlayback" value="true" />
         <preference name="WKWebViewOnly" value="true" />
         <feature name="CDVWKWebViewEngine">
-          <param name="ios-package" value="CDVWKWebViewEngine" />
+            <param name="ios-package" value="CDVWKWebViewEngine" />
         </feature>
         <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     </platform>
@@ -132,7 +132,7 @@
     <plugin name="cordova-media-with-compression" spec="^2.1.2" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-insomnia" spec="^4.3.0" />
-    <plugin name="cordova-plugin-firebasex" spec="git+https://github.com/mpgxvii/cordova-plugin-firebasex.git#cli_build">
+    <plugin name="cordova-plugin-firebasex-with-upstream-messaging" spec="11.0.3-cli">
         <variable name="IOS_SHOULD_ESTABLISH_DIRECT_CHANNEL" value="true" />
     </plugin>
     <plugin name="cordova-plugin-androidx" spec="^1.0.2" />
